@@ -48,6 +48,12 @@
         "parallel": false
       }
     },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "wrangler pages deploy dist/apps/web/deploy"
+      }
+    },
     "preview": {
       "executor": "@nx/vite:preview-server",
       "options": {
