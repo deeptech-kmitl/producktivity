@@ -2,7 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
-  return <p>Produck's Certificate Generator สวัสดี</p>;
+  return <p>🪿 Certificate Generator สวัสดี 🪿</p>;
 });
 
 export const head: DocumentHead = {
