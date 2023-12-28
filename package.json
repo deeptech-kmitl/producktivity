@@ -1,0 +1,15 @@
+{
+  "name": "@producktivity/source",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install tools/commit-hooks"
+  },
+  "devDependencies": {
+    "@nx/js": "17.2.7",
+    "@nx/workspace": "17.2.7",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "nx": "17.2.7"
+  }
+}
