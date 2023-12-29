@@ -1,0 +1,36 @@
+{
+  "name": "ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/shared/ui/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/web/shared/ui",
+        "configFile": "libs/web/shared/ui/vite.config.ts",
+        "mode": "lib"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../coverage/libs/web/shared/ui"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/web/shared/ui/**/*.{ts,tsx,js,jsx}",
+          "{projectRoot}/package.json"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
