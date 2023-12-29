@@ -5,11 +5,7 @@ export const Typography = component$(
   ({ bold = false, variant = "base", ...props }: TypographyProps) => {
     return (
       <p
-        class={clsx(
-          "font-sans",
-          bold && "font-bold",
-          TypographyVariants[variant]
-        )}
+        class={clsx(bold && "font-bold", TypographyVariants[variant])}
         {...props}
       >
         <Slot />
