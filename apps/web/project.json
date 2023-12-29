@@ -7,9 +7,20 @@
     "build": {
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["web:build.client", "web:build.ssr", "web:build.server", "web:build.bundle"],
+        "runSequence": [
+          "web:build.client",
+          "web:build.ssr",
+          "web:build.server",
+          "web:build.bundle"
+        ],
         "outputPath": "dist/apps/web"
       },
+      "dependsOn": [
+        {
+          "projects": "ui",
+          "target": "build"
+        }
+      ],
       "configurations": {
         "preview": {}
       }
@@ -44,12 +55,18 @@
     "build.bundle": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["mkdir -p dist/apps/web/deploy/", "cp -r dist/apps/web/client/* dist/apps/web/deploy/", "cp -r dist/apps/web/server/ dist/apps/web/deploy/server/", "echo 'Bundled to dist/apps/web/deploy'"],
+        "commands": [
+          "mkdir -p dist/apps/web/deploy/",
+          "cp -r dist/apps/web/client/* dist/apps/web/deploy/",
+          "cp -r dist/apps/web/server/ dist/apps/web/deploy/server/",
+          "echo 'Bundled to dist/apps/web/deploy'"
+        ],
         "parallel": false
       }
     },
     "deploy": {
       "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
         "command": "wrangler pages deploy dist/apps/web/deploy"
       }
@@ -71,6 +88,12 @@
     },
     "serve": {
       "executor": "@nx/vite:dev-server",
+      "dependsOn": [
+        {
+          "projects": "ui",
+          "target": "build"
+        }
+      ],
       "options": {
         "buildTarget": "web:build.client",
         "mode": "ssr",

@@ -25,10 +25,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/web/shared/ui/**/*.{ts,tsx,js,jsx}",
-          "{projectRoot}/package.json"
-        ]
+        "lintFilePatterns": ["libs/web/shared/ui/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

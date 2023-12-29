@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@producktivity/ui": ["libs/web/shared/ui/src/index.ts"]
+      "@producktivity/ui": ["dist/libs/web/shared/ui"],
+      "@producktivity/ui/*": ["dist/libs/web/shared/ui/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

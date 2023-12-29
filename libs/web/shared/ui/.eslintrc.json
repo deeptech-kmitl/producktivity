@@ -10,6 +10,7 @@
     "project": ["libs/web/shared/ui/tsconfig.*?.json"],
     "ecmaVersion": 2021,
     "sourceType": "module",
+    "extraFileExtensions": [".json"],
     "ecmaFeatures": {
       "jsx": true
     }

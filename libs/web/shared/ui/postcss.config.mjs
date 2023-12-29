@@ -11,6 +11,5 @@ export default {
       config: join(__dirname, "tailwind.config.ts"),
     },
     autoprefixer: {},
-    cssnano: {},
   },
 };
