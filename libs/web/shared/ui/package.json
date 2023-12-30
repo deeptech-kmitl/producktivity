@@ -1,0 +1,15 @@
+{
+  "name": "@producktivity/ui",
+  "type": "module",
+  "main": "./index.qwik.mjs",
+  "module": "./index.qwik.mjs",
+  "qwik": "./index.qwik.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.qwik.mjs",
+      "require": "./index.qwik.cjs"
+    }
+  }
+}
