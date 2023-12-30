@@ -7,10 +7,15 @@
     "build": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/libs/web/shared/ui",
         "configFile": "libs/web/shared/ui/vite.config.ts",
         "mode": "lib"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
       }
     },
     "test": {

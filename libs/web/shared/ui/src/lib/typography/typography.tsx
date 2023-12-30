@@ -1,31 +1,29 @@
-import { component$, Slot, type HTMLAttributes } from "@builder.io/qwik";
-import { clsx } from "clsx";
+import { component$, Slot, type QwikIntrinsicElements } from "@builder.io/qwik";
 
-export const Typography = component$(
-  ({ bold = false, variant = "base", ...props }: TypographyProps) => {
-    return (
-      <p
-        class={clsx(bold && "font-bold", TypographyVariants[variant])}
-        {...props}
-      >
-        <Slot />
-      </p>
-    );
-  }
-);
+export const Typography = component$<TypographyProps>((props) => {
+  const { bold = false, variant = "base", ...rest } = props;
 
-export const TypographyVariants = {
-  title: "text-4xl",
-  h1: "text-3xl",
-  h2: "text-2xl",
-  h3: "text-xl",
-  h4: "text-lg",
-  base: "text-base",
-};
+  const Variants = {
+    title: "text-4xl",
+    h1: "text-3xl",
+    h2: "text-2xl",
+    h3: "text-xl",
+    h4: "text-lg",
+    base: "text-base",
+  } satisfies { [K in TypographyVariant]: string };
 
-export type TypographyVariant = keyof typeof TypographyVariants;
+  return (
+    <p {...rest} class={[{ "font-bold": bold }, Variants[variant]]}>
+      <Slot />
+    </p>
+  );
+});
 
-export interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
+export type TypographyVariant = "title" | "h1" | "h2" | "h3" | "h4" | "base";
+
+type NativeParagraph = QwikIntrinsicElements["p"];
+
+export interface TypographyProps extends NativeParagraph {
   bold?: boolean;
   variant?: TypographyVariant;
 }

@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceweb": "apps/web/src",
+  "implicitDependencies": ["ui"],
   "targets": {
     "build": {
       "executor": "qwik-nx:build",
@@ -73,6 +74,12 @@
     },
     "preview": {
       "executor": "@nx/vite:preview-server",
+      "dependsOn": [
+        {
+          "projects": "ui",
+          "target": "build"
+        }
+      ],
       "options": {
         "buildTarget": "web:build",
         "port": 4200
@@ -102,6 +109,12 @@
     },
     "serve.debug": {
       "executor": "nx:run-commands",
+      "dependsOn": [
+        {
+          "projects": "ui",
+          "target": "build"
+        }
+      ],
       "options": {
         "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
         "cwd": "apps/web"

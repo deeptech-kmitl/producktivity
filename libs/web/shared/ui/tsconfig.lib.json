@@ -1,13 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../../dist/out-tsc",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "lib": ["es2020", "DOM", "WebWorker", "DOM.Iterable"],
-    "types": ["node", "vite/client", "vitest"]
+    "outDir": "../../../../dist/out-tsc"
   },
   "files": [],
   "exclude": [
@@ -23,13 +17,5 @@
     "src/**/*.stories.ts",
     "src/**/*.stories.js"
   ],
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "tailwind.config.ts",
-    "postcss.config.mjs",
-    "vite.config.ts"
-  ]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
 }

@@ -24,7 +24,6 @@
     "@typescript-eslint/parser": "^6.9.1",
     "@vitest/ui": "~0.34.6",
     "autoprefixer": "~10.4.11",
-    "clsx": "^2.1.0",
     "eslint": "~8.48.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-playwright": "^0.15.3",
