@@ -16,6 +16,7 @@ export const onRequest: RequestHandler = (event) => {
     `frame-src 'self' 'nonce-${nonce}'`,
     `object-src 'none'`,
     `base-uri 'self'`,
+    `require-trusted-types-for 'script'`
   ];
 
   event.headers.set("Content-Security-Policy", csp.join("; "));
