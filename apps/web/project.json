@@ -9,6 +9,7 @@
       "executor": "qwik-nx:build",
       "options": {
         "runSequence": [
+          "web:build.pwa",
           "web:build.client",
           "web:build.ssr",
           "web:build.server",
@@ -63,6 +64,12 @@
           "echo 'Bundled to dist/apps/web/deploy'"
         ],
         "parallel": false
+      }
+    },
+    "build.pwa": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "generate-pwa-assets"
       }
     },
     "deploy": {

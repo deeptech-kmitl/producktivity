@@ -1,3 +1,6 @@
 {
-  "name": "web"
+  "name": "web",
+  "scripts": {
+    "generate-pwa-assets": "pwa-assets-generator"
+  }
 }
