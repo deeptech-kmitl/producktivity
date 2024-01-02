@@ -1,4 +1,4 @@
-import { component$, useStyles$ } from '@builder.io/qwik';
+import { component$, useServerData, useStyles$ } from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/base';
 
@@ -12,6 +12,8 @@ export default component$(() => {
    * Don't remove the `<head>` and `<body>` elements.
    */
   useStyles$(styles);
+
+  const nonce = useServerData<string | undefined>("nonce");
 
   return (
     <QwikCityProvider>
@@ -29,7 +31,7 @@ export default component$(() => {
       </head>
       <body lang="en">
         <RouterOutlet />
-        <ServiceWorkerRegister />
+        <ServiceWorkerRegister nonce={nonce} />
       </body>
     </QwikCityProvider>
   );
