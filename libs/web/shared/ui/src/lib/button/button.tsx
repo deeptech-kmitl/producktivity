@@ -4,7 +4,7 @@ export const Button = component$<ButtonProps>((props) => {
   const {
     size = "base",
     variant = "primary",
-    shape = "base",
+    rounded = false,
     disabled = false,
     ...rest
   } = props;
@@ -24,7 +24,7 @@ export const Button = component$<ButtonProps>((props) => {
   } satisfies { [K in ButtonVariant | "disabled"]: string };
 
   const Shapes = {
-    base: "rounded-lg",
+    base: "rounded-md",
     rounded: "rounded-full",
   } satisfies { [K in ButtonShape]: string };
 
@@ -34,7 +34,7 @@ export const Button = component$<ButtonProps>((props) => {
       class={[
         Sizes[size],
         Variants[disabled ? "disabled" : variant],
-        Shapes[shape],
+        Shapes[rounded ? "rounded" : "base"],
       ]}
     >
       <Slot />
@@ -42,15 +42,23 @@ export const Button = component$<ButtonProps>((props) => {
   );
 });
 
-export type ButtonSize = "small" | "base" | "large";
-export type ButtonVariant = "primary" | "secondary" | "tertiary" | "error";
-export type ButtonShape = "base" | "rounded";
+export const ButtonSizes = [ "small", "base", "large" ] as const;
+export type ButtonSizeTuple = typeof ButtonSizes;
+export type ButtonSize = ButtonSizeTuple[number];
+
+export const ButtonVariants = ["primary", "secondary", "tertiary", "error"] as const;
+export type ButtonVariantTuple = typeof ButtonVariants;
+export type ButtonVariant = ButtonVariantTuple[number];
+
+export const ButtonShape = ["base", "rounded"] as const;
+export type ButtonShapeTuple = typeof ButtonShape;
+export type ButtonShape = ButtonShapeTuple[number];
 
 type NativeButton = QwikIntrinsicElements["button"];
 
-interface ButtonProps extends NativeButton {
+export interface ButtonProps extends NativeButton {
   size?: ButtonSize;
   variant?: ButtonVariant;
-  shape?: ButtonShape;
+  rounded?: boolean;
   disabled?: boolean;
 }
