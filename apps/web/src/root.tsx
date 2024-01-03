@@ -13,7 +13,7 @@ export default component$(() => {
    */
   useStyles$(styles);
 
-  const nonce = useServerData<string | undefined>("nonce");
+  const nonce = useServerData<string | undefined>('nonce');
 
   return (
     <QwikCityProvider>

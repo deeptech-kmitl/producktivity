@@ -1,42 +1,42 @@
-import { qwikVite } from "@builder.io/qwik/optimizer";
-import { qwikCity } from "@builder.io/qwik-city/vite";
-import { defineConfig } from "vite";
-import { qwikNxVite } from "qwik-nx/plugins";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCity } from '@builder.io/qwik-city/vite';
+import { defineConfig } from 'vite';
+import { qwikNxVite } from 'qwik-nx/plugins';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  cacheDir: "../../node_modules/.vite/apps/web",
+  cacheDir: '../../node_modules/.vite/apps/web',
   plugins: [
-    tsconfigPaths({ root: "../../" }),
+    tsconfigPaths({ root: '../../' }),
     qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
-        outDir: "../../dist/apps/web/client",
+        outDir: '../../dist/apps/web/client',
       },
       ssr: {
-        outDir: "../../dist/apps/web/server",
+        outDir: '../../dist/apps/web/server',
       },
-      tsconfigFileNames: ["tsconfig.app.json", "../../tsconfig.base.json"],
+      tsconfigFileNames: ['tsconfig.app.json', '../../tsconfig.base.json'],
     }),
   ],
   server: {
     fs: {
       // Allow serving files from the project root
-      allow: ["../../"],
+      allow: ['../../'],
     },
   },
   preview: {
     headers: {
-      "Cache-Control": "public, max-age=600",
+      'Cache-Control': 'public, max-age=600',
     },
   },
   test: {
     globals: true,
     cache: {
-      dir: "../../node_modules/.vitest",
+      dir: '../../node_modules/.vitest',
     },
-    environment: "node",
-    include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },
 });

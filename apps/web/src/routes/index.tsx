@@ -1,7 +1,7 @@
-import type { DocumentHead } from "@builder.io/qwik-city";
+import type { DocumentHead } from '@builder.io/qwik-city';
 
-import { component$, useSignal, $ } from "@builder.io/qwik";
-import { Typography, Button } from "@producktivity/ui";
+import { component$, useSignal, $ } from '@builder.io/qwik';
+import { Typography, Button } from '@producktivity/ui';
 
 export default component$(() => {
   const count = useSignal(0);
@@ -26,11 +26,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Certificate Generator",
+  title: 'Certificate Generator',
   meta: [
     {
-      name: "description",
-      content: "A complete certificate generator",
+      name: 'description',
+      content: 'A complete certificate generator',
     },
   ],
 };

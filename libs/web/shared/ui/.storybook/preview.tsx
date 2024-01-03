@@ -2,16 +2,16 @@ import type {
   Parameters,
   Preview,
   QwikRenderer,
-} from "storybook-framework-qwik";
-import { withThemeByDataAttribute } from "@storybook/addon-themes";
+} from 'storybook-framework-qwik';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
-import "../src/styles.css";
+import '../src/styles.css';
 
 export const parameters = {
   a11y: {
     config: {},
     options: {
-      checks: { "color-contrast": { options: { noScroll: true } } },
+      checks: { 'color-contrast': { options: { noScroll: true } } },
       restoreScroll: true,
     },
   },
@@ -23,12 +23,12 @@ export const parameters = {
 const preview = {
   decorators: [
     withThemeByDataAttribute<QwikRenderer<unknown>>({
-      attributeName: "data-mode",
+      attributeName: 'data-mode',
       themes: {
-        light: "light",
-        dark: "dark",
+        light: 'light',
+        dark: 'dark',
       },
-      defaultTheme: "light",
+      defaultTheme: 'light',
     }),
   ],
 } satisfies Preview;

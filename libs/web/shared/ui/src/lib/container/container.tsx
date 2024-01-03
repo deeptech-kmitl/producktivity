@@ -1,4 +1,4 @@
-import { Slot, component$ } from "@builder.io/qwik";
+import { Slot, component$ } from '@builder.io/qwik';
 
 export const Container = component$(() => {
   return (
