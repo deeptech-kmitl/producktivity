@@ -6,6 +6,7 @@
   "implicitDependencies": ["ui"],
   "targets": {
     "build": {
+      "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/logo.png"],
       "executor": "qwik-nx:build",
       "options": {
         "runSequence": ["web:build.pwa", "web:build.client", "web:build.ssr", "web:build.server", "web:build.bundle"],
@@ -56,6 +57,7 @@
       }
     },
     "build.pwa": {
+      "inputs": ["{projectRoot}/pwa-assets.config.ts", "{projectRoot}/public/logo.png"],
       "executor": "nx:run-script",
       "options": {
         "script": "generate-pwa-assets"
