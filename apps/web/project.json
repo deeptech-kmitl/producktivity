@@ -6,7 +6,7 @@
   "implicitDependencies": ["ui"],
   "targets": {
     "build": {
-      "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/images/logo.png"],
+      "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/assets/logo.png"],
       "executor": "qwik-nx:build",
       "options": {
         "runSequence": ["web:build.pwa", "web:build.client", "web:build.ssr", "web:build.server", "web:build.bundle"],
@@ -14,8 +14,9 @@
       },
       "dependsOn": [
         {
-          "projects": "ui",
-          "target": "build"
+          "dependencies": true,
+          "target": "build",
+          "params": "ignore"
         }
       ],
       "configurations": {
@@ -57,8 +58,10 @@
       }
     },
     "build.pwa": {
-      "inputs": ["{projectRoot}/pwa-assets.config.ts", "{projectRoot}/public/images/logo.png"],
+      "inputs": ["{projectRoot}/pwa-assets.config.ts", "{projectRoot}/public/assets/logo.png"],
+      "outputs": ["{projectRoot}/public/assets/*", "!{projectRoot}/public/assets/logo.png"],
       "executor": "nx:run-script",
+      "cache": true,
       "options": {
         "script": "generate-pwa-assets"
       }
