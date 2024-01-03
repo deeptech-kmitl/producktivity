@@ -17,6 +17,9 @@
     "e2e": {
       "cache": true,
       "inputs": ["default", "^production"]
+    },
+    "build.pwa": {
+      "cache": true
     }
   },
   "namedInputs": {
