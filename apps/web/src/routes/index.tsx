@@ -7,6 +7,7 @@ export default component$(() => {
   const count = useSignal(0);
 
   const increment = $(() => count.value++);
+  const decrement = $(() => count.value--);
   const reset = $(() => count.value = 0);
 
   return (
@@ -17,6 +18,7 @@ export default component$(() => {
         </Typography>
         <Button onClick$={increment}>Increment</Button>
         <Typography>คุณคลิ๊กไป {count} ครั้ง</Typography>
+        <Button onClick$={decrement}>Decrement</Button>
         <Button onClick$={reset}>Reset</Button>
       </div>
     </>
