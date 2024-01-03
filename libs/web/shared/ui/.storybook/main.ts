@@ -1,5 +1,7 @@
 import type { StorybookConfig } from "storybook-framework-qwik";
-import type { InlineConfig } from "vite";
+import { withNx } from 'qwik-nx/storybook';
+import { mergeConfig, type InlineConfig } from "vite";
+import viteConfig from './../vite.config';
 
 const config: StorybookConfig = {
   addons: [
@@ -17,7 +19,8 @@ const config: StorybookConfig = {
   },
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   viteFinal: async (config: InlineConfig) => {
-    return config;
+    const updatedConfig = mergeConfig(config, viteConfig);
+    return withNx(updatedConfig);
   },
 };
 
