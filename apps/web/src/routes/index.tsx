@@ -17,8 +17,8 @@ export default component$(() => {
           🪿 Certificate Generator สวัสดี 🪿
         </Typography>
         <Button onClick$={increment}>Increment</Button>
-        <Typography>คุณคลิ๊กไป {count} ครั้ง</Typography>
         <Button onClick$={decrement}>Decrement</Button>
+        <Typography>คุณคลิ๊กไป {count} ครั้ง</Typography>
         <Button onClick$={reset}>Reset</Button>
       </div>
     </>
