@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": ["/_headers", "/_redirects", "/build/*", "/assets/*", "/manifest.json", "/service-worker.js"]
+}
