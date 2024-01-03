@@ -1,7 +1,7 @@
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 import { component$, useSignal, $ } from '@builder.io/qwik';
-import { Typography, Button } from '@producktivity/ui';
+import { Text, Button } from '@producktivity/ui';
 
 export default component$(() => {
   const count = useSignal(0);
@@ -13,12 +13,12 @@ export default component$(() => {
   return (
     <>
       <div>
-        <Typography bold variant="title">
+        <Text bold variant="title">
           🪿 Certificate Generator สวัสดี 🪿
-        </Typography>
+        </Text>
         <Button onClick$={decrement}>Decrement</Button>
         <Button onClick$={increment}>Increment</Button>
-        <Typography>คุณคลิ๊กไป {count} ครั้ง</Typography>
+        <Text>คุณคลิ๊กไป {count} ครั้ง</Text>
         <Button onClick$={reset}>Reset</Button>
       </div>
     </>

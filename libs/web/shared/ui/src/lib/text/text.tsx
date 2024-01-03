@@ -1,6 +1,6 @@
 import { component$, Slot, type QwikIntrinsicElements } from '@builder.io/qwik';
 
-export const Typography = component$<TypographyProps>((props) => {
+export const Text = component$<TextProps>((props) => {
   const { bold = false, variant = 'base', ...rest } = props;
 
   const Variants = {
@@ -10,7 +10,7 @@ export const Typography = component$<TypographyProps>((props) => {
     h3: 'text-xl',
     h4: 'text-lg',
     base: 'text-base',
-  } satisfies { [K in TypographyVariant]: string };
+  } satisfies { [K in TextVariant]: string };
 
   return (
     <p {...rest} class={[{ 'font-bold': bold }, Variants[variant]]}>
@@ -19,11 +19,11 @@ export const Typography = component$<TypographyProps>((props) => {
   );
 });
 
-export type TypographyVariant = 'title' | 'h1' | 'h2' | 'h3' | 'h4' | 'base';
+export type TextVariant = 'title' | 'h1' | 'h2' | 'h3' | 'h4' | 'base';
 
 type NativeParagraph = QwikIntrinsicElements['p'];
 
-export interface TypographyProps extends NativeParagraph {
+export interface TextProps extends NativeParagraph {
   bold?: boolean;
-  variant?: TypographyVariant;
+  variant?: TextVariant;
 }
