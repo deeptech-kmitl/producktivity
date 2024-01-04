@@ -5,5 +5,13 @@
 @import "tailwindcss/utilities";
 
 html {
-  @apply font-sans bg-surface text-surface-on min-h-dvh h-full;
+  @apply font-sans bg-surface text-surface-on;
+}
+
+body, html {
+  @apply h-full;
+}
+
+body {
+  @apply min-h-dvh;
 }

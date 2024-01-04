@@ -2,7 +2,7 @@ import { Slot, component$ } from '@builder.io/qwik';
 import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxProps, BoxVariant, BoxWidth } from './box.props';
 
 export const Box = component$<BoxProps>((props) => {
-  const { variant = 'surface', width = 'full', height = 'full', align = 'left', direction = 'vertical', gap = 'none', border = 'none', ...rest } = props;
+  const { variant = 'base', width = 'auto', height = 'auto', align = 'left', direction = 'vertical', gap = 'none', border = 'none', ...rest } = props;
 
   const Variants = {
     primary: 'bg-primary-container text-primary-container-on',
@@ -10,9 +10,11 @@ export const Box = component$<BoxProps>((props) => {
     tertiary: 'bg-tertiary-container text-tertiary-container-on',
     error: 'bg-error-container text-error-container-on',
     surface: 'bg-surface-container text-surface-container-on',
+    base: 'bg-transparent text-surface-on',
   } satisfies { [K in BoxVariant]: string };
 
   const Widths = {
+    auto: 'w-auto',
     full: 'w-full',
     half: 'w-1/2',
     quarter: 'w-1/4',
@@ -34,6 +36,7 @@ export const Box = component$<BoxProps>((props) => {
   } satisfies { [K in BoxWidth]: string };
 
   const Heights = {
+    auto: 'h-auto',
     full: 'h-full',
     half: 'h-1/2',
     quarter: 'h-1/4',

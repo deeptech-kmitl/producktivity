@@ -1,9 +1,9 @@
 import type { QwikIntrinsicElements } from '@builder.io/qwik';
 
-export const BoxVariants = ['surface', 'primary', 'secondary', 'tertiary', 'error'] as const;
+export const BoxVariants = ['surface', 'primary', 'secondary', 'tertiary', 'error', 'base'] as const;
 export type BoxVariant = (typeof BoxVariants)[number];
 
-export const BoxSizes = ['full', 'half', 'quarter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '12', '16', '18', '20', '24'] as const;
+export const BoxSizes = ['auto', 'full', 'half', 'quarter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '12', '16', '18', '20', '24'] as const;
 export type BoxSize = (typeof BoxSizes)[number];
 
 export type BoxWidth = BoxSize;

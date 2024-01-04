@@ -1,27 +1,27 @@
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 import { component$, useSignal, $ } from '@builder.io/qwik';
-import { Text, Button } from '@producktivity/ui';
+import { Text, Button, Box } from '@producktivity/ui';
 
 export default component$(() => {
   const count = useSignal(0);
 
   const increment = $(() => count.value++);
   const decrement = $(() => count.value--);
-  const reset = $(() => count.value = 0);
+  const reset = $(() => (count.value = 0));
 
   return (
-    <>
-      <div>
-        <Text bold variant="title">
-          🪿 Certificate Generator สวัสดี 🪿
-        </Text>
-        <Button onClick$={decrement}>Decrement</Button>
-        <Button onClick$={increment}>Increment</Button>
+    <Box gap="1" height="full" width="full" align="center">
+      <Text bold variant="title">
+        🪿 Certificate Generator สวัสดี 🪿
+      </Text>
+      <Box gap="1" direction="horizontal">
+        <Button onClick$={decrement}>-</Button>
         <Text>คุณคลิ๊กไป {count} ครั้ง</Text>
-        <Button onClick$={reset}>Reset</Button>
-      </div>
-    </>
+        <Button onClick$={increment}>+</Button>
+      </Box>
+      <Button onClick$={reset}>Reset</Button>
+    </Box>
   );
 });
 
