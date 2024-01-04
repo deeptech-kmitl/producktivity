@@ -1,4 +1,5 @@
-import { component$, Slot, type QwikIntrinsicElements } from '@builder.io/qwik';
+import { component$, Slot } from '@builder.io/qwik';
+import type { TextProps, TextVariant } from './text.props';
 
 export const Text = component$<TextProps>((props) => {
   const { bold = false, variant = 'base', ...rest } = props;
@@ -18,12 +19,3 @@ export const Text = component$<TextProps>((props) => {
     </p>
   );
 });
-
-export type TextVariant = 'title' | 'h1' | 'h2' | 'h3' | 'h4' | 'base';
-
-type NativeParagraph = QwikIntrinsicElements['p'];
-
-export interface TextProps extends NativeParagraph {
-  bold?: boolean;
-  variant?: TextVariant;
-}

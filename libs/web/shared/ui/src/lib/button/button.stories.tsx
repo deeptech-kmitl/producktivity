@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from 'storybook-framework-qwik';
-import {
-  Button,
-  ButtonSizes,
-  type ButtonProps,
-  ButtonVariants,
-} from './button';
+import { Button } from './button';
+import { ButtonSizes, ButtonVariants, type ButtonProps } from './button.props';
 
 const meta = {
   component: Button,
@@ -27,7 +23,7 @@ const meta = {
     rounded: {
       description: 'Button rounded',
       control: { type: 'boolean' },
-    }
+    },
   },
 } satisfies Meta<ButtonProps>;
 
