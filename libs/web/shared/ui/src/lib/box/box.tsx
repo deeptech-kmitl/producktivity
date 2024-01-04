@@ -1,8 +1,8 @@
 import { Slot, component$ } from '@builder.io/qwik';
-import type { BoxProps, BoxVariant, BoxWidth } from './box.props';
+import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxProps, BoxVariant, BoxWidth } from './box.props';
 
 export const Box = component$<BoxProps>((props) => {
-  const { variant = 'surface', width = 'full', height = 'full', ...rest } = props;
+  const { variant = 'surface', width = 'full', height = 'full', align = 'left', direction = 'vertical', gap = 'none', border = 'none', ...rest } = props;
 
   const Variants = {
     primary: 'bg-primary-container text-primary-container-on',
@@ -54,8 +54,56 @@ export const Box = component$<BoxProps>((props) => {
     '24': 'h-96',
   } satisfies { [K in BoxWidth]: string };
 
+  const Alignments = {
+    'top-left': 'items-start justify-start',
+    'top': direction === 'horizontal' ? 'items-start justify-center' : 'items-center justify-start',
+    'top-right': direction === 'horizontal' ? 'items-start justify-end' : 'justify-start items-end',
+    'left': direction === 'horizontal' ? 'items-center justify-start' : 'justify-center items-start',
+    'center': 'items-center justify-center',
+    'right': direction === 'horizontal' ? 'items-center justify-end' : 'justify-center items-end',
+    'bottom-left': direction === 'horizontal' ? 'items-end justify-start' : 'items-start justify-end',
+    'bottom': direction === 'horizontal' ? 'items-end justify-center' : 'justify-end items-center',
+    'bottom-right': 'items-end justify-end',
+  } satisfies { [K in BoxAlignment]: string };
+
+  const Directions = {
+    horizontal: 'flex-row',
+    vertical: 'flex-col',
+  } satisfies { [K in BoxDirection]: string };
+
+  const Gaps = {
+    none: 'gap-0',
+    '0.5': 'gap-2',
+    '1': 'gap-4',
+    '2': 'gap-8',
+    '3': 'gap-12',
+    '4': 'gap-16',
+    '5': 'gap-20',
+    '6': 'gap-24',
+    '7': 'gap-28',
+    '8': 'gap-32',
+    '9': 'gap-36',
+    '10': 'gap-40',
+    '12': 'gap-48',
+    '16': 'gap-64',
+    '18': 'gap-72',
+    '20': 'gap-80',
+    '24': 'gap-96',
+  } satisfies { [K in BoxGap]: string };
+
+  const Borders = {
+    none: 'rounded-none',
+    full: 'rounded-full',
+    '1': 'rounded',
+    '2': 'rounded-md',
+    '3': 'rounded-lg',
+    '4': 'rounded-xl',
+    '5': 'rounded-2xl',
+    '6': 'rounded-3xl',
+  } satisfies { [K in BoxBorder]: string };
+
   return (
-    <div {...rest} class={[Variants[variant], Widths[width], Heights[height]]}>
+    <div {...rest} class={['flex', Directions[direction], Variants[variant], Widths[width], Heights[height], Alignments[align], Gaps[gap], Borders[border]]}>
       <Slot />
     </div>
   );

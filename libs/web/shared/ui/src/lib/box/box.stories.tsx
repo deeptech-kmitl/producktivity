@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from 'storybook-framework-qwik';
 import { Box } from './box';
-import { BoxVariants, type BoxProps, BoxSizes } from './box.props';
+import { BoxVariants, type BoxProps, BoxSizes, BoxAlignments, BoxDirections, BoxGaps, BoxBorders } from './box.props';
 
 const meta = {
   component: Box,
@@ -21,6 +21,26 @@ const meta = {
       options: BoxSizes,
       control: { type: 'inline-radio' },
     },
+    align: {
+      description: 'Box alignment',
+      options: BoxAlignments,
+      control: { type: 'inline-radio' },
+    },
+    direction: {
+      description: 'Box direction',
+      options: BoxDirections,
+      control: { type: 'inline-radio' },
+    },
+    gap: {
+      description: 'Box gap',
+      options: BoxGaps,
+      control: { type: 'inline-radio' },
+    },
+    border: {
+      description: 'Box border',
+      options: BoxBorders,
+      control: { type: 'inline-radio' },
+    },
   },
 } satisfies Meta<BoxProps>;
 
@@ -30,13 +50,22 @@ export default meta;
 
 export const Primary = {
   args: {
-    variant: 'secondary',
-    width: '10',
-    height: '10',
+    variant: 'surface',
+    width: '24',
+    height: '24',
+    align: 'center',
+    direction: 'vertical',
+    gap: '0.5',
   },
   render: (props) => (
     <div class="h-dvh">
-      <Box {...props} />
+      <Box {...props}>
+        <p>Mercury</p>
+        <p>Venus</p>
+        <p>Earth</p>
+        <p>Mars</p>
+        <p>Jupyter</p>
+      </Box>
     </div>
   ),
 } satisfies Story;
