@@ -1,6 +1,8 @@
-Issue: [DUCK-01](https://github.com/deeptech-kmitl/producktivity/issues/DUCK-01)
-
 _This template provide examples of description. Please remove it and replace with yours_
+
+This PR will resolve: [Issue Title #ID](https://github.com/deeptech-kmitl/producktivity/issues/{id}])
+
+<Example: [Amend Axios libs #00](https://github.com/deeptech-kmitl/producktivity/issues/00)>
 
 ### Objective of the changes:
 
