@@ -6,10 +6,18 @@
   "implicitDependencies": ["ui"],
   "targets": {
     "build": {
-      "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/assets/logo.png"],
+      "inputs": [
+        "!{projectRoot}/pwa-assets.config.ts",
+        "!{projectRoot}/public/assets/logo.png"
+      ],
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["web:build.client", "web:build.ssr", "web:build.server", "web:build.bundle"],
+        "runSequence": [
+          "web:build.client",
+          "web:build.ssr",
+          "web:build.server",
+          "web:build.bundle"
+        ],
         "outputPath": "dist/apps/web"
       },
       "dependsOn": [
@@ -57,13 +65,24 @@
     "build.bundle": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["mkdir -p dist/apps/web/deploy/", "cp -r dist/apps/web/client/* dist/apps/web/deploy/", "cp -r dist/apps/web/server/ dist/apps/web/deploy/server/", "echo 'Bundled to dist/apps/web/deploy'"],
+        "commands": [
+          "mkdir -p dist/apps/web/deploy/",
+          "cp -r dist/apps/web/client/* dist/apps/web/deploy/",
+          "cp -r dist/apps/web/server/ dist/apps/web/deploy/server/",
+          "echo 'Bundled to dist/apps/web/deploy'"
+        ],
         "parallel": false
       }
     },
     "build.pwa": {
-      "inputs": ["{projectRoot}/pwa-assets.config.ts", "{projectRoot}/public/assets/logo.png"],
-      "outputs": ["{projectRoot}/public/assets/*", "!{projectRoot}/public/assets/logo.png"],
+      "inputs": [
+        "{projectRoot}/pwa-assets.config.ts",
+        "{projectRoot}/public/assets/logo.png"
+      ],
+      "outputs": [
+        "{projectRoot}/public/assets/*",
+        "!{projectRoot}/public/assets/logo.png"
+      ],
       "executor": "nx:run-script",
       "cache": true,
       "options": {
@@ -108,7 +127,8 @@
       "options": {
         "buildTarget": "web:build.client",
         "mode": "ssr",
-        "port": 3000
+        "port": 3000,
+        "proxyConfig": "apps/web/proxy.conf.json"
       }
     },
     "serve.debug": {
