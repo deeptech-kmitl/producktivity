@@ -1,8 +1,8 @@
 {
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:qwik/recommended", "../../.eslintrc.json"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:qwik/recommended", "../../../.eslintrc.json"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": ["apps/web/tsconfig.*?.json"],
+    "project": ["apps/web/root/tsconfig.*?.json"],
     "ecmaVersion": 2021,
     "sourceType": "module",
     "ecmaFeatures": {

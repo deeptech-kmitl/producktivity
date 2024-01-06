@@ -5,25 +5,25 @@ import { qwikNxVite } from 'qwik-nx/plugins';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  cacheDir: '../../node_modules/.vite/apps/web',
+  cacheDir: '../../../node_modules/.vite/apps/web/root',
   plugins: [
-    tsconfigPaths({ root: '../../' }),
+    tsconfigPaths({ root: '../../../' }),
     qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
-        outDir: '../../dist/apps/web/client',
+        outDir: '../../../dist/apps/web/root/client',
       },
       ssr: {
-        outDir: '../../dist/apps/web/server',
+        outDir: '../../../dist/apps/web/root/server',
       },
-      tsconfigFileNames: ['tsconfig.app.json', '../../tsconfig.base.json'],
+      tsconfigFileNames: ['tsconfig.app.json', '../../../tsconfig.base.json'],
     }),
   ],
   server: {
     fs: {
       // Allow serving files from the project root
-      allow: ['../../'],
+      allow: ['../../../'],
     },
   },
   preview: {
@@ -34,7 +34,7 @@ export default defineConfig({
   test: {
     globals: true,
     cache: {
-      dir: '../../node_modules/.vitest',
+      dir: '../../../node_modules/.vitest',
     },
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],

@@ -1,8 +1,8 @@
 {
   "name": "web",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceweb": "apps/web/src",
+  "sourceweb": "apps/web/root/src",
   "implicitDependencies": ["ui"],
   "targets": {
     "build": {
@@ -10,7 +10,7 @@
       "executor": "qwik-nx:build",
       "options": {
         "runSequence": ["web:build.client", "web:build.ssr", "web:build.server", "web:build.bundle"],
-        "outputPath": "dist/apps/web"
+        "outputPath": "dist/apps/web/root"
       },
       "dependsOn": [
         {
@@ -30,15 +30,15 @@
     "build.client": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/apps/web",
-        "configFile": "apps/web/vite.config.ts"
+        "outputPath": "dist/apps/web/root",
+        "configFile": "apps/web/root/vite.config.ts"
       }
     },
     "build.ssr": {
       "executor": "@nx/vite:build",
       "defaultConfiguration": "preview",
       "options": {
-        "outputPath": "dist/apps/web"
+        "outputPath": "dist/apps/web/root"
       },
       "configurations": {
         "preview": {
@@ -50,14 +50,14 @@
     "build.server": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/apps/web",
-        "configFile": "apps/web/adapters/cloudflare-pages/vite.config.ts"
+        "outputPath": "dist/apps/web/root",
+        "configFile": "apps/web/root/adapters/cloudflare-pages/vite.config.ts"
       }
     },
     "build.bundle": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["mkdir -p dist/apps/web/deploy/", "cp -r dist/apps/web/client/* dist/apps/web/deploy/", "cp -r dist/apps/web/server/ dist/apps/web/deploy/server/", "echo 'Bundled to dist/apps/web/deploy'"],
+        "commands": ["mkdir -p dist/apps/web/root/deploy/", "cp -r dist/apps/web/root/client/* dist/apps/web/root/deploy/", "cp -r dist/apps/web/root/server/ dist/apps/web/root/deploy/server/", "echo 'Bundled to dist/apps/web/root/deploy'"],
         "parallel": false
       }
     },
@@ -73,7 +73,7 @@
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "wrangler pages deploy dist/apps/web/deploy"
+        "command": "wrangler pages deploy dist/apps/web/root/deploy"
       }
     },
     "preview": {
@@ -94,7 +94,7 @@
       "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/web"
+        "reportsDirectory": "../../../coverage/apps/web/root"
       }
     },
     "serve": {
@@ -120,15 +120,15 @@
         }
       ],
       "options": {
-        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/web"
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/web/root"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/web/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/web/root/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
