@@ -11,4 +11,3 @@
 - https://qwik.builder.io/docs/advanced/containers/
 - https://blog.cloudflare.com/better-micro-frontends/
 - https://github.com/gioboa/qwik-dream-demo
-
