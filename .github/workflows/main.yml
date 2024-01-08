@@ -53,9 +53,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run build task
+        env:
+          VITE_ROOT_FRAGMENT_URL: ${{ vars.ROOT_FRAGMENT_URL }}
         run: pnpm nx affected -t build
 
       - name: Run deploy task
-        env:
-          VITE_ROOT_FRAGMENT_URL: ${{ vars.ROOT_FRAGMENT_URL }}
         run: pnpm nx affected -t deploy -- --branch=$BRANCH_NAME
