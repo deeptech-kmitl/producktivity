@@ -37,7 +37,7 @@
       },
       "configurations": {
         "preview": {
-          "ssr": "src/entry.preview.tsx",
+          "ssr": "src/entry.ssr.tsx",
           "mode": "production"
         }
       }
@@ -59,14 +59,7 @@
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "wrangler pages deploy dist/apps/web/landing/deploy --project-name=web-landing"
-      }
-    },
-    "preview": {
-      "executor": "@nx/vite:preview-server",
-      "options": {
-        "buildTarget": "web-landing:build",
-        "port": 4201
+        "command": "wrangler deploy dist/apps/web/landing/deploy/server/entry.ssr.js --assets dist/apps/web/landing/deploy --name=web-landing --compatibility-date 2024-01-08"
       }
     },
     "test": {

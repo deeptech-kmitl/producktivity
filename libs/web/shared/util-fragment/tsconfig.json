@@ -19,7 +19,7 @@
     "isolatedModules": true,
     "outDir": "tmp",
     "noEmit": true,
-    "types": ["node", "vite/client", "vitest"]
+    "types": ["node", "vite/client", "vitest", "@cloudflare/workers-types"]
   },
   "files": [],
   "include": [],

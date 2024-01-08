@@ -1,7 +1,6 @@
-import { component$, SSRStreamBlock, SSRStream } from '@builder.io/qwik';
+import { component$, SSRStreamBlock, SSRStream, useServerData } from '@builder.io/qwik';
 import { server$ } from '@builder.io/qwik-city';
-import { isDev } from '@builder.io/qwik/build';
-import { Fragment, fragments } from './fragments';
+import { Fragment } from './fragments';
 
 interface Props {
   name: Fragment;
@@ -9,13 +8,15 @@ interface Props {
 
 export const FragmentPlaceholder = component$<Props>((props) => {
   const { name } = props;
+  const env = useServerData<Record<string, unknown>>('env');
+  const request = useServerData<Request>('request');
   const decoder = new TextDecoder();
 
   return (
     <SSRStreamBlock>
       <SSRStream>
         {async (streamWriter) => {
-          const fragment = await fetchFragment(name);
+          const fragment = await fetchFragment(env!, name, request!);
           const reader = fragment.getReader();
           let fragmentChunk = await reader.read();
           while (!fragmentChunk.done) {
@@ -28,27 +29,15 @@ export const FragmentPlaceholder = component$<Props>((props) => {
   );
 });
 
-export const fetchFragment = server$(async (fragmentName: Fragment) => {
-  const url = new URL(
-    isDev
-      ? `http://localhost:${3001 + fragments.indexOf(fragmentName)}`
-      : import.meta.env.VITE_ROOT_FRAGMENT_URL,
-  );
-
-  if (!isDev) {
-    url.hostname = `web-${fragmentName}.${url.hostname}`;
+export const fetchFragment = server$(async (env: Record<string, unknown>, fragmentName: Fragment, request: Request) => {
+  const service = env[fragmentName];
+  if (!isFetcher(service)) {
+    throw new Error(`Fragment ${fragmentName} does not have an equivalent service binding.`);
   }
+  const url = new URL(request.url);
 
-  if (url) {
-    url.searchParams.set('base', `/_fragment/web-${fragmentName}/`);
-  }
-
-  const response = await fetch(url, {
-    headers: {
-      accept: 'text/html',
-      'Access-Control-Allow-Origin': '*',
-    },
-  });
+  url.searchParams.set('base', `/_fragment/web-${fragmentName}/`);
+  const response = await service.fetch(new Request(url, request));
 
   if (response.body === null) {
     throw new Error(`Response from "${fragmentName}" request is null.`);
@@ -56,3 +45,27 @@ export const fetchFragment = server$(async (fragmentName: Fragment) => {
 
   return response.body;
 });
+
+/**
+ * Attempt to get an asset hosted by a fragment service.
+ *
+ * Such asset requests start with `/_fragment/{service-name}/`, which enables us
+ * to choose the appropriate service binding and delegate the request there.
+ */
+export async function tryGetFragmentAsset(env: Record<string, unknown>, request: Request) {
+  const url = new URL(request.url);
+  const match = /^\/_fragment\/([^/]+)(\/.*)$/.exec(url.pathname);
+  if (match === null) {
+    return null;
+  }
+  const serviceName = match[1];
+  const service = env[serviceName];
+  if (!isFetcher(service)) {
+    throw new Error('Unknown fragment service: ' + serviceName);
+  }
+  return await service.fetch(new Request(new URL(match[2], request.url), request));
+}
+
+function isFetcher(obj: unknown): obj is Fetcher {
+  return Boolean((obj as Fetcher).fetch);
+}

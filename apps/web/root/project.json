@@ -42,7 +42,7 @@
       },
       "configurations": {
         "preview": {
-          "ssr": "src/entry.preview.tsx",
+          "ssr": "src/entry.ssr.tsx",
           "mode": "production"
         }
       }

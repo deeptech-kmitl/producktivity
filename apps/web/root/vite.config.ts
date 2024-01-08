@@ -26,11 +26,6 @@ export default defineConfig({
       allow: ['../../../'],
     },
   },
-  preview: {
-    headers: {
-      'Cache-Control': 'public, max-age=600',
-    },
-  },
   test: {
     globals: true,
     cache: {
