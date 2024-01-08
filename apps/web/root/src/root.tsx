@@ -24,6 +24,7 @@ export default component$(() => {
         <RouterHead />
       </head>
       <body lang="en">
+        <p>{ nonce }</p>
         <RouterOutlet />
         <ServiceWorkerRegister nonce={nonce} />
       </body>
