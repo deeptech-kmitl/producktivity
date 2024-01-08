@@ -56,6 +56,7 @@ export const Primary = {
     align: 'center',
     direction: 'vertical',
     gap: '0.5',
+    border: '4',
   },
   render: (props) => (
     <div class="h-dvh">
