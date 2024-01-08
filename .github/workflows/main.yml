@@ -58,4 +58,4 @@ jobs:
         run: pnpm nx affected -t build
 
       - name: Run deploy task
-        run: pnpm nx affected -t deploy -- --branch=$BRANCH_NAME
+        run: pnpm nx affected -t deploy
