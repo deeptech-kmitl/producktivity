@@ -13,7 +13,7 @@ export const onRequest: RequestHandler = (event) => {
     `default-src 'self' 'unsafe-inline' *.${rootFragmentHostname}`,
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' 'unsafe-inline' data:",
-    `script-src 'self' 'unsafe-inline' 'nonce-${nonce}' 'strict-dynamic' https:`,
+    `script-src 'self' 'unsafe-inline' https: 'nonce-${nonce}' 'strict-dynamic'`,
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     `frame-src 'self' 'nonce-${nonce}'`,
     "object-src 'none'",
