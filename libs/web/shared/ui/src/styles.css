@@ -1,14 +1,16 @@
-@import "tailwindcss/base";
-@import "./lib/themes/default.css";
+@import 'tailwindcss/base';
+@import './lib/themes/default.css';
 
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 html {
   @apply font-sans bg-surface text-surface-on;
 }
 
-body, html {
+html,
+body,
+.qc📦 {
   @apply h-full;
 }
 

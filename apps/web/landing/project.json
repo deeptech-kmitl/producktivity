@@ -1,25 +1,19 @@
 {
-  "name": "web",
+  "name": "web-landing",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceweb": "apps/web/root/src",
-  "implicitDependencies": ["ui", "util-fragment"],
+  "sourceRoot": "apps/web/landing/src",
   "targets": {
     "build": {
-      "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/assets/logo.png"],
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["web:build.client", "web:build.ssr", "web:build.server", "web:build.bundle"],
-        "outputPath": "dist/apps/web/root"
+        "runSequence": ["web-landing:build.client", "web-landing:build.ssr", "web-landing:build.server", "web-landing:build.bundle"],
+        "outputPath": "dist/apps/web/landing"
       },
       "dependsOn": [
         {
           "dependencies": true,
           "target": "build",
-          "params": "ignore"
-        },
-        {
-          "target": "build.pwa",
           "params": "ignore"
         }
       ],
@@ -30,15 +24,15 @@
     "build.client": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/apps/web/root",
-        "configFile": "apps/web/root/vite.config.ts"
+        "outputPath": "dist/apps/web/landing",
+        "configFile": "apps/web/landing/vite.config.ts"
       }
     },
     "build.ssr": {
       "executor": "@nx/vite:build",
       "defaultConfiguration": "preview",
       "options": {
-        "outputPath": "dist/apps/web/root"
+        "outputPath": "dist/apps/web/landing"
       },
       "configurations": {
         "preview": {
@@ -50,43 +44,28 @@
     "build.server": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/apps/web/root",
-        "configFile": "apps/web/root/adapters/cloudflare-pages/vite.config.ts"
+        "outputPath": "dist/apps/web/landing",
+        "configFile": "apps/web/landing/adapters/cloudflare-pages/vite.config.ts"
       }
     },
     "build.bundle": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["mkdir -p dist/apps/web/root/deploy/", "cp -r dist/apps/web/root/client/* dist/apps/web/root/deploy/", "cp -r dist/apps/web/root/server/ dist/apps/web/root/deploy/server/", "echo 'Bundled to dist/apps/web/root/deploy'"],
+        "commands": ["mkdir -p dist/apps/web/landing/deploy/", "cp -r dist/apps/web/landing/client/* dist/apps/web/landing/deploy/", "cp -r dist/apps/web/landing/server/ dist/apps/web/landing/deploy/server/", "echo 'Bundled to dist/apps/web/landing/deploy'"],
         "parallel": false
-      }
-    },
-    "build.pwa": {
-      "inputs": ["{projectRoot}/pwa-assets.config.ts", "{projectRoot}/public/assets/logo.png"],
-      "outputs": ["{projectRoot}/public/assets/*", "!{projectRoot}/public/assets/logo.png"],
-      "executor": "nx:run-script",
-      "cache": true,
-      "options": {
-        "script": "generate-pwa-assets"
       }
     },
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "wrangler pages deploy dist/apps/web/root/deploy --project-name=produck"
+        "command": "wrangler pages deploy dist/apps/web/landing/deploy --project-name=web-landing"
       }
     },
     "preview": {
       "executor": "@nx/vite:preview-server",
-      "dependsOn": [
-        {
-          "projects": "ui",
-          "target": "build"
-        }
-      ],
       "options": {
-        "buildTarget": "web:build",
-        "port": 4200
+        "buildTarget": "web-landing:build",
+        "port": 4201
       }
     },
     "test": {
@@ -94,7 +73,7 @@
       "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../../coverage/apps/web/root"
+        "reportsDirectory": "../../../coverage/apps/web/landing"
       }
     },
     "serve": {
@@ -106,29 +85,23 @@
         }
       ],
       "options": {
-        "buildTarget": "web:build.client",
+        "buildTarget": "web-landing:build.client",
         "mode": "ssr",
-        "port": 3000
+        "port": 3001
       }
     },
     "serve.debug": {
       "executor": "nx:run-commands",
-      "dependsOn": [
-        {
-          "projects": "ui",
-          "target": "build"
-        }
-      ],
       "options": {
         "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/web/root"
+        "cwd": "apps/web/landing"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/web/root/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/web/landing/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

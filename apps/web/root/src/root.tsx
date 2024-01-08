@@ -5,12 +5,6 @@ import { RouterHead } from './components/base';
 import styles from '@producktivity/ui/style.css?inline';
 
 export default component$(() => {
-  /**
-   * The root of a QwikCity site always start with the <QwikCityProvider> component,
-   * immediately followed by the document's <head> and <body>.
-   *
-   * Don't remove the `<head>` and `<body>` elements.
-   */
   useStyles$(styles);
 
   const nonce = useServerData<string | undefined>('nonce');

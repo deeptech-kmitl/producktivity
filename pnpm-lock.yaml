@@ -144,6 +144,8 @@ importers:
         specifier: ^3.22.3
         version: 3.22.3
 
+  apps/web/landing: {}
+
   apps/web/root: {}
 
   libs/web/shared/ui: {}
