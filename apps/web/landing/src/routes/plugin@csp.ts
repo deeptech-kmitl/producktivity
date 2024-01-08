@@ -22,3 +22,4 @@ export const onRequest: RequestHandler = (event) => {
 
   event.headers.set('Content-Security-Policy', csp.join('; '));
 };
+;

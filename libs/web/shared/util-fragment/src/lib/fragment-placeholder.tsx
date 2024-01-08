@@ -36,11 +36,11 @@ export const fetchFragment = server$(async (fragmentName: Fragment) => {
   );
 
   if (!isDev) {
-    url.hostname = `${fragmentName}.${url.hostname}`;
+    url.hostname = `web-${fragmentName}.${url.hostname}`;
   }
 
   if (url) {
-    url.searchParams.set('base', `/_fragment/${fragmentName}/`);
+    url.searchParams.set('base', `/_fragment/web-${fragmentName}/`);
   }
 
   const response = await fetch(url, {
