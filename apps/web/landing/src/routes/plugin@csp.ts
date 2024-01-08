@@ -6,20 +6,4 @@ export const onRequest: RequestHandler = (event) => {
 
   const nonce = event.request.headers.get('cf-ray');
   event.sharedMap.set('@nonce', nonce);
-
-  const { hostname: rootFragmentHostname } = new URL(import.meta.env.VITE_ROOT_FRAGMENT_URL);
-
-  const csp = [
-    `default-src 'self' 'unsafe-inline' *.${rootFragmentHostname}`,
-    "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' 'unsafe-inline' data:",
-    `script-src 'self' 'unsafe-inline' https: 'nonce-${nonce}' 'strict-dynamic'`,
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    `frame-src 'self' 'nonce-${nonce}'`,
-    "object-src 'none'",
-    "base-uri 'self'",
-  ];
-
-  event.headers.set('Content-Security-Policy', csp.join('; '));
 };
-;
