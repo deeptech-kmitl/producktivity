@@ -1,6 +1,6 @@
 import { manifest } from '@qwik-client-manifest';
 import { renderResponse } from '@producktivity/util-fragment';
-import Root from './root';
+import Root from './routes/index';
 
 export default {
   async fetch(request: Request, env: Record<string, unknown>): Promise<Response> {

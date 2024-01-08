@@ -9,7 +9,7 @@
       "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/assets/logo.png"],
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["web:build.client", "web:build.ssr", "web:build.server", "web:build.bundle"],
+        "runSequence": ["web:build.client", "web:build.ssr"],
         "outputPath": "dist/apps/web/root"
       },
       "dependsOn": [
@@ -73,7 +73,7 @@
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "wrangler pages deploy dist/apps/web/root/deploy --project-name=produck"
+        "command": "wrangler deploy dist/apps/web/root/server/entry.ssr.js --assets dist/apps/web/root --name=web-root --compatibility-date 2024-01-08"
       }
     },
     "preview": {

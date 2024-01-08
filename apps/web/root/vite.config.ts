@@ -20,6 +20,10 @@ export default defineConfig({
       tsconfigFileNames: ['tsconfig.app.json', '../../../tsconfig.base.json'],
     }),
   ],
+  ssr: {
+    target: 'webworker',
+    noExternal: true,
+  },
   server: {
     fs: {
       // Allow serving files from the project root

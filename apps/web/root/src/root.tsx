@@ -1,5 +1,5 @@
 import { component$, useServerData, useStyles$ } from '@builder.io/qwik';
-import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
+import { RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/base';
 
 import styles from '@producktivity/ui/style.css?inline';
@@ -10,7 +10,7 @@ export default component$(() => {
   const nonce = useServerData<string | undefined>('nonce');
 
   return (
-    <QwikCityProvider>
+    <>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -24,10 +24,10 @@ export default component$(() => {
         <RouterHead />
       </head>
       <body lang="en">
-        <p>{ nonce }</p>
+        <p>{nonce}</p>
         <RouterOutlet />
         <ServiceWorkerRegister nonce={nonce} />
       </body>
-    </QwikCityProvider>
+    </>
   );
 });

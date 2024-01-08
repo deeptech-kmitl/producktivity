@@ -20,6 +20,10 @@ export default defineConfig({
     }),
     tsconfigPaths({ root: '../../../' }),
   ],
+  ssr: {
+    target: 'webworker',
+    noExternal: true,
+  },
   server: {
     fs: {
       // Allow serving files from the project root

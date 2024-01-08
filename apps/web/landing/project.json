@@ -8,7 +8,7 @@
     "build": {
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["web-landing:build.client", "web-landing:build.ssr", "web-landing:build.server", "web-landing:build.bundle"],
+        "runSequence": ["web-landing:build.client", "web-landing:build.ssr"],
         "outputPath": "dist/apps/web/landing"
       },
       "dependsOn": [
@@ -59,7 +59,7 @@
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "wrangler deploy dist/apps/web/landing/deploy/server/entry.ssr.js --assets dist/apps/web/landing/deploy --name=web-landing --compatibility-date 2024-01-08"
+        "command": "wrangler deploy dist/apps/web/landing/server/entry.ssr.js --assets dist/apps/web/landing --name=web-landing --compatibility-date 2024-01-08"
       }
     },
     "test": {
