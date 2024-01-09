@@ -1,6 +1,6 @@
 import { component$, useServerData, useStyles$ } from '@builder.io/qwik';
-import { RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/base';
+import { FragmentPlaceholder } from '@producktivity/util-fragment';
 
 import styles from '@producktivity/ui/style.css?inline';
 
@@ -25,8 +25,7 @@ export default component$(() => {
       </head>
       <body lang="en">
         <p>{nonce}</p>
-        <RouterOutlet />
-        <ServiceWorkerRegister nonce={nonce} />
+        <FragmentPlaceholder name="landing" />
       </body>
     </>
   );
