@@ -2,9 +2,10 @@
   "$schema": "https://json.schemastore.org/swcrc",
   "sourceMaps": true,
   "module": {
-    "type": "commonjs"
+    "type": "es6"
   },
   "jsc": {
+    "target": "esnext",
     "parser": {
       "syntax": "typescript",
       "decorators": true,
@@ -16,5 +17,5 @@
     },
     "keepClassNames": true
   },
-  "minify": false
+  "minify": true
 }
