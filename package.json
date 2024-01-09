@@ -25,7 +25,6 @@
     "@nx/playwright": "17.2.8",
     "@nx/storybook": "^17.2.8",
     "@nx/vite": "17.2.8",
-    "@nx/webpack": "17.2.8",
     "@nx/workspace": "17.2.8",
     "@playwright/test": "^1.36.0",
     "@storybook/addon-a11y": "^7.6.7",
