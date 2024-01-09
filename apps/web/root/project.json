@@ -1,0 +1,137 @@
+{
+  "name": "web",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceweb": "apps/web/root/src",
+  "implicitDependencies": ["ui", "util-fragment"],
+  "targets": {
+    "build": {
+      "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/assets/logo.png"],
+      "executor": "qwik-nx:build",
+      "options": {
+        "runSequence": ["web:build.client", "web:build.ssr"],
+        "outputPath": "dist/apps/web/root"
+      },
+      "dependsOn": [
+        {
+          "dependencies": true,
+          "target": "build",
+          "params": "ignore"
+        },
+        {
+          "target": "build.pwa",
+          "params": "ignore"
+        }
+      ],
+      "configurations": {
+        "preview": {}
+      }
+    },
+    "build.client": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/apps/web/root",
+        "configFile": "apps/web/root/vite.config.ts"
+      }
+    },
+    "build.ssr": {
+      "executor": "@nx/vite:build",
+      "defaultConfiguration": "preview",
+      "options": {
+        "outputPath": "dist/apps/web/root"
+      },
+      "configurations": {
+        "preview": {
+          "ssr": "src/entry.ssr.tsx",
+          "mode": "production"
+        }
+      }
+    },
+    "build.server": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/apps/web/root",
+        "configFile": "apps/web/root/adapters/cloudflare-pages/vite.config.ts"
+      }
+    },
+    "build.bundle": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["mkdir -p dist/apps/web/root/deploy/", "cp -r dist/apps/web/root/client/* dist/apps/web/root/deploy/", "cp -r dist/apps/web/root/server/ dist/apps/web/root/deploy/server/", "echo 'Bundled to dist/apps/web/root/deploy'"],
+        "parallel": false
+      }
+    },
+    "build.pwa": {
+      "inputs": ["{projectRoot}/pwa-assets.config.ts", "{projectRoot}/public/assets/logo.png"],
+      "outputs": ["{projectRoot}/public/assets/*", "!{projectRoot}/public/assets/logo.png"],
+      "executor": "nx:run-script",
+      "cache": true,
+      "options": {
+        "script": "generate-pwa-assets"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "wrangler deploy dist/apps/web/root/server/entry.ssr.js --assets dist/apps/web/root --name=web-root --compatibility-date 2024-01-08"
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "dependsOn": [
+        {
+          "projects": "ui",
+          "target": "build"
+        }
+      ],
+      "options": {
+        "buildTarget": "web:build",
+        "port": 4200
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/web/root"
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "dependsOn": [
+        {
+          "projects": "ui",
+          "target": "build"
+        }
+      ],
+      "options": {
+        "buildTarget": "web:build.client",
+        "mode": "ssr",
+        "port": 3000,
+        "proxyConfig": "apps/web/proxy.conf.json"
+      }
+    },
+    "serve.debug": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        {
+          "projects": "ui",
+          "target": "build"
+        }
+      ],
+      "options": {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/web/root"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web/root/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}
