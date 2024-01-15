@@ -1,5 +1,7 @@
 import { component$, useSignal, $ } from '@builder.io/qwik';
+import { DocumentHead } from '@builder.io/qwik-city';
 import { Text, Button, Box } from '@producktivity/ui';
+import { generateSeoConfig } from '../configs/seo';
 
 export default component$(() => {
   const count = useSignal(0);
@@ -22,3 +24,5 @@ export default component$(() => {
     </Box>
   );
 });
+
+export const head: DocumentHead = generateSeoConfig();
