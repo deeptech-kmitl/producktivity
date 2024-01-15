@@ -9,7 +9,7 @@
       "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/assets/logo.png"],
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["web:build.client", "web:build.ssr"],
+        "runSequence": ["root:build.client", "root:build.ssr", "root:build.functions", "root:build.cloudflare", "root:build.bundle"],
         "outputPath": "dist/apps/web"
       },
       "dependsOn": [
