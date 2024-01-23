@@ -1,4 +1,4 @@
-import type { DefaultProps } from './props';
+import type { Props } from './props';
 
 export const Sizes = ['auto', 'full', 'half', 'quarter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '12', '16', '18', '20', '24'] as const;
 export type Size = (typeof Sizes)[number];
@@ -50,7 +50,7 @@ export const Heights = {
   '24': 'h-96',
 } satisfies { [K in Height]: string };
 
-export interface SizeProps extends DefaultProps {
+export interface SizeProps extends Props {
   width?: Width;
   height?: Height;
 }

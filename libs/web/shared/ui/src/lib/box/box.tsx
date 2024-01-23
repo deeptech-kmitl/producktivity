@@ -1,6 +1,6 @@
 import { Slot, component$ } from '@builder.io/qwik';
 import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxProps, BoxVariant } from './box.props';
-import { Props } from '../props/props';
+import { PropsBuilder } from '../props/props';
 
 export const Box = component$<BoxProps>((props) => {
   const { variant = 'base', align = 'left', direction = 'vertical', gap = 'none', border = 'none', ...rest } = props;
@@ -63,7 +63,7 @@ export const Box = component$<BoxProps>((props) => {
     '6': 'rounded-3xl',
   } satisfies { [K in BoxBorder]: string };
 
-  const additionalProps = new Props(props).withSize().withPadding().build();
+  const additionalProps = new PropsBuilder(props).withSize().withPadding().build();
 
   return (
     <div {...rest} class={['flex', Directions[direction], Variants[variant], Alignments[align], Gaps[gap], Borders[border], additionalProps]}>

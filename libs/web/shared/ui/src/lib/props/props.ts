@@ -1,24 +1,24 @@
 import { getPadding } from './padding.props';
 import { getSize } from './size.props';
 
-export interface DefaultProps {}
+export interface Props {}
 
-export class Props {
-  private props: DefaultProps
-  private functions: ((props: DefaultProps) => string[])[];
+export class PropsBuilder {
+  private props: Props
+  private functions: ((props: Props) => string[])[];
 
-  constructor(props: DefaultProps) {
+  constructor(props: Props) {
     this.props = props;
     this.functions = [];
   }
 
-  withSize(): Props {
+  withSize(): PropsBuilder {
     this.functions.push(getSize);
 
     return this;
   }
 
-  withPadding(): Props {
+  withPadding(): PropsBuilder {
     this.functions.push(getPadding);
 
     return this;

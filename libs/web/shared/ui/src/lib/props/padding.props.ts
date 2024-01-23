@@ -1,9 +1,9 @@
-import type { DefaultProps } from './props';
+import type { Props } from './props';
 
 export const PaddingSizes = ['none', '0.5', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] as const;
 export type PaddingSize = (typeof PaddingSizes)[number];
 
-export interface PaddingProps extends DefaultProps {
+export interface PaddingProps extends Props {
   paddingLeft?: PaddingSize;
   paddingRight?: PaddingSize;
   paddingTop?: PaddingSize;
