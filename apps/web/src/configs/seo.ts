@@ -5,7 +5,7 @@ interface Config {
   description?: string;
 }
 
-export const DefaultSeoTitle = 'Certifine';
+export const DefaultSeoTitle = 'Certifine: Certificate Platform';
 export const DefaultSeoDescription = 'Certifine, a complete solution for your certificate needs.';
 
 export function generateSeoConfig(config?: Config): DocumentHead {

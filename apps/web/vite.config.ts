@@ -9,7 +9,9 @@ export default defineConfig({
   plugins: [
     tsconfigPaths({ root: '../../' }),
     qwikNxVite(),
-    qwikCity(),
+    qwikCity({
+      trailingSlash: false,
+    }),
     qwikVite({
       client: {
         outDir: '../../dist/apps/web/client',

@@ -3,7 +3,6 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceweb": "apps/web/src",
-  "implicitDependencies": ["ui"],
   "targets": {
     "build": {
       "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/assets/logo.png"],
