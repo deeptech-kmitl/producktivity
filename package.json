@@ -58,6 +58,5 @@
   },
   "trustedDependencies": [
     "sharp"
-  ],
-  "dependencies": {}
+  ]
 }

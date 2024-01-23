@@ -2,9 +2,10 @@ import { component$, Slot } from '@builder.io/qwik';
 import type { TextProps, TextVariant } from './text.props';
 
 export const Text = component$<TextProps>((props) => {
-  const { bold = false, variant = 'base', ...rest } = props;
+  const { bold = false, variant = 'base', span, ...rest } = props;
 
   const Variants = {
+    hero: 'text-6xl',
     title: 'text-4xl',
     h1: 'text-3xl',
     h2: 'text-2xl',
@@ -13,9 +14,11 @@ export const Text = component$<TextProps>((props) => {
     base: 'text-base',
   } satisfies { [K in TextVariant]: string };
 
+  const Tag = span ? 'span' : 'p';
+
   return (
-    <p {...rest} class={[{ 'font-bold': bold }, Variants[variant]]}>
+    <Tag {...rest} class={[{ 'font-bold': bold }, Variants[variant]]}>
       <Slot />
-    </p>
+    </Tag>
   );
 });
