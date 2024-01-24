@@ -1,7 +1,7 @@
 {
-  "name": "auth-e2e",
+  "name": "api-auth-e2e",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "implicitDependencies": ["auth"],
+  "implicitDependencies": ["api-auth"],
   "projectType": "application",
   "targets": {
     "e2e": {
