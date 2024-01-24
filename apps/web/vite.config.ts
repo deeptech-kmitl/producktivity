@@ -9,7 +9,9 @@ export default defineConfig({
   plugins: [
     tsconfigPaths({ root: '../../' }),
     qwikNxVite(),
-    qwikCity(),
+    qwikCity({
+      trailingSlash: false,
+    }),
     qwikVite({
       client: {
         outDir: '../../dist/apps/web/client',
@@ -20,15 +22,14 @@ export default defineConfig({
       tsconfigFileNames: ['tsconfig.app.json', '../../tsconfig.base.json'],
     }),
   ],
+  ssr: {
+    target: 'webworker',
+    noExternal: true,
+  },
   server: {
     fs: {
       // Allow serving files from the project root
       allow: ['../../'],
-    },
-  },
-  preview: {
-    headers: {
-      'Cache-Control': 'public, max-age=600',
     },
   },
   test: {

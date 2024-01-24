@@ -1,16 +1,17 @@
 import { component$, Slot } from '@builder.io/qwik';
 import type { RequestHandler } from '@builder.io/qwik-city';
+import { isDev } from '@builder.io/qwik/build';
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
-  // Control caching for this request for best performance and to reduce hosting costs:
-  // https://qwik.builder.io/docs/caching/
-  const YearInSeconds = 60 * 60 * 24 * 365;
+  if (isDev) return;
+
+  const WeekInSeconds = 60 * 60 * 24 * 7;
 
   const cacheControlOptions = {
     public: true,
     maxAge: 5,
     sMaxAge: 10,
-    staleWhileRevalidate: YearInSeconds,
+    staleWhileRevalidate: WeekInSeconds,
   };
 
   cacheControl(cacheControlOptions);
@@ -19,9 +20,5 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 };
 
 export default component$(() => {
-  return (
-    <>
-      <Slot />
-    </>
-  );
+  return <Slot />;
 });

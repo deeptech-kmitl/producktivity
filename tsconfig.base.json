@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@producktivity/ui": ["dist/libs/web/shared/ui"],
-      "@producktivity/ui/*": ["dist/libs/web/shared/ui/*"]
+      "@producktivity/ui/*": ["dist/libs/web/shared/ui/*"],
+      "@producktivity/web-landing-navigation": ["libs/web/landing/navigation/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

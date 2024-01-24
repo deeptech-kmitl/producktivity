@@ -3,7 +3,6 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceweb": "apps/web/src",
-  "implicitDependencies": ["ui"],
   "targets": {
     "build": {
       "inputs": ["!{projectRoot}/pwa-assets.config.ts", "!{projectRoot}/public/assets/logo.png"],
@@ -42,7 +41,7 @@
       },
       "configurations": {
         "preview": {
-          "ssr": "src/entry.preview.tsx",
+          "ssr": "src/entry.ssr.tsx",
           "mode": "production"
         }
       }
@@ -73,7 +72,7 @@
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "wrangler pages deploy dist/apps/web/deploy"
+        "command": "wrangler pages deploy dist/apps/web/deploy --project-name=certifine"
       }
     },
     "preview": {

@@ -1,8 +1,20 @@
 import { component$, Slot } from '@builder.io/qwik';
-import type { ButtonProps, ButtonShape, ButtonSize, ButtonVariant } from './button.props';
+import type {
+  ButtonProps,
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+} from './button.props';
+import { Link } from '@builder.io/qwik-city';
 
 export const Button = component$<ButtonProps>((props) => {
-  const { size = 'base', variant = 'primary', rounded = false, disabled = false, ...rest } = props;
+  const {
+    size = 'base',
+    variant = 'primary',
+    rounded = false,
+    disabled = false,
+    ...rest
+  } = props;
 
   const currentVariant = disabled ? 'disabled' : variant;
   const cursor = disabled ? 'cursor-default' : 'cursor-pointer';
@@ -17,7 +29,7 @@ export const Button = component$<ButtonProps>((props) => {
   const ContainerVariants = {
     primary: 'bg-primary',
     secondary: 'ring-1 ring-outline',
-    tertiary: 'bg-tertiary',
+    tertiary: 'bg-transparent',
     error: 'bg-error',
     disabled: 'bg-surface-on/[.12]',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
@@ -25,15 +37,18 @@ export const Button = component$<ButtonProps>((props) => {
   const LabelVariants = {
     primary: 'text-primary-on',
     secondary: 'text-primary',
-    tertiary: 'text-tertiary-on',
+    tertiary: 'text-primary',
     error: 'text-error-on',
     disabled: 'text-surface-on/[.38]',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const StateLayerVariants = {
-    primary: 'group-hover/button:bg-surface-variant-on/[.08] group-active/button:bg-surface-variant-on/[.10] group-focus/button:bg-surface-variant-on/[.10]',
-    secondary: 'group-hover/button:bg-primary/[.08] group-active/button:bg-primary/[.10] group-focus/button:bg-primary/[.10]',
-    tertiary: 'bg-tertiary-on/[.08]',
+    primary:
+      'group-hover/button:bg-surface-variant-on/[.08] group-active/button:bg-surface-variant-on/[.10] group-focus/button:bg-surface-variant-on/[.10]',
+    secondary:
+      'group-hover/button:bg-primary/[.08] group-active/button:bg-primary/[.10] group-focus/button:bg-primary/[.10]',
+    tertiary:
+      'group-hover/button:bg-primary/[.08] group-active/button:bg-primary/[.10] group-focus/button:bg-primary/[.10]',
     error: 'bg-error-on/[.08]',
     disabled: 'bg-surface-on/[.12]',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
@@ -43,13 +58,33 @@ export const Button = component$<ButtonProps>((props) => {
     rounded: 'rounded-full',
   } satisfies { [K in ButtonShape]: string };
 
+  const Tag = rest.href ? Link : 'button';
+
   return (
-    <button {...rest} class={['relative flex group/button justify-center items-center', Sizes[size], Shapes[shape], cursor]}>
-      <div class={['absolute inset-0 rounded-[inherit]', ContainerVariants[currentVariant]]} />
-      <div class={['absolute inset-0 rounded-[inherit]', StateLayerVariants[currentVariant]]} />
+    <Tag
+      {...rest}
+      class={[
+        'relative flex group/button justify-center items-center',
+        Sizes[size],
+        Shapes[shape],
+        cursor,
+      ]}
+    >
+      <div
+        class={[
+          'absolute inset-0 rounded-[inherit]',
+          ContainerVariants[currentVariant],
+        ]}
+      />
+      <div
+        class={[
+          'absolute inset-0 rounded-[inherit]',
+          StateLayerVariants[currentVariant],
+        ]}
+      />
       <span class={['z-10', LabelVariants[currentVariant]]}>
         <Slot />
       </span>
-    </button>
+    </Tag>
   );
 });

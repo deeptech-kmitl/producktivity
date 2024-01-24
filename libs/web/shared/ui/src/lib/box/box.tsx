@@ -1,8 +1,9 @@
 import { Slot, component$ } from '@builder.io/qwik';
-import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxProps, BoxVariant, BoxWidth } from './box.props';
+import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxProps, BoxVariant } from './box.props';
+import { PropsBuilder } from '../props/props';
 
 export const Box = component$<BoxProps>((props) => {
-  const { variant = 'base', width = 'auto', height = 'auto', align = 'left', direction = 'vertical', gap = 'none', border = 'none', ...rest } = props;
+  const { variant = 'base', align = 'left', direction = 'vertical', gap = 'none', border = 'none', ...rest } = props;
 
   const Variants = {
     primary: 'bg-primary-container text-primary-container-on',
@@ -12,50 +13,6 @@ export const Box = component$<BoxProps>((props) => {
     surface: 'bg-surface-container text-surface-container-on',
     base: 'bg-transparent text-surface-on',
   } satisfies { [K in BoxVariant]: string };
-
-  const Widths = {
-    auto: 'w-auto',
-    full: 'w-full',
-    half: 'w-1/2',
-    quarter: 'w-1/4',
-    '1': 'w-4',
-    '2': 'w-8',
-    '3': 'w-12',
-    '4': 'w-16',
-    '5': 'w-20',
-    '6': 'w-24',
-    '7': 'w-28',
-    '8': 'w-32',
-    '9': 'w-36',
-    '10': 'w-40',
-    '12': 'w-48',
-    '16': 'w-64',
-    '18': 'w-72',
-    '20': 'w-80',
-    '24': 'w-96',
-  } satisfies { [K in BoxWidth]: string };
-
-  const Heights = {
-    auto: 'h-auto',
-    full: 'h-full',
-    half: 'h-1/2',
-    quarter: 'h-1/4',
-    '1': 'h-4',
-    '2': 'h-8',
-    '3': 'h-12',
-    '4': 'h-16',
-    '5': 'h-20',
-    '6': 'h-24',
-    '7': 'h-28',
-    '8': 'h-32',
-    '9': 'h-36',
-    '10': 'h-40',
-    '12': 'h-48',
-    '16': 'h-64',
-    '18': 'h-72',
-    '20': 'h-80',
-    '24': 'h-96',
-  } satisfies { [K in BoxWidth]: string };
 
   const Alignments = {
     'top-left': 'items-start justify-start',
@@ -67,6 +24,7 @@ export const Box = component$<BoxProps>((props) => {
     'bottom-left': direction === 'horizontal' ? 'items-end justify-start' : 'items-start justify-end',
     'bottom': direction === 'horizontal' ? 'items-end justify-center' : 'justify-end items-center',
     'bottom-right': 'items-end justify-end',
+    'between-center': 'items-center justify-between',
   } satisfies { [K in BoxAlignment]: string };
 
   const Directions = {
@@ -105,8 +63,10 @@ export const Box = component$<BoxProps>((props) => {
     '6': 'rounded-3xl',
   } satisfies { [K in BoxBorder]: string };
 
+  const additionalProps = new PropsBuilder(props).withSize().withPadding().build();
+
   return (
-    <div {...rest} class={['flex', Directions[direction], Variants[variant], Widths[width], Heights[height], Alignments[align], Gaps[gap], Borders[border]]}>
+    <div {...rest} class={['flex', Directions[direction], Variants[variant], Alignments[align], Gaps[gap], Borders[border], additionalProps]}>
       <Slot />
     </div>
   );

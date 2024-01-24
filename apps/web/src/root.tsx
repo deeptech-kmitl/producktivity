@@ -1,16 +1,10 @@
 import { component$, useServerData, useStyles$ } from '@builder.io/qwik';
-import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/base';
 
 import styles from '@producktivity/ui/style.css?inline';
+import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 
 export default component$(() => {
-  /**
-   * The root of a QwikCity site always start with the <QwikCityProvider> component,
-   * immediately followed by the document's <head> and <body>.
-   *
-   * Don't remove the `<head>` and `<body>` elements.
-   */
   useStyles$(styles);
 
   const nonce = useServerData<string | undefined>('nonce');
@@ -29,7 +23,7 @@ export default component$(() => {
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
       </head>
-      <body lang="en">
+      <body>
         <RouterOutlet />
         <ServiceWorkerRegister nonce={nonce} />
       </body>
