@@ -107,8 +107,7 @@
       "options": {
         "buildTarget": "web:build.client",
         "mode": "ssr",
-        "port": 3000,
-        "proxyConfig": "apps/web/proxy.conf.json"
+        "port": 3000
       }
     },
     "serve.debug": {
