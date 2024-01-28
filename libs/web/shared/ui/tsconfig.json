@@ -1,10 +1,9 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig.json",
   "extends": "../../../../tsconfig.base.json",
   "compilerOptions": {
     "allowJs": true,
-    "target": "ES2017",
-    "module": "ES2020",
-    "lib": ["es2020", "DOM", "WebWorker", "DOM.Iterable"],
+    "lib": ["ESNext", "DOM", "WebWorker", "DOM.Iterable"],
     "types": ["node", "vite/client", "vitest"],
     "jsx": "react-jsx",
     "jsxImportSource": "@builder.io/qwik",

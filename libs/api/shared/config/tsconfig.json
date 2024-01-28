@@ -1,7 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig.json",
   "extends": "../../../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
