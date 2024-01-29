@@ -16,7 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@producktivity/api-config": ["libs/api/shared/config/src/index.ts"],
+      "@producktivity/api-config/*": ["libs/api/shared/config/*"],
       "@producktivity/ui": ["dist/libs/web/shared/ui"],
       "@producktivity/ui/*": ["dist/libs/web/shared/ui/*"],
       "@producktivity/web-landing-navigation": ["libs/web/landing/navigation/src/index.ts"]
