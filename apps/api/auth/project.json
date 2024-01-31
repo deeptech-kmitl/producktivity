@@ -5,37 +5,33 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/js:swc",
       "outputs": [
         "{options.outputPath}"
       ],
-      "defaultConfiguration": "production",
+      "executor": "nx:run-script",
+      "cache": true,
       "options": {
-        "swcrc": "libs/api/shared/config/swc.config.json",
         "outputPath": "dist/apps/api/auth",
-        "main": "apps/api/auth/src/main.ts",
-        "tsConfig": "apps/api/auth/tsconfig.app.json"
-      },
-      "configurations": {
-        "development": {
-          "watch": true
-        },
-        "production": {}
+        "script": "build"
+      }
+    },
+    "postbuild": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "api-auth:build"
+      ],
+      "options": {
+        "command": "cp apps/api/auth/package.json dist/apps/api/auth"
       }
     },
     "serve": {
-      "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
+      "executor": "nx:run-script",
+      "dependsOn": [
+        "api-auth:build",
+        "api-auth:postbuild"
+      ],
       "options": {
-        "buildTarget": "api-auth:build"
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "api-auth:build:development"
-        },
-        "production": {
-          "buildTarget": "api-auth:build:production"
-        }
+        "script": "dev"
       }
     },
     "lint": {

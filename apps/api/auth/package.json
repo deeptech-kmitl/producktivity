@@ -1,4 +1,8 @@
 {
   "name": "api-auth",
-  "type": "module"
+  "type": "commonjs",
+  "scripts": {
+    "build": "nest build -p tsconfig.app.json -b swc --type-check .",
+    "dev": "nest start -p tsconfig.app.json -b swc --type-check . --watch"
+  }
 }
