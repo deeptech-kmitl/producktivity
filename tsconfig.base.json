@@ -19,6 +19,7 @@
       "@producktivity/api-config/*": ["libs/api/shared/config/*"],
       "@producktivity/ui": ["dist/libs/web/shared/ui"],
       "@producktivity/ui/*": ["dist/libs/web/shared/ui/*"],
+      "@producktivity/web-dashboard-editor": ["libs/web/dashboard/editor/src/index.ts"],
       "@producktivity/web-landing-navigation": ["libs/web/landing/navigation/src/index.ts"]
     }
   },
