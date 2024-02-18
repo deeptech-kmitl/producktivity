@@ -1,11 +1,16 @@
-import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import { NoSerialize, component$, noSerialize, useContextProvider, useSignal, useStore, useVisibleTask$ } from '@builder.io/qwik';
 import { Box } from '@producktivity/ui';
-import { Canvas, Rect } from 'fabric';
+import { Canvas } from 'fabric';
 import Sidebar from './sidebar';
+import Toolbar from './toolbar';
+import { Frame } from './context';
 
 export default component$((props: Props) => {
   const editorRef = useSignal<HTMLCanvasElement>();
   const containerRef = useSignal<HTMLDivElement>();
+  const frameStore = useStore<{ frame: NoSerialize<Canvas> }>({ frame: undefined });
+
+  useContextProvider(Frame, frameStore);
 
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
@@ -16,25 +21,21 @@ export default component$((props: Props) => {
       height: containerRef.value.clientHeight,
     });
 
-    const rect = new Rect({
-      width: 100,
-      height: 100,
-      backgroundColor: 'green',
-    });
-
-    frame.add(rect);
-
+    frameStore.frame = noSerialize(frame);
     frame.renderAll();
 
     cleanup(() => frame.dispose());
   });
 
   return (
-    <Box width="full" height="full" direction="horizontal">
-      <Sidebar />
-      <Box width="full" height="full" align="center">
-        <Box ref={containerRef} style={{ height: 420, width: 595 }} variant="primary">
-          <canvas id="editor" ref={editorRef} style={{ width: '100%', height: '100%' }} />
+    <Box width="full" height="full" direction="vertical">
+      <Toolbar />
+      <Box width="full" height="full" direction="horizontal">
+        <Sidebar />
+        <Box width="full" height="full" align="center">
+          <Box ref={containerRef} style={{ height: 420, width: 595 }} variant="primary">
+            <canvas id="editor" ref={editorRef} style={{ width: '100%', height: '100%' }} />
+          </Box>
         </Box>
       </Box>
     </Box>
