@@ -22,8 +22,6 @@ export default component$(() => {
   align-items: center;
   padding: 0px 24px;
   gap: 8px;
-
-  width: 128px;
   height: 37px;
 
   /* gradient 01 */
@@ -95,13 +93,11 @@ export default component$(() => {
         <h1>Welcome to Certificate Generators</h1>
         {/* </Text> */}
         <h2 style={{ color: '#89BEA7' }}>Create and customize your own certificate in just a few clicks.</h2>
-        <Box direction="horizontal" gap="1">
           {/* <Button class="color-button" rounded prefetch href="/sign-up"> */}
           <a class="color-button" href="/dashboard">
             <p style={{ color: 'white' }}>Get Started</p>
           </a>
           {/* </Button> */}
-        </Box>
       </Box>
       <Box gap='1' height="quarter" width="full" align="bottom" paddingBottom='1'>
         <p style={{color:"#5FAEE6"}}>How it works?</p>
