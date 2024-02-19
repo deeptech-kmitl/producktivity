@@ -5,16 +5,5 @@
     "outDir": "../../../../dist/out-tsc",
     "types": ["vitest/globals", "node"]
   },
-  "include": [
-    "vite.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.tsx",
-    "src/**/*.spec.tsx",
-    "src/**/*.test.js",
-    "src/**/*.spec.js",
-    "src/**/*.test.jsx",
-    "src/**/*.spec.jsx",
-    "src/**/*.d.ts"
-  ]
+  "include": ["vite.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts", "src/**/*.test.tsx", "src/**/*.spec.tsx", "src/**/*.test.js", "src/**/*.spec.js", "src/**/*.test.jsx", "src/**/*.spec.jsx", "src/**/*.d.ts", "src/lib/pricing/card/card.props.ts"]
 }
