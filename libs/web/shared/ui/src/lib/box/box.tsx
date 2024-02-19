@@ -1,6 +1,6 @@
 import { Slot, component$ } from '@builder.io/qwik';
-import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxProps, BoxVariant } from './box.props';
 import { PropsBuilder } from '../props/props';
+import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxProps, BoxVariant } from './box.props';
 
 export const Box = component$<BoxProps>((props) => {
   const { variant = 'base', align = 'left', direction = 'vertical', gap = 'none', border = 'none', ...rest } = props;
