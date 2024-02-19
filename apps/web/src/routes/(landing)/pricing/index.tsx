@@ -7,7 +7,7 @@ import { entPricing, hobbistPricing, proPricing } from './configs';
 export default component$(() => {
   return (
     <>
-      <Box gap="1" height="full" width="auto">
+      <Box gap="1" height="full" width="auto" paddingX="4">
         <Box align="between-center" gap="4" direction="horizontal" height="full" width="full">
           <Card type="Hobby" price={hobbistPricing.price} desc={hobbistPricing.desc} cta={hobbistPricing.cta} features={hobbistPricing.features} />
           <Card type="Professional" price={proPricing.price} desc={proPricing.desc} cta={proPricing.cta} features={proPricing.features} />
