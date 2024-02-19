@@ -94,7 +94,7 @@ export default component$(() => {
         {/* </Text> */}
         <h2 style={{ color: '#89BEA7' }}>Create and customize your own certificate in just a few clicks.</h2>
           {/* <Button class="color-button" rounded prefetch href="/sign-up"> */}
-          <a class="color-button" href="/dashboard">
+          <a class="color-button" href="/sign-up">
             <p style={{ color: 'white' }}>Get Started</p>
           </a>
           {/* </Button> */}
@@ -115,7 +115,7 @@ export default component$(() => {
             <div key={index} class="card">
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
                 <Box align="center" paddingTop="1">
-                  <div style={{ width: '64px', height: '64px', backgroundColor: 'white', borderRadius: '50%', boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06)', marginBottom: '10px' }}></div>
+                  <img src='https://www.shareicon.net/data/512x512/2016/05/24/770139_man_512x512.png' width={64} height={64}></img>
                   <Text>"The certificate generator is so easy to use and the results are amazing!"</Text>
                   <Text bold>- John Doe</Text>
                 </Box>
