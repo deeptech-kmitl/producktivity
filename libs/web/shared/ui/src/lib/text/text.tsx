@@ -36,7 +36,7 @@ export const Text = component$<TextProps>((props) => {
 
   const Tag = span ? 'span' : 'p';
 
-  const additionalProps = new PropsBuilder(props).withPadding().build();
+  const additionalProps = new PropsBuilder(props).withSize().withPadding().build();
 
   return (
     <Tag {...rest} class={[Variants[variant], WeightVariants[weight], ThemeVariants[theme], additionalProps]}>
