@@ -16,7 +16,7 @@ export const TextInput = component$<TextInputProps>((props) => {
   const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().build();
 
   return (
-    <Box>
+    <Box width="auto">
       {label && (
         <label for={name}>
           {label} {required && <span>*</span>}
