@@ -1,18 +1,48 @@
 import { Slot, component$ } from '@builder.io/qwik';
 import { PropsBuilder } from '../props/props';
-import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxProps, BoxVariant } from './box.props';
+import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxGrid, BoxProps, BoxShadow, BoxVariant } from './box.props';
 
 export const Box = component$<BoxProps>((props) => {
-  const { variant = 'base', align = 'left', direction = 'vertical', gap = 'none', border = 'none', ...rest } = props;
+  const { variant = 'base', align = 'left', direction = 'vertical', gap = 'none', border = 'none', gridDirection, grid = '1', shadow = 'none', ...rest } = props;
 
   const Variants = {
     primary: 'bg-primary-container text-primary-container-on',
     secondary: 'bg-secondary-container text-secondary-container-on',
     tertiary: 'bg-tertiary-container text-tertiary-container-on',
     error: 'bg-error-container text-error-container-on',
-    surface: 'bg-surface-container text-surface-container-on',
+    surface: 'bg-surface-container/[.60] text-surface-container-on',
     base: 'bg-transparent text-surface-on',
   } satisfies { [K in BoxVariant]: string };
+
+  const GridCols = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-2',
+    3: 'grid-cols-3',
+    4: 'grid-cols-3',
+    5: 'grid-cols-5',
+    6: 'grid-cols-6',
+    7: 'grid-cols-7',
+    8: 'grid-cols-8',
+    9: 'grid-cols-9',
+    10: 'grid-cols-10',
+    11: 'grid-cols-11',
+    12: 'grid-cols-12',
+  } satisfies { [K in BoxGrid]: string };
+
+  const GridRows = {
+    1: 'grid-rows-1',
+    2: 'grid-rows-2',
+    3: 'grid-rows-3',
+    4: 'grid-rows-3',
+    5: 'grid-rows-5',
+    6: 'grid-rows-6',
+    7: 'grid-rows-7',
+    8: 'grid-rows-8',
+    9: 'grid-rows-9',
+    10: 'grid-rows-10',
+    11: 'grid-rows-11',
+    12: 'grid-rows-12',
+  } satisfies { [K in BoxGrid]: string };
 
   const Alignments = {
     'top-left': 'items-start justify-start',
@@ -63,10 +93,17 @@ export const Box = component$<BoxProps>((props) => {
     '6': 'rounded-3xl',
   } satisfies { [K in BoxBorder]: string };
 
+  const Shadows = {
+    none: 'shadow-none',
+    sm: 'shadow-sm',
+    md: 'shadow-md',
+    lg: 'shadow-lg',
+  } satisfies { [K in BoxShadow]: string };
+
   const additionalProps = new PropsBuilder(props).withSize().withPadding().build();
 
   return (
-    <div {...rest} class={['flex', Directions[direction], Variants[variant], Alignments[align], Gaps[gap], Borders[border], additionalProps]}>
+    <div {...rest} class={[gridDirection ? 'grid' : 'flex', Directions[direction], Variants[variant], Alignments[align], Gaps[gap], Borders[border], gridDirection === 'row' ? GridRows[grid] : GridCols[grid], Shadows[shadow], additionalProps]}>
       <Slot />
     </div>
   );
