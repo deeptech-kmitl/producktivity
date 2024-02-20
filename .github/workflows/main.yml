@@ -58,11 +58,3 @@ jobs:
       - name: Run deploy task
         id: deploy
         run: pnpm nx affected -t deploy
-
-      - name: Report deploy task
-        uses: peter-evans/commit-comment@v3
-        with:
-          body: |
-            PR Report
-            PR: ${{ github.event.pull_request.head.sha }}
-            ${{ steps.deploy.outputs.result }}
