@@ -21,6 +21,7 @@ export const Button = component$<ButtonProps>((props) => {
     tertiary: 'bg-transparent',
     error: 'bg-error',
     gradient: 'bg-gradient-to-br from-primary to-tertiary',
+    surface: 'bg-surface',
     disabled: 'bg-surface-on/[.12]',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
@@ -30,6 +31,7 @@ export const Button = component$<ButtonProps>((props) => {
     tertiary: 'text-primary',
     error: 'text-error-on',
     gradient: 'text-primary-on',
+    surface: 'text-surface-on',
     disabled: 'text-surface-on/[.38]',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
@@ -37,6 +39,7 @@ export const Button = component$<ButtonProps>((props) => {
     primary: 'group-hover/button:bg-surface-variant-on/[.08] group-active/button:bg-surface-variant-on/[.10] group-focus/button:bg-surface-variant-on/[.10]',
     secondary: 'group-hover/button:bg-primary/[.08] group-active/button:bg-primary/[.10] group-focus/button:bg-primary/[.10]',
     tertiary: 'group-hover/button:bg-primary/[.08] group-active/button:bg-primary/[.10] group-focus/button:bg-primary/[.10]',
+    surface: 'group-hover/button:bg-surface-on/[.08] group-active/button:bg-surface-on/[.10] group-focus/button:bg-surface-on/[.10]',
     gradient: '',
     error: 'bg-error-on/[.08]',
     disabled: 'bg-surface-on/[.12]',
