@@ -1,9 +1,9 @@
 import { Slot, component$ } from '@builder.io/qwik';
 import { PropsBuilder } from '../props/props';
-import type { BoxAlignment, BoxBorder, BoxDirection, BoxGap, BoxGrid, BoxProps, BoxShadow, BoxVariant } from './box.props';
+import type { BoxAlignment, BoxDirection, BoxGap, BoxGrid, BoxProps, BoxShadow, BoxVariant } from './box.props';
 
 export const Box = component$<BoxProps>((props) => {
-  const { variant = 'base', align = 'left', direction = 'vertical', gap = 'none', border = 'none', gridDirection, grid = '1', shadow = 'none', ...rest } = props;
+  const { variant = 'base', align = 'left', direction = 'vertical', gap = 'none', gridDirection, grid = '1', shadow = 'none', ...rest } = props;
 
   const Variants = {
     primary: 'bg-primary-container text-primary-container-on',
@@ -82,17 +82,6 @@ export const Box = component$<BoxProps>((props) => {
     '24': 'gap-96',
   } satisfies { [K in BoxGap]: string };
 
-  const Borders = {
-    none: 'rounded-none',
-    full: 'rounded-full',
-    '1': 'rounded',
-    '2': 'rounded-md',
-    '3': 'rounded-lg',
-    '4': 'rounded-xl',
-    '5': 'rounded-2xl',
-    '6': 'rounded-3xl',
-  } satisfies { [K in BoxBorder]: string };
-
   const Shadows = {
     none: 'shadow-none',
     sm: 'shadow-sm',
@@ -103,7 +92,7 @@ export const Box = component$<BoxProps>((props) => {
   const additionalProps = new PropsBuilder(props).withSize().withPadding().build();
 
   return (
-    <div {...rest} class={[gridDirection ? 'grid' : 'flex', Directions[direction], Variants[variant], Alignments[align], Gaps[gap], Borders[border], gridDirection === 'row' ? GridRows[grid] : GridCols[grid], Shadows[shadow], additionalProps]}>
+    <div {...rest} class={[gridDirection ? 'grid' : 'flex', Directions[direction], Variants[variant], Alignments[align], Gaps[gap], gridDirection === 'row' ? GridRows[grid] : GridCols[grid], Shadows[shadow], additionalProps]}>
       <Slot />
     </div>
   );

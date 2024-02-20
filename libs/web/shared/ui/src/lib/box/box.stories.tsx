@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from 'storybook-framework-qwik';
 import { Box } from './box';
-import { BoxVariants, type BoxProps, BoxAlignments, BoxDirections, BoxGaps, BoxBorders } from './box.props';
+import { BoxAlignments, BoxDirections, BoxGaps, BoxVariants, type BoxProps } from './box.props';
 
 const meta = {
   component: Box,
@@ -36,11 +36,6 @@ const meta = {
       options: BoxGaps,
       control: { type: 'inline-radio' },
     },
-    border: {
-      description: 'Box border',
-      options: BoxBorders,
-      control: { type: 'inline-radio' },
-    },
   },
 } satisfies Meta<BoxProps>;
 
@@ -56,7 +51,6 @@ export const Primary = {
     align: 'center',
     direction: 'vertical',
     gap: '0.5',
-    border: '4',
   },
   render: (props) => (
     <div class="h-dvh">

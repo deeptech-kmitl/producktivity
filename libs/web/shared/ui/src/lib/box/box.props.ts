@@ -1,6 +1,5 @@
 import type { QwikIntrinsicElements } from '@builder.io/qwik';
-import type { PaddingProps } from '../props';
-import type { SizeProps } from '../props/size.props';
+import type { BorderSizeProps, PaddingProps, SizeProps } from '../props';
 
 export const BoxVariants = ['surface', 'primary', 'secondary', 'tertiary', 'error', 'base'] as const;
 export type BoxVariant = (typeof BoxVariants)[number];
@@ -14,9 +13,6 @@ export type BoxDirection = (typeof BoxDirections)[number];
 export const BoxGaps = ['none', '0.5', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '12', '16', '18', '20', '24'] as const;
 export type BoxGap = (typeof BoxGaps)[number];
 
-export const BoxBorders = ['none', 'full', '1', '2', '3', '4', '5', '6'] as const;
-export type BoxBorder = (typeof BoxBorders)[number];
-
 export const BoxGridDirections = ['col', 'row'] as const;
 export type BoxGridDirection = (typeof BoxGridDirections)[number];
 
@@ -28,12 +24,11 @@ export type BoxShadow = (typeof BoxShadows)[number];
 
 type NativeDiv = QwikIntrinsicElements['div'];
 
-export interface BoxProps extends NativeDiv, PaddingProps, SizeProps {
+export interface BoxProps extends NativeDiv, PaddingProps, SizeProps, BorderSizeProps {
   variant?: BoxVariant;
   align?: BoxAlignment;
   direction?: BoxDirection;
   gap?: BoxGap;
-  border?: BoxBorder;
   grid?: BoxGrid;
   gridDirection?: BoxGridDirection;
   shadow?: BoxShadow;
