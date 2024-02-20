@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { DocumentHead } from '@builder.io/qwik-city';
-import { Text, Box, Button } from '@producktivity/ui';
+import { Box, Button, Text } from '@producktivity/ui';
 import { generateSeoConfig } from '../../../configs/seo';
 
 export default component$(() => {
@@ -8,7 +8,7 @@ export default component$(() => {
     <>
       <Box width="full" height="full" style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
         <Box gap="1" width="full" height="full">
-          <Text variant="title" bold style={{ alignSelf: 'center' }}>
+          <Text variant="title" weight="bold" style={{ alignSelf: 'center' }}>
             SIGN IN
           </Text>
           <Text variant="h3" style={{ alignSelf: 'center' }}>
@@ -44,7 +44,7 @@ export default component$(() => {
         </Box>
 
         <Box gap="1" width="full" height="full" align="center">
-          <Text variant="title" bold>
+          <Text variant="title" weight="bold">
             Welcome to Produck!
           </Text>
           <Text variant="h3">Don’t have an account?</Text>
