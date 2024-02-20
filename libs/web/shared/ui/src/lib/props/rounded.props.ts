@@ -1,6 +1,6 @@
 import type { Props } from './props';
 
-export const BorderSizes = ['none', 'full', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'] as const;
+export const BorderSizes = ['none', 'full', 'base', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'] as const;
 export type BorderSize = (typeof BorderSizes)[number];
 
 export interface BorderSizeProps extends Props {
@@ -10,6 +10,7 @@ export interface BorderSizeProps extends Props {
 export const BorderRadius = {
   none: 'rounded-none',
   full: 'rounded-full',
+  base: 'rounded-sm',
   sm: 'rounded-sm',
   md: 'rounded-md',
   lg: 'rounded-lg',
