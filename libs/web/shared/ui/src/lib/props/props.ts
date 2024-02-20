@@ -1,10 +1,11 @@
 import { getPadding } from './padding.props';
+import { getBorderRadius } from './rounded.props';
 import { getSize } from './size.props';
 
 export interface Props {}
 
 export class PropsBuilder {
-  private props: Props
+  private props: Props;
   private functions: ((props: Props) => string[])[];
 
   constructor(props: Props) {
@@ -20,6 +21,12 @@ export class PropsBuilder {
 
   withPadding(): PropsBuilder {
     this.functions.push(getPadding);
+
+    return this;
+  }
+
+  withBorderRadius(): PropsBuilder {
+    this.functions.push(getBorderRadius);
 
     return this;
   }
