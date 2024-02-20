@@ -14,13 +14,8 @@ env:
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
-stages:
-  - build
-  - deploy
-
 jobs:
   PR Checkout:
-    stage: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +55,6 @@ jobs:
         run: pnpm nx affected -t build
 
   Deploy:
-    stage: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Run deploy task
