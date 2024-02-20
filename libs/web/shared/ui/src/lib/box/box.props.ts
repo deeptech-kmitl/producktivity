@@ -1,7 +1,7 @@
 import type { QwikIntrinsicElements } from '@builder.io/qwik';
 import type { BorderSizeProps, PaddingProps, SizeProps } from '../props';
 
-export const BoxVariants = ['surface', 'primary', 'secondary', 'tertiary', 'error', 'base'] as const;
+export const BoxVariants = ['surface', 'primary', 'secondary', 'tertiary', 'error', 'base', 'gradient'] as const;
 export type BoxVariant = (typeof BoxVariants)[number];
 
 export const BoxAlignments = ['top-left', 'top', 'top-right', 'left', 'center', 'right', 'bottom-left', 'bottom', 'bottom-right', 'between-center'] as const;

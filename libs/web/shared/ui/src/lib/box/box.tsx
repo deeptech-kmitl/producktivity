@@ -11,6 +11,7 @@ export const Box = component$<BoxProps>((props) => {
     tertiary: 'bg-tertiary-container text-tertiary-container-on',
     error: 'bg-error-container text-error-container-on',
     surface: 'bg-surface-container/[.60] text-surface-container-on',
+    gradient: 'bg-gradient-to-br from-primary to-tertiary',
     base: 'bg-transparent text-surface-on',
   } satisfies { [K in BoxVariant]: string };
 
