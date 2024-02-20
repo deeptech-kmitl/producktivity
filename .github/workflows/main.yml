@@ -15,7 +15,7 @@ env:
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
-  PR Checkout:
+  PR_CHECKOUT:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -54,7 +54,8 @@ jobs:
       - name: Run build task
         run: pnpm nx affected -t build
 
-  Deploy:
+  DEPLOY:
+    needs: PR_CHECKOUT
     runs-on: ubuntu-latest
     steps:
       - name: Run deploy task
