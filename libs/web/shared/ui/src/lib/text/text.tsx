@@ -2,7 +2,7 @@ import { component$, Slot } from '@builder.io/qwik';
 import type { TextProps, TextVariant, ThemeVariant, WeightVariant } from './text.props';
 
 export const Text = component$<TextProps>((props) => {
-  const { variant = 'base', span, theme = 'base', weight = 'normal', ...rest } = props;
+  const { variant = 'base', span, theme = 'primary', weight = 'normal', ...rest } = props;
 
   const Variants = {
     hero: 'text-6xl',
@@ -15,10 +15,11 @@ export const Text = component$<TextProps>((props) => {
   } satisfies { [K in TextVariant]: string };
 
   const ThemeVariants = {
-    base: 'text-[#333]',
-    primary: 'text-[#5FAEE6]',
-    secondary: 'text-[#89BEA7]',
-    gradient: 'bg-clip-text bg-gradient-to-br from-[#5FAEE6] to-[#89BEA7] text-transparent',
+    primary: 'text-primary',
+    secondary: 'text-secondary',
+    tertiary: 'text-tertiary',
+    error: 'text-error',
+    gradient: 'bg-clip-text bg-gradient-to-br from-primary to-tertiary text-transparent',
   } satisfies { [K in ThemeVariant]: string };
 
   const WeightVariants = {
@@ -35,7 +36,7 @@ export const Text = component$<TextProps>((props) => {
   const Tag = span ? 'span' : 'p';
 
   return (
-    <Tag {...rest} class={[Variants[variant], WeightVariants[weight], theme ? ThemeVariants[theme] : 'text-[#333]']}>
+    <Tag {...rest} class={[Variants[variant], WeightVariants[weight], ThemeVariants[theme]]}>
       <Slot />
     </Tag>
   );

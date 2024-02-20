@@ -3,7 +3,7 @@ import type { QwikIntrinsicElements } from '@builder.io/qwik';
 export const TextVariants = ['hero', 'title', 'h1', 'h2', 'h3', 'h4', 'base'] as const;
 export type TextVariant = (typeof TextVariants)[number];
 
-export const ThemeVariants = ['base', 'primary', 'secondary', 'gradient'] as const;
+export const ThemeVariants = ['primary', 'secondary', 'tertiary', 'error', 'gradient'] as const;
 export type ThemeVariant = (typeof ThemeVariants)[number];
 
 export const WeightVariants = ['thin', 'normal', 'light', 'extralight', 'medium', 'semibold', 'bold', 'black'] as const;
