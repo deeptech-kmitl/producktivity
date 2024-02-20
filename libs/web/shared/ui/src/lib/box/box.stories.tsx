@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from 'storybook-framework-qwik';
+import { BoxGaps } from '../props/gap.props';
 import { Box } from './box';
-import { BoxAlignments, BoxDirections, BoxGaps, BoxVariants, type BoxProps } from './box.props';
+import { BoxAlignments, BoxDirections, BoxVariants, type BoxProps } from './box.props';
 
 const meta = {
   component: Box,
@@ -11,16 +12,6 @@ const meta = {
       options: BoxVariants,
       control: { type: 'inline-radio' },
     },
-    // width: {
-    //   description: 'Box width',
-    //   options: BoxSizes,
-    //   control: { type: 'inline-radio' },
-    // },
-    // height: {
-    //   description: 'Box height',
-    //   options: BoxSizes,
-    //   control: { type: 'inline-radio' },
-    // },
     align: {
       description: 'Box alignment',
       options: BoxAlignments,
