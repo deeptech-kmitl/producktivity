@@ -7,10 +7,10 @@ export const TextInput = component$<TextInputProps>((props) => {
   const { label = '', name, required, error, variant = 'primary', disabled, ...rest } = props;
 
   const ContainerVariants = {
-    primary: 'bg-primary-on text-primary border-primary',
-    secondary: 'bg-secondary-on text-secondary border-secondary',
-    tertiary: 'bg-tertiary-on text-tertiary border-tertiary',
-    error: 'bg-error-on text-error border-error',
+    primary: 'text-primary border-primary focus:ring-primary/[.20]',
+    secondary: 'text-secondary border-secondary focus:ring-secondary/[.20]',
+    tertiary: 'text-tertiary border-tertiary focus:ring-tertiary/[.20]',
+    error: 'text-error border-error focus:ring-error/[.20]',
   } satisfies { [K in ContainerVariant]: string };
 
   const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().build();
@@ -22,7 +22,7 @@ export const TextInput = component$<TextInputProps>((props) => {
           {label} {required && <span>*</span>}
         </label>
       )}
-      <input {...rest} class={['border py-1 px-2', ContainerVariants[variant], additionalProps]} disabled={disabled} aria-errormessage={`${name}-error`} />
+      <input {...rest} class={['border py-2 px-3 ring-1 ring-gray-100 placeholder:text-gray-400 focus:ring-2 focus:ring-inset', ContainerVariants[variant], additionalProps]} disabled={disabled} aria-errormessage={`${name}-error`} />
       {error && <div id={`${name}-error`}>{error}</div>}
     </Box>
   );
