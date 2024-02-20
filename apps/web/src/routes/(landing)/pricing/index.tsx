@@ -8,7 +8,7 @@ export default component$(() => {
   return (
     <>
       <Box align="between-center" height="full" width="auto" padding="4">
-        <Text variant="hero" theme="gradient" weight="bold">
+        <Text variant="hero" theme="gradient" weight="bold" paddingY="1">
           Find a plan for your projects
         </Text>
         <Box gap="1" height="full" width="auto">
