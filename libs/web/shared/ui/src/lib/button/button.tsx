@@ -29,7 +29,7 @@ export const Button = component$<ButtonProps>((props) => {
     secondary: 'text-primary',
     tertiary: 'text-primary',
     error: 'text-error-on',
-    gradient: 'text-white',
+    gradient: 'text-primary-on',
     disabled: 'text-surface-on/[.38]',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
