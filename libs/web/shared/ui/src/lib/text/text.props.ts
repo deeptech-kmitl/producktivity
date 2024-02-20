@@ -1,4 +1,5 @@
 import type { QwikIntrinsicElements } from '@builder.io/qwik';
+import type { PaddingProps } from '../props';
 
 export const TextVariants = ['hero', 'title', 'h1', 'h2', 'h3', 'h4', 'base'] as const;
 export type TextVariant = (typeof TextVariants)[number];
@@ -11,7 +12,7 @@ export type WeightVariant = (typeof WeightVariants)[number];
 
 type NativeParagraph = QwikIntrinsicElements['p'] & QwikIntrinsicElements['span'];
 
-export interface TextProps extends NativeParagraph {
+export interface TextProps extends NativeParagraph, PaddingProps {
   variant?: TextVariant;
   theme?: ThemeVariant;
   weight?: WeightVariant;
