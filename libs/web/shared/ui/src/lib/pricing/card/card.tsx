@@ -11,13 +11,13 @@ export const Card = component$((item: PricingCard) => {
   } satisfies { [K in PackageVariant]: string };
 
   const ButtonVariant = {
-    Hobby: 'text-primary bg-primary-on border-primary hover:bg-primary hover:text-primary-on',
+    Hobby: 'text-primary border-primary hover:bg-primary hover:text-surface',
     Professional: 'bg-tertiary text-tertiary-on hover:bg-tertiary/[.80]',
-    Enterprise: 'text-secondary bg-secondary-on border-secondary hover:bg-secondary hover:text-secondary-on',
+    Enterprise: 'text-secondary border-secondary hover:bg-secondary hover:text-surface',
   } satisfies { [K in PackageVariant]: string };
 
   return (
-    <div class={['bg-primary-on relative shadow-md rounded-md grid grid-row-10 justify-between p-4 w-1/4 max-w-1/4 items-center', item.type === 'Professional' ? 'border-4 border-tertiary h-4/5 max-h-4/5' : 'h-3/5 max-h-3/5']}>
+    <div class={['relative shadow-md rounded-md grid grid-row-10 justify-between p-4 w-1/4 max-w-1/4 items-center', item.type === 'Professional' ? 'border-4 border-tertiary h-4/5 max-h-4/5' : 'h-3/5 max-h-3/5']}>
       <span class={['justify-self-center px-2 py-1 text-tertiary-on bg-tertiary rounded-md absolute -top-4 font-semibold text-xl text-center', currentVariant === 'Professional' ? 'block' : 'hidden']}>MOST POPULAR</span>
       <div class="w-full row-span-3">
         <p class={['text-2xl font-bold', TextVariant[currentVariant]]}>{item.type}</p>
