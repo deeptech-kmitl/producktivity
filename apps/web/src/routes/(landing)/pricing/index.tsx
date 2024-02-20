@@ -7,16 +7,16 @@ import { entPricing, hobbistPricing, proPricing } from './configs';
 export default component$(() => {
   return (
     <>
-      <Box paddingTop="6">
-        <Text variant="hero" themeVariant="gradient" bold>
+      <Box align="between-center" height="full" width="auto" padding="4">
+        <Text variant="hero" theme="gradient" weight="bold">
           Find a plan for your projects
         </Text>
-      </Box>
-      <Box gap="1" height="full" width="auto" paddingX="4" paddingY="2">
-        <Box align="center" gap="4" direction="horizontal" height="full" width="full">
-          <Card type="Hobby" price={hobbistPricing.price} desc={hobbistPricing.desc} cta={hobbistPricing.cta} features={hobbistPricing.features} />
-          <Card type="Professional" price={proPricing.price} desc={proPricing.desc} cta={proPricing.cta} features={proPricing.features} />
-          <Card type="Enterprise" price={entPricing.price} desc={entPricing.desc} cta={entPricing.cta} features={entPricing.features} />
+        <Box gap="1" height="full" width="auto">
+          <Box align="center" gap="4" direction="horizontal" height="full" width="full">
+            <Card type="Hobby" price={hobbistPricing.price} desc={hobbistPricing.desc} cta={hobbistPricing.cta} features={hobbistPricing.features} />
+            <Card type="Professional" price={proPricing.price} desc={proPricing.desc} cta={proPricing.cta} features={proPricing.features} />
+            <Card type="Enterprise" price={entPricing.price} desc={entPricing.desc} cta={entPricing.cta} features={entPricing.features} />
+          </Box>
         </Box>
       </Box>
     </>
