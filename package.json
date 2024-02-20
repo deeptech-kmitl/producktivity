@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "husky install tools/commit-hooks"
+    "prepare": "husky tools/commit-hooks"
   },
   "devDependencies": {
     "@builder.io/qwik": "~1.4.2",
