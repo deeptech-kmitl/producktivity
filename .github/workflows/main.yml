@@ -52,9 +52,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - uses: nrwl/nx-set-shas@v3
+      - run: git branch --track main origin/main
+
       - name: Run build task
         run: pnpm nx affected -t build
 
       - name: Run deploy task
-        id: deploy
         run: pnpm nx affected -t deploy
