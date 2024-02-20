@@ -31,7 +31,7 @@ export class PropsBuilder {
   withBorderRadius(): PropsBuilder {
     this.functions.push(getBorderRadius);
 
-    return this || ['base'];
+    return this;
   }
 
   withGrid(): PropsBuilder {

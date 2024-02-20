@@ -23,6 +23,7 @@ export function getBorderRadius(props: BorderSizeProps) {
   const results = [];
 
   if (props.rounded) results.push(BorderRadius[props.rounded]);
+  else results.push(BorderRadius['base']);
 
   return results;
 }
