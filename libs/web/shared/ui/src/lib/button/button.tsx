@@ -20,7 +20,7 @@ export const Button = component$<ButtonProps>((props) => {
     secondary: 'ring-1 ring-outline',
     tertiary: 'bg-transparent',
     error: 'bg-error',
-    gradient: 'bg-gradient-to-br from-[#5FAEE6] to-[#89BEA7]',
+    gradient: 'bg-gradient-to-br from-primary to-tertiary',
     disabled: 'bg-surface-on/[.12]',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
