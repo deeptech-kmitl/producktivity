@@ -1,13 +1,13 @@
 import { component$, Slot } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
-import type { ButtonProps, ButtonShape, ButtonSize, ButtonVariant } from './button.props';
+import { PropsBuilder } from '../props/props';
+import type { ButtonProps, ButtonSize, ButtonVariant } from './button.props';
 
 export const Button = component$<ButtonProps>((props) => {
-  const { size = 'base', variant = 'primary', rounded = false, disabled = false, ...rest } = props;
+  const { size = 'base', variant = 'primary', disabled = false, ...rest } = props;
 
   const currentVariant = disabled ? 'disabled' : variant;
   const cursor = disabled ? 'cursor-default' : 'cursor-pointer';
-  const shape = rounded ? 'rounded' : 'base';
 
   const Sizes = {
     small: 'px-2 py-1 text-sm',
@@ -42,15 +42,12 @@ export const Button = component$<ButtonProps>((props) => {
     disabled: 'bg-surface-on/[.12]',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
-  const Shapes = {
-    base: 'rounded-md',
-    rounded: 'rounded-full',
-  } satisfies { [K in ButtonShape]: string };
-
   const Tag = rest.href ? Link : 'button';
 
+  const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().build();
+
   return (
-    <Tag {...rest} class={['relative flex group/button justify-center items-center', Sizes[size], Shapes[shape], cursor]}>
+    <Tag {...rest} class={['relative flex group/button justify-center items-center', Sizes[size], cursor, additionalProps]}>
       <div class={['absolute inset-0 rounded-[inherit]', ContainerVariants[currentVariant]]} />
       <div class={['absolute inset-0 rounded-[inherit]', StateLayerVariants[currentVariant]]} />
       <span class={['z-10', LabelVariants[currentVariant]]}>

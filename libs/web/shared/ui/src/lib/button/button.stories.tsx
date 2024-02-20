@@ -36,7 +36,7 @@ export const Primary = {
     disabled: false,
     size: 'base',
     variant: 'primary',
-    rounded: false,
+    rounded: 'sm',
   },
   render: (props) => <Button {...props}>Getting Started</Button>,
 } satisfies Story;
