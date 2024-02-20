@@ -6,7 +6,6 @@ import { generateSeoConfig } from '../../configs/seo';
 export default component$(() => {
   return (
     <div style={{ overflowY: 'auto', width: '100vw' }}>
-      <Box height="quarter" width="full" align="bottom"></Box>
       <Box gap="1" height="half" width="full" align="center">
         <Text variant="hero" theme="gradient" weight="bold">
           Welcome to Certificate Generators
