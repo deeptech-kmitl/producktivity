@@ -47,8 +47,7 @@ export default component$(() => {
       originY: 'center',
       originX: 'center',
       borderScaleFactor: 2,
-      cornerColor: 'white',
-      transparentCorners: false,
+      radius: 75,
     });
 
     frame.add(circle);
