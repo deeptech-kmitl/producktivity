@@ -10,7 +10,7 @@ export interface BorderSizeProps extends Props {
 export const BorderRadius = {
   none: 'rounded-none',
   full: 'rounded-full',
-  base: 'rounded-sm',
+  base: 'rounded',
   sm: 'rounded-sm',
   md: 'rounded-md',
   lg: 'rounded-lg',
