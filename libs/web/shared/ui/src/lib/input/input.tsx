@@ -7,10 +7,10 @@ export const TextInput = component$<TextInputProps>((props) => {
   const { label = '', name, required, error, variant = 'primary', disabled, ...rest } = props;
 
   const ContainerVariants = {
-    primary: 'text-primary border-primary focus:ring-primary/[.20]',
-    secondary: 'text-secondary border-secondary focus:ring-secondary/[.20]',
-    tertiary: 'text-tertiary border-tertiary focus:ring-tertiary/[.20]',
-    error: 'text-error border-error focus:ring-error/[.20]',
+    primary: 'text-primary focus:ring-primary',
+    secondary: 'text-secondary focus:ring-secondary',
+    tertiary: 'text-tertiary focus:ring-tertiary',
+    error: 'text-error border-error focus:ring-error',
   } satisfies { [K in ContainerVariant]: string };
 
   const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().build();
@@ -22,8 +22,12 @@ export const TextInput = component$<TextInputProps>((props) => {
           {label} {required && <span>*</span>}
         </label>
       )}
-      <input {...rest} class={['border py-2 px-3 ring-1 ring-gray-100 placeholder:text-gray-400 focus:ring-2 focus:ring-inset', ContainerVariants[variant], additionalProps]} disabled={disabled} aria-errormessage={`${name}-error`} />
-      {error && <div id={`${name}-error`}>{error}</div>}
+      <input {...rest} class={['border border-gray-200 px-3.5 py-2 ring-1 ring-gray-100/20 placeholder:text-gray-400 focus:ring-2 focus:ring-inset', ContainerVariants[variant], additionalProps]} disabled={disabled} aria-errormessage={`${name}-error`} />
+      {error && (
+        <div id={`${name}-error`} class="text-error text-sm">
+          {error}
+        </div>
+      )}
     </Box>
   );
 });
