@@ -24,7 +24,7 @@ export default component$(() => {
         <Text weight="bold" variant="hero" theme="gradient">
           What our customer say
         </Text>
-        <Box gridDirection="col" grid="3" gap="4" paddingY="4">
+        <Box gridCols="3" gap="4" paddingY="4">
           {[...Array(9)].map((_, index) => (
             <Box key={index} align="between-center" shadow="md" width="20" variant="surface" padding="2" height="auto" rounded="md">
               <img src="https://cdn-icons-png.flaticon.com/512/1165/1165815.png" width={64} height={64}></img>

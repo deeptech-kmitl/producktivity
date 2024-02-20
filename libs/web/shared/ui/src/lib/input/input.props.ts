@@ -1,12 +1,9 @@
-import type { BorderSize, BorderSizeProps, Height, SizeProps, Width } from '../props';
+import type { BorderSizeProps, SizeProps } from '../props';
 
 export const ContainerVariants = ['primary', 'secondary', 'tertiary', 'error'] as const;
 export type ContainerVariant = (typeof ContainerVariants)[number];
 
 export interface TextInputProps extends BorderSizeProps, SizeProps {
-  rounded?: BorderSize;
-  width?: Width;
-  height?: Height;
   variant?: ContainerVariant;
   disabled?: boolean;
   name: string;
