@@ -1,5 +1,8 @@
+import { getGap } from './gap.props';
+import { getGrid } from './grid.props';
 import { getPadding } from './padding.props';
 import { getBorderRadius } from './rounded.props';
+import { getShadow } from './shadow.props';
 import { getSize } from './size.props';
 
 export interface Props {}
@@ -27,6 +30,24 @@ export class PropsBuilder {
 
   withBorderRadius(): PropsBuilder {
     this.functions.push(getBorderRadius);
+
+    return this || ['base'];
+  }
+
+  withGrid(): PropsBuilder {
+    this.functions.push(getGrid);
+
+    return this;
+  }
+
+  withGap(): PropsBuilder {
+    this.functions.push(getGap);
+
+    return this;
+  }
+
+  withShadow(): PropsBuilder {
+    this.functions.push(getShadow);
 
     return this;
   }
