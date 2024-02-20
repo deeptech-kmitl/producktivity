@@ -1,4 +1,5 @@
 import { component$, Slot } from '@builder.io/qwik';
+import { PropsBuilder } from '../props/props';
 import type { TextProps, TextVariant, ThemeVariant, WeightVariant } from './text.props';
 
 export const Text = component$<TextProps>((props) => {
@@ -35,8 +36,10 @@ export const Text = component$<TextProps>((props) => {
 
   const Tag = span ? 'span' : 'p';
 
+  const additionalProps = new PropsBuilder(props).withPadding().build();
+
   return (
-    <Tag {...rest} class={[Variants[variant], WeightVariants[weight], ThemeVariants[theme]]}>
+    <Tag {...rest} class={[Variants[variant], WeightVariants[weight], ThemeVariants[theme], additionalProps]}>
       <Slot />
     </Tag>
   );
