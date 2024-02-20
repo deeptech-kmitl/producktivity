@@ -5,8 +5,8 @@ import { generateSeoConfig } from '../../configs/seo';
 
 export default component$(() => {
   return (
-    <div style={{ overflowY: 'auto', width: '100vw' }}>
-      <Box gap="1" height="half" width="full" align="center">
+    <Box>
+      <Box gap="1" height="min-screen" width="full" align="center">
         <Text variant="hero" theme="gradient" weight="bold">
           Welcome to Certificate Generators
         </Text>
@@ -17,14 +17,14 @@ export default component$(() => {
           Get Started
         </Button>
       </Box>
-      <Box gap="1" height="quarter" width="full" align="bottom" paddingBottom="1">
+      <Box gap="1" height="full" width="full" align="bottom" paddingBottom="1">
         <Text>How it works?</Text>
       </Box>
-      <Box gap="1" height="full" width="full" align="center" paddingTop="10">
-        <Text weight="bold" variant="hero" theme="gradient" paddingY="0.5">
+      <Box gap="1" width="full" align="center">
+        <Text weight="bold" variant="hero" theme="gradient">
           What our customer say
         </Text>
-        <Box gridDirection="col" grid="3" gap="4" paddingY="4">
+        <Box gridDirection="col" grid="3" gap="4">
           {[...Array(9)].map((_, index) => (
             <Box key={index} align="between-center" shadow="md" width="20" variant="surface" padding="2" height="auto" border="2">
               <img src="https://cdn-icons-png.flaticon.com/512/1165/1165815.png" width={64} height={64}></img>
@@ -37,13 +37,13 @@ export default component$(() => {
         </Box>
         <Button>See more</Button>
       </Box>
-      <Box gap="2" height="full" align="center">
-        <Text weight="bold" variant="hero" theme="gradient" paddingY="0.5">
+      <Box gap="2" height="min-3/4" width="full" align="center">
+        <Text weight="bold" variant="hero" theme="gradient">
           Ready to get started?
         </Text>
         <Button>Create Your Certificate</Button>
       </Box>
-    </div>
+    </Box>
   );
 });
 
