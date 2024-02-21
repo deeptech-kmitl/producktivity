@@ -50,7 +50,7 @@ export const Button = component$<ButtonProps>((props) => {
   const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().build();
 
   return (
-    <Tag {...rest} class={['relative flex group/button justify-center items-center', Sizes[size], cursor, additionalProps]}>
+    <Tag {...rest} class={['relative flex group/button rounded justify-center items-center', Sizes[size], cursor, additionalProps]}>
       <div class={['absolute inset-0 rounded-[inherit]', ContainerVariants[currentVariant]]} />
       <div class={['absolute inset-0 rounded-[inherit]', StateLayerVariants[currentVariant]]} />
       <span class={['z-10', LabelVariants[currentVariant]]}>
