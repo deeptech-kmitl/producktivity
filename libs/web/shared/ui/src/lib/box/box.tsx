@@ -36,7 +36,7 @@ export const Box = component$<BoxProps>((props) => {
   const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().withGrid().withGap().withShadow().build();
 
   return (
-    <div {...rest} class={['flex', Directions[direction], Variants[variant], Alignments[align], additionalProps]}>
+    <div {...rest} class={['flex rounded-none', Directions[direction], Variants[variant], Alignments[align], additionalProps]}>
       <Slot />
     </div>
   );
