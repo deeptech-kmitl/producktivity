@@ -1,13 +1,13 @@
 import { component$ } from '@builder.io/qwik';
 import { DocumentHead } from '@builder.io/qwik-city';
-import { Text, Box } from '@producktivity/ui';
+import { Box, Text } from '@producktivity/ui';
 import { generateSeoConfig } from '../../../configs/seo';
 
 export default component$(() => {
   return (
     <>
       <Box gap="1">
-        <Text variant="title" bold>
+        <Text variant="title" weight="bold">
           Contact
         </Text>
       </Box>

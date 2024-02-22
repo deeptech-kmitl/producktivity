@@ -6,7 +6,7 @@ import { generateSeoConfig } from '../../configs/seo';
 export default component$(() => {
   return (
     <>
-      <Text variant="title" bold>
+      <Text variant="title" weight="bold">
         Dashboard
       </Text>
     </>

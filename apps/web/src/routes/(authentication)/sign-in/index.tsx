@@ -1,39 +1,33 @@
 import { component$ } from '@builder.io/qwik';
 import { DocumentHead } from '@builder.io/qwik-city';
-import { Text, Box, Button } from '@producktivity/ui';
+import { Box, Button, Text, TextInput } from '@producktivity/ui';
 import { generateSeoConfig } from '../../../configs/seo';
 
 export default component$(() => {
   return (
     <>
-      <Box width="full" height="full" style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
-        <Box gap="1" width="full" height="full">
-          <Text variant="title" bold style={{ alignSelf: 'center' }}>
+      <Box width="full" height="full" direction="horizontal">
+        <Box gap="1" width="full" height="full" align="center">
+          <Text variant="title" weight="bold">
             SIGN IN
           </Text>
-          <Text variant="h3" style={{ alignSelf: 'center' }}>
+          <Text variant="h4" theme="secondary">
             Sign in to your account
           </Text>
-          <Box width="full" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <Box width="half">
-              <label>E-mail</label>
-              <input width="full" type="text" style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '5px', paddingLeft: '10px', width: '100%' }} />
-            </Box>
-          </Box>
-          <Box width="full" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <Box width="half">
-              <label>Password</label>
-              <input width="full" type="password" style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '5px', paddingLeft: '10px', width: '100%' }} />
-            </Box>
+          <Box align="center" gap="1">
+            <TextInput width="24" type="email" name="e-mail" label="E-mail" rounded="full" required />
+            <TextInput width="24" type="password" name="password" label="Password" rounded="full" required />
           </Box>
 
           <Box gap="1" width="full" align="center">
-            <Text variant="base">Forget your password?</Text>
-            <Button href="/sign-in">Sign In</Button>
+            <Text theme="tertiary">Forgot your password?</Text>
+            <Button href="/sign-in" rounded="base">
+              Sign Up
+            </Button>
           </Box>
 
           <Box width="full" align="center">
-            <Text variant="base">----- Or sign up with -----</Text>
+            <Text theme="tertiary">Or sign up with</Text>
           </Box>
 
           <Box width="full" align="center">
@@ -43,12 +37,16 @@ export default component$(() => {
           </Box>
         </Box>
 
-        <Box gap="1" width="full" height="full" align="center">
-          <Text variant="title" bold>
+        <Box gap="1" width="full" height="full" align="center" variant="gradient">
+          <Text variant="title" weight="bold" theme="surface">
             Welcome to Produck!
           </Text>
-          <Text variant="h3">Don’t have an account?</Text>
-          <Button href="/sign-up">Sign up</Button>
+          <Text variant="h3" theme="surface">
+            Don&apos;t have an account?
+          </Text>
+          <Button href="/sign-up" variant="surface" rounded="base">
+            Sign up
+          </Button>
         </Box>
       </Box>
     </>

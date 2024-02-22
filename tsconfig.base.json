@@ -20,7 +20,8 @@
       "@producktivity/ui": ["dist/libs/web/shared/ui"],
       "@producktivity/ui/*": ["dist/libs/web/shared/ui/*"],
       "@producktivity/web-dashboard-editor": ["libs/web/dashboard/editor/src/index.ts"],
-      "@producktivity/web-landing-navigation": ["libs/web/landing/navigation/src/index.ts"]
+      "@producktivity/web-landing-navigation": ["libs/web/landing/navigation/src/index.ts"],
+      "@producktivity/web-landing-footer": ["libs/web/landing/footer/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
