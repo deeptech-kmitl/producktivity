@@ -1,10 +1,10 @@
 import { Slot, component$ } from '@builder.io/qwik';
-import { Button, Box } from '../';
+import { Box, Button } from '../';
 import type { NavigationActionProps, NavigationItemProps } from './navigation.props';
 
 export const NavigationBar = component$(() => {
   return (
-    <Box direction="horizontal" gap="1" width="full" variant="surface" align="between-center" paddingY="1" paddingX="2">
+    <Box direction="horizontal" gap="1" width="full" variant="surface" align="between-center" paddingY="1" paddingX="2" class="backdrop-blur-sm">
       <Slot />
     </Box>
   );
@@ -12,7 +12,7 @@ export const NavigationBar = component$(() => {
 
 export const NavigationItem = component$((props: NavigationItemProps) => {
   return (
-    <Button {...props} variant="tertiary">
+    <Button {...props} size="small" variant="tertiary">
       <Slot />
     </Button>
   );
@@ -20,7 +20,7 @@ export const NavigationItem = component$((props: NavigationItemProps) => {
 
 export const NavigationAction = component$((props: NavigationActionProps) => {
   return (
-    <Button {...props}>
+    <Button {...props} size="small" rounded="base" variant="primary">
       <Slot />
     </Button>
   );
