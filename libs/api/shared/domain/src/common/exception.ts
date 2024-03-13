@@ -1,10 +1,11 @@
+import { Optional } from './optional';
 import { StatusCodeDescription } from './statusCode';
 
 export class Exception<T> extends Error {
   public readonly code: number;
-  public readonly data?: T;
+  public readonly data: Optional<T>;
 
-  private constructor({ code, message }: StatusCodeDescription, overrideMessage?: string, data?: T) {
+  private constructor({ code, message }: StatusCodeDescription, overrideMessage: Optional<string>, data: Optional<T>) {
     // Call constructor from native Error
     super();
 

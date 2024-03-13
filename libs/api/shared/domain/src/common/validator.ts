@@ -1,7 +1,10 @@
 import { validate, ValidationError } from 'class-validator';
 
 export class Validator {
-  public static async validate<Target extends object>(target: Target, context?: string): Promise<ValidationDetails | undefined> {
+  public static async validate<Target extends object>(
+    target: Target,
+    context?: string
+  ): Promise<ValidationDetails | undefined> {
     let details: ValidationDetails | undefined = undefined;
     const errors: ValidationError[] = await validate(target);
 

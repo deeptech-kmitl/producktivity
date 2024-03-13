@@ -1,9 +1,10 @@
 import { Exception } from './exception';
+import { Optional } from './optional';
 import { StatusCode } from './statusCode';
 import { ValidationDetails, Validator } from './validator';
 
 export class Entity<Identifier extends string | number> {
-  protected id?: Identifier;
+  protected id: Optional<Identifier>;
 
   public getId(): Identifier {
     if (this.id === undefined) {
