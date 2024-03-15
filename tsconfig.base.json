@@ -18,6 +18,7 @@
     "paths": {
       "@producktivity/api-config/*": ["libs/api/shared/config/*"],
       "@producktivity/api-domain": ["libs/api/shared/domain/src/index.ts"],
+      "@producktivity/api-service": ["libs/api/shared/service/src/index.ts"],
       "@producktivity/ui": ["dist/libs/web/shared/ui"],
       "@producktivity/ui/*": ["dist/libs/web/shared/ui/*"],
       "@producktivity/web-dashboard-editor": ["libs/web/dashboard/editor/src/index.ts"],
