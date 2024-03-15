@@ -1,7 +1,5 @@
 import { Entity } from '../common/entity';
 import { IsDate, IsEmail, IsOptional, IsString } from 'class-validator';
-import { CreateUserPayload } from '../model/createUserPayload';
-import { typeid } from 'typeid-js';
 import { Nullable } from '../common/nullable';
 
 export class User extends Entity<string> {
@@ -27,47 +25,4 @@ export class User extends Entity<string> {
   @IsOptional()
   @IsDate()
   private deletedAt: Nullable<Date>;
-
-  constructor(payload: CreateUserPayload) {
-    super();
-
-    this.username = payload.username;
-    this.email = payload.email;
-    this.firstName = payload.firstName;
-    this.lastName = payload.lastName;
-    this.email = payload.email;
-
-    this.id = typeid('user').toString();
-    this.createdAt = new Date();
-    this.updatedAt = null;
-    this.deletedAt = null;
-  }
-
-  getUsername(): string {
-    return this.username;
-  }
-
-  getEmail(): string {
-    return this.email;
-  }
-
-  getFirstName(): string {
-    return this.firstName;
-  }
-
-  getLastName(): string {
-    return this.lastName;
-  }
-
-  getCreatedAt(): Date {
-    return this.createdAt;
-  }
-
-  getUpdatedAt(): Nullable<Date> {
-    return this.updatedAt;
-  }
-
-  getDeletedAt(): Nullable<Date> {
-    return this.deletedAt;
-  }
 }
