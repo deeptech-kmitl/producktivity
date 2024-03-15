@@ -1,28 +1,40 @@
 import { Entity } from '../common/entity';
-import { IsDate, IsEmail, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsOptional, IsString } from 'class-validator';
 import { Nullable } from '../common/nullable';
+import { CreateUserPayload } from '../model';
+import { typeid } from 'typeid-js';
 
 export class User extends Entity<string> {
   @IsString()
-  private username: string;
-
-  @IsEmail()
-  private email: string;
+  username: string;
 
   @IsString()
-  private firstName: string;
+  firstName: string;
 
   @IsString()
-  private lastName: string;
+  lastName: string;
 
   @IsDate()
-  private createdAt: Date;
+  createdAt: Date;
 
   @IsOptional()
   @IsDate()
-  private updatedAt: Nullable<Date>;
+  updatedAt: Nullable<Date>;
 
   @IsOptional()
   @IsDate()
-  private deletedAt: Nullable<Date>;
+  deletedAt: Nullable<Date>;
+
+  constructor(payload: CreateUserPayload) {
+    super();
+
+    this.id = typeid('user').toString();
+    this.firstName = payload.firstName;
+    this.lastName = payload.lastName;
+    this.createdAt = new Date();
+  }
+
+  static new(payload: CreateUserPayload): User {
+    return new User(payload);
+  }
 }
