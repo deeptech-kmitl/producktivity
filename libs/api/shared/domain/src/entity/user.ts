@@ -1,5 +1,5 @@
 import { Entity } from '../common/entity';
-import { IsDate, IsEmail, IsOptional, IsString, IsUrl } from 'class-validator';
+import { IsDate, IsEmail, IsOptional, IsString } from 'class-validator';
 import { CreateUserPayload } from '../model/createUserPayload';
 import { typeid } from 'typeid-js';
 import { Nullable } from '../common/nullable';
@@ -16,10 +16,6 @@ export class User extends Entity<string> {
 
   @IsString()
   private lastName: string;
-
-  @IsOptional()
-  @IsUrl()
-  private profileImage: string;
 
   @IsDate()
   private createdAt: Date;
@@ -39,7 +35,6 @@ export class User extends Entity<string> {
     this.email = payload.email;
     this.firstName = payload.firstName;
     this.lastName = payload.lastName;
-    this.profileImage = payload.profileImage;
     this.email = payload.email;
 
     this.id = typeid('user').toString();
@@ -62,10 +57,6 @@ export class User extends Entity<string> {
 
   getLastName(): string {
     return this.lastName;
-  }
-
-  getProfileImage(): string {
-    return this.profileImage;
   }
 
   getCreatedAt(): Date {

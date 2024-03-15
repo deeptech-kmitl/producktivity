@@ -1,4 +1,4 @@
-import { IsEmail, IsOptional, IsString, IsUrl } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 
 export class CreateUserPayload {
   @IsString()
@@ -12,8 +12,4 @@ export class CreateUserPayload {
 
   @IsString()
   lastName: string;
-
-  @IsOptional()
-  @IsUrl()
-  profileImage: string;
 }
