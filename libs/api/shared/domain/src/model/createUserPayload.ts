@@ -1,11 +1,8 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class CreateUserPayload {
   @IsString()
   username: string;
-
-  @IsEmail()
-  email: string;
 
   @IsString()
   firstName: string;
