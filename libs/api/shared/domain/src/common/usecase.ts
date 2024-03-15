@@ -1,8 +1,8 @@
-export interface UseCase<TUseCasePort, TUseCaseResult> {
-  execute(port?: TUseCasePort): Promise<TUseCaseResult>;
+export interface UseCase<UseCasePort, UseCaseResult> {
+  execute(port?: UseCasePort): Promise<UseCaseResult>;
 }
 
-export interface TransactionalUseCase<TUseCasePort, TUseCaseResult> extends UseCase<TUseCasePort, TUseCaseResult> {
-  onCommit?: (result: TUseCaseResult, port: TUseCasePort) => Promise<void>;
-  onRollback?: (error: Error, port: TUseCasePort) => Promise<void>;
+export interface TransactionalUseCase<UseCasePort, UseCaseResult> extends UseCase<UseCasePort, UseCaseResult> {
+  onCommit?: (result: UseCaseResult, port: UseCasePort) => Promise<void>;
+  onRollback?: (error: Error, port: UseCasePort) => Promise<void>;
 }
