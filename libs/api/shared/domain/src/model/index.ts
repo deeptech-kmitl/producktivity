@@ -1,1 +1,1 @@
-export { CreateUserPayload } from './createUserPayload';
+export * from './createUserPayload';

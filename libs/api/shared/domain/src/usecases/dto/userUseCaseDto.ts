@@ -4,9 +4,6 @@ import { Exclude, Expose, plainToClass } from 'class-transformer';
 @Exclude()
 export class UserUseCaseDto {
   @Expose()
-  public userId: string;
-
-  @Expose()
   public username: string;
 
   @Expose()

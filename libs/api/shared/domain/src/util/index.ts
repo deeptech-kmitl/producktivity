@@ -1,1 +1,1 @@
-export { CoreAssert } from './assert';
+export * from './assert';

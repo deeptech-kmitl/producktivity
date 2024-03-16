@@ -1,3 +1,3 @@
-export { CreateUserPort } from './createUserPort';
-export { GetUserPort } from './getUserPort';
-export { UserRepositoryPort } from './userRepositoryPort';
+export * from './createUserPort';
+export * from './getUserPort';
+export * from './userRepositoryPort';
