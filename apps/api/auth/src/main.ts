@@ -1,13 +1,14 @@
-import { NestFactory } from '@nestjs/core';
-import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
-import { AppModule } from './app/app.module';
+import { Hono } from 'hono';
+import { D1Database } from '@cloudflare/workers-types';
 
-async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
-
-  const port = process.env.PORT || 3000;
-
-  await app.listen(port);
+type Bindings = {
+  DB: D1Database;
 }
 
-bootstrap();
+const app = new Hono<{ Bindings: Bindings }>();
+
+app.get('/', (c) => {
+  return c.text('Hello Hono!');
+});
+
+export default app;
