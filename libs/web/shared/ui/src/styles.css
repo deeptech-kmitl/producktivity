@@ -1,5 +1,5 @@
 @import 'tailwindcss/base';
-@import './lib/themes/midnight-moon.css';
+@import './lib/themes/crescent-moon.css';
 
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
