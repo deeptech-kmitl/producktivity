@@ -6,24 +6,33 @@ import { generateSeoConfig } from '../../configs/seo';
 export default component$(() => {
   return (
     <Box>
-      <Box direction="horizontal">
-        <Box gap="1" height="min-screen" width="full" align="left">
+      <Box direction="horizontal" height="full" paddingY="5">
+        <Box gap="1" width="min-1/3" align="left">
           <iframe src="https://lottie.host/embed/d4291adc-a4e7-4d9e-b81e-54e7a390dc69/VJVzblxTgI.json" height={700} width={500} />
         </Box>
-
-        <Box gap="1" height="min-screen" width="full" align="left">
-          <Text variant="hero" theme="gradient" weight="bold">
-            Welcome to Certificate Generators
-          </Text>
-          <Text variant="h4" theme="secondary">
-            Create and customize your own certificate in just a few clicks.
-          </Text>
-          <Button variant="gradient" rounded="full" prefetch href="/sign-up">
-            Get Started
-          </Button>
+        <Box direction="vertical" align="between-start" height="full" paddingY="6">
+          <Box gap="1" height="half" width="full" align="left">
+            <Text variant="hero" theme="gradient" weight="bold">
+              Welcome to Certificate Generators
+            </Text>
+            <Text variant="h4" theme="secondary">
+              Create and customize your own certificate in just a few clicks.
+            </Text>
+            <Button variant="gradient" rounded="full" prefetch href="/sign-up">
+              Get Started
+            </Button>
+          </Box>
+          <Box variant="secondary" padding="2" width="half" align="left" rounded="base" gap="1">
+            <Text weight="semibold" variant="h2">
+              Empower your achievements with personalized certificates
+            </Text>
+            <Text>
+              Whether you&apos;re celebrating academic accomplishments, professional milestones, or personal triumphs, <span class="font-semibold">Certified</span> is here to help you commemorate them in style.
+            </Text>
+          </Box>
         </Box>
       </Box>
-      <Box gap="1" width="full" height="half" align="top" paddingBottom="1">
+      <Box gap="1" width="full" align="center">
         <Text>How it works?</Text>
       </Box>
       <Box gap="1" width="full" align="center" paddingY="10">
