@@ -4,47 +4,34 @@
   "sourceRoot": "apps/api/auth/src",
   "projectType": "application",
   "targets": {
-    "build": {
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "executor": "nx:run-script",
-      "cache": true,
-      "options": {
-        "outputPath": "dist/apps/api/auth",
-        "script": "build"
-      }
-    },
-    "postbuild": {
-      "executor": "nx:run-commands",
-      "dependsOn": [
-        "api-auth:build"
-      ],
-      "options": {
-        "command": "cp apps/api/auth/package.json dist/apps/api/auth"
-      }
-    },
     "serve": {
-      "executor": "nx:run-script",
-      "dependsOn": [
-        "api-auth:build",
-        "api-auth:postbuild"
-      ],
+      "executor": "nx:run-commands",
       "options": {
-        "script": "dev"
+        "command": "wrangler dev {projectRoot}/src/main.ts"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "command": "wrangler deploy --minify {projectRoot}/src/main.ts"
+        },
+        "staging": {
+          "command": "wrangler deploy --minify {projectRoot}/src/main.ts --env staging"
+        },
+        "production": {
+          "command": "wrangler deploy --minify {projectRoot}/src/main.ts --env production"
+        }
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ]
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/api/auth/jest.config.ts"
       }

@@ -36,7 +36,9 @@
           {
             "avoidEscape": true
           }
-        ]
+        ],
+        "semi": "error",
+        "prefer-const": "error"
       }
     },
     {
