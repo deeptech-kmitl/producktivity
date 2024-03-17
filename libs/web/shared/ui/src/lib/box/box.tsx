@@ -26,6 +26,8 @@ export const Box = component$<BoxProps>((props) => {
     'bottom': direction === 'horizontal' ? 'items-end justify-center' : 'justify-end items-center',
     'bottom-right': 'items-end justify-end',
     'between-center': 'items-center justify-between',
+    'between-start': 'items-start justify-between',
+    'between-end': 'items-end justify-between',
   } satisfies { [K in BoxAlignment]: string };
 
   const Directions = {
