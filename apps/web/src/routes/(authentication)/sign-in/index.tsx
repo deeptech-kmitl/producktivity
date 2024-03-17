@@ -53,4 +53,4 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = generateSeoConfig({ title: 'Sign up' });
+export const head: DocumentHead = generateSeoConfig({ title: 'Sign in' });
