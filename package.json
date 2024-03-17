@@ -10,7 +10,6 @@
     "@builder.io/qwik": "~1.4.2",
     "@builder.io/qwik-city": "~1.4.2",
     "@cloudflare/workers-types": "^4.20231218.0",
-    "@nestjs/platform-fastify": "^10.3.0",
     "@nx/devkit": "17.2.8",
     "@nx/eslint": "17.2.8",
     "@nx/eslint-plugin": "17.2.8",
