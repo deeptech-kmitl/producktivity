@@ -2,11 +2,11 @@ import { IsString } from 'class-validator';
 
 export class CreateUserPayload {
   @IsString()
-  username: string;
+  public readonly username: string;
 
   @IsString()
-  firstName: string;
+  public readonly firstName: string;
 
   @IsString()
-  lastName: string;
+  public readonly lastName: string;
 }

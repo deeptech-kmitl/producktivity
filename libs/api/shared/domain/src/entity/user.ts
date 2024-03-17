@@ -1,31 +1,30 @@
-import { Entity } from '../common/entity';
+import { Entity, Nullable } from '../common';
 import { IsDate, IsOptional, IsString } from 'class-validator';
-import { Nullable } from '../common/nullable';
-import { CreateUserPayload } from '../model';
+import { CreateUserPayload } from '../user';
 import { typeid } from 'typeid-js';
 
 export class User extends Entity<string> {
   @IsString()
-  username: string;
+  public readonly username: string;
 
   @IsString()
-  firstName: string;
+  public readonly firstName: string;
 
   @IsString()
-  lastName: string;
+  public readonly lastName: string;
 
   @IsDate()
-  createdAt: Date;
+  public readonly createdAt: Date;
 
   @IsOptional()
   @IsDate()
-  updatedAt: Nullable<Date>;
+  public readonly updatedAt: Nullable<Date>;
 
   @IsOptional()
   @IsDate()
-  deletedAt: Nullable<Date>;
+  public readonly deletedAt: Nullable<Date>;
 
-  constructor(payload: CreateUserPayload) {
+  private constructor(payload: CreateUserPayload) {
     super();
 
     this.id = typeid('user').toString();
@@ -34,7 +33,7 @@ export class User extends Entity<string> {
     this.createdAt = new Date();
   }
 
-  static new(payload: CreateUserPayload): User {
+  public static new(payload: CreateUserPayload): User {
     return new User(payload);
   }
 }
