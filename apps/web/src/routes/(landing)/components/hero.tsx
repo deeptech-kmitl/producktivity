@@ -1,5 +1,6 @@
 import { Box, Button, Text } from '@producktivity/ui';
 import { component$ } from '@builder.io/qwik';
+import { LuArrowUpRight } from '@qwikest/icons/lucide';
 
 export const Hero = component$(() => {
   return (
@@ -10,14 +11,24 @@ export const Hero = component$(() => {
       <Box direction="vertical" align="between-start" width="full" height="full" paddingY="5">
         <Box gap="1" height="half" width="full" align="left">
           <Text variant="hero" theme="gradient" weight="bold">
-            Welcome to Certificate Generators
+            Welcome to
           </Text>
-          <Text variant="h4" theme="secondary">
-            Create and customize your own certificate in just a few clicks.
+          <Text variant="hero" theme="gradient" weight="bold">
+            Certificate Generators
           </Text>
-          <Button variant="gradient" rounded="md" prefetch href="/sign-up">
-            Get Started
-          </Button>
+          <Box direction="horizontal" gap="0.5">
+            <Text variant="h4" theme="secondary">
+              Create and customize your own certificate in just a few clicks.
+            </Text>
+            <Button href="sign-up" variant="surface">
+              <Box direction="horizontal" gap="0.5">
+                <Text class="font-semibold">Get Started</Text>
+                <Text>
+                  <LuArrowUpRight />
+                </Text>
+              </Box>
+            </Button>
+          </Box>
         </Box>
         <Box variant="secondary" padding="2" width="2/3" align="left" rounded="base" gap="1">
           <Text weight="semibold" variant="h2">
