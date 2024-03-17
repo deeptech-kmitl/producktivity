@@ -1,82 +1,39 @@
-import { Entity } from '../common/entity';
-import { IsDate, IsEmail, IsOptional, IsString, IsUrl } from 'class-validator';
-import { CreateUserPayload } from '../model/createUserPayload';
+import { Entity, Nullable } from '../common';
+import { IsDate, IsOptional, IsString } from 'class-validator';
+import { CreateUserPayload } from '../user';
 import { typeid } from 'typeid-js';
-import { Nullable } from '../common/nullable';
 
 export class User extends Entity<string> {
   @IsString()
-  private username: string;
-
-  @IsEmail()
-  private email: string;
+  public readonly username: string;
 
   @IsString()
-  private firstName: string;
+  public readonly firstName: string;
 
   @IsString()
-  private lastName: string;
-
-  @IsOptional()
-  @IsUrl()
-  private profileImage: string;
+  public readonly lastName: string;
 
   @IsDate()
-  private createdAt: Date;
+  public readonly createdAt: Date;
 
   @IsOptional()
   @IsDate()
-  private updatedAt: Nullable<Date>;
+  public readonly updatedAt: Nullable<Date>;
 
   @IsOptional()
   @IsDate()
-  private deletedAt: Nullable<Date>;
+  public readonly deletedAt: Nullable<Date>;
 
-  constructor(payload: CreateUserPayload) {
+  private constructor(payload: CreateUserPayload) {
     super();
 
-    this.username = payload.username;
-    this.email = payload.email;
+    this.id = typeid('user').toString();
     this.firstName = payload.firstName;
     this.lastName = payload.lastName;
-    this.profileImage = payload.profileImage;
-    this.email = payload.email;
-
-    this.id = typeid('user').toString();
     this.createdAt = new Date();
-    this.updatedAt = null;
-    this.deletedAt = null;
   }
 
-  getUsername(): string {
-    return this.username;
-  }
-
-  getEmail(): string {
-    return this.email;
-  }
-
-  getFirstName(): string {
-    return this.firstName;
-  }
-
-  getLastName(): string {
-    return this.lastName;
-  }
-
-  getProfileImage(): string {
-    return this.profileImage;
-  }
-
-  getCreatedAt(): Date {
-    return this.createdAt;
-  }
-
-  getUpdatedAt(): Nullable<Date> {
-    return this.updatedAt;
-  }
-
-  getDeletedAt(): Nullable<Date> {
-    return this.deletedAt;
+  public static new(payload: CreateUserPayload): User {
+    return new User(payload);
   }
 }
