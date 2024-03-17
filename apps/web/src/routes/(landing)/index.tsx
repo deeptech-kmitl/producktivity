@@ -6,16 +6,22 @@ import { generateSeoConfig } from '../../configs/seo';
 export default component$(() => {
   return (
     <Box>
-      <Box gap="1" height="min-screen" width="full" align="center">
-        <Text variant="hero" theme="gradient" weight="bold">
-          Welcome to Certificate Generators
-        </Text>
-        <Text variant="h4" theme="secondary">
-          Create and customize your own certificate in just a few clicks.
-        </Text>
-        <Button variant="gradient" rounded="full" prefetch href="/sign-up">
-          Get Started
-        </Button>
+      <Box direction="horizontal">
+        <Box gap="1" height="min-screen" width="full" align="left">
+          <iframe src="https://lottie.host/embed/d4291adc-a4e7-4d9e-b81e-54e7a390dc69/VJVzblxTgI.json" height={700} width={500} />
+        </Box>
+
+        <Box gap="1" height="min-screen" width="full" align="left">
+          <Text variant="hero" theme="gradient" weight="bold">
+            Welcome to Certificate Generators
+          </Text>
+          <Text variant="h4" theme="secondary">
+            Create and customize your own certificate in just a few clicks.
+          </Text>
+          <Button variant="gradient" rounded="full" prefetch href="/sign-up">
+            Get Started
+          </Button>
+        </Box>
       </Box>
       <Box gap="1" width="full" height="half" align="top" paddingBottom="1">
         <Text>How it works?</Text>
