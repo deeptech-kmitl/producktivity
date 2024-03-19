@@ -1,6 +1,47 @@
 import { $, Slot, component$, useOnWindow } from '@builder.io/qwik';
 import type { RequestHandler } from '@builder.io/qwik-city';
 import { isDev } from '@builder.io/qwik/build';
+import { verifyRequestOrigin } from 'lucia';
+import { Env, initializeLucia } from '../configs/auth';
+
+export const onRequest: RequestHandler = async ({ platform, next, cookie, method, headers, error, sharedMap }) => {
+  const { DB } = platform.env as Env;
+  const lucia = initializeLucia(DB);
+
+  if (method !== "GET") {
+    const originHeader = headers.get("Origin");
+    const hostHeader = headers.get("Host");
+
+    if (!originHeader || !hostHeader || !verifyRequestOrigin(originHeader, [hostHeader])) {
+      throw error(403, 'Forbidden');
+    }
+  }
+
+  const sessionId = cookie.get(lucia.sessionCookieName)?.value ?? null;
+  if (!sessionId) {
+    sharedMap.set('user', null);
+    sharedMap.set('session', null);
+
+    return await next();
+  }
+
+  const { session, user } = await lucia.validateSession(sessionId);
+
+  if (session && session.fresh) {
+    const sessionCookie = lucia.createSessionCookie(session.id);
+    cookie.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+  }
+
+  if (!session) {
+    const sessionCookie = lucia.createBlankSessionCookie();
+    cookie.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+  }
+
+  sharedMap.set('user', user);
+  sharedMap.set('session', session);
+
+  return await next();
+}
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   if (isDev) return;
