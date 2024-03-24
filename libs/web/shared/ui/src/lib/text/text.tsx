@@ -3,7 +3,7 @@ import { PropsBuilder } from '../props/props';
 import type { TextProps, TextVariant, ThemeVariant, WeightVariant } from './text.props';
 
 export const Text = component$<TextProps>((props) => {
-  const { variant = 'base', span, theme = 'primary', weight = 'normal', ...rest } = props;
+  const { variant = 'base', span, theme = 'inherit', weight = 'normal', ...rest } = props;
 
   const Variants = {
     hero: 'text-6xl',
@@ -16,13 +16,12 @@ export const Text = component$<TextProps>((props) => {
   } satisfies { [K in TextVariant]: string };
 
   const ThemeVariants = {
+    inherit: 'text-inherit',
     primary: 'text-primary',
     secondary: 'text-secondary',
     tertiary: 'text-tertiary',
     error: 'text-error',
     surface: 'text-surface',
-    'surface-dim': 'text-surface-dim',
-    'surface-bright': 'text-surface-bright',
     gradient: 'bg-clip-text bg-gradient-to-br from-primary to-tertiary text-transparent',
   } satisfies { [K in ThemeVariant]: string };
 
