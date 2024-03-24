@@ -31,10 +31,10 @@ export const Hero = component$(() => {
           </Box>
         </Box>
         <Box variant="secondary" padding="2" width="2/3" align="left" rounded="base" gap="1">
-          <Text weight="semibold" variant="h2">
+          <Text weight="semibold" variant="h2" theme="primary">
             Empower your achievements with personalized certificates
           </Text>
-          <Text>
+          <Text theme="secondary">
             Whether you&apos;re celebrating academic accomplishments, professional milestones, or personal triumphs, <span class="font-semibold">Certified</span> is here to help you commemorate them in style.
           </Text>
         </Box>
