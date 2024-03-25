@@ -44,13 +44,11 @@ export const Feature = component$(() => {
               <Box variant="primary" padding="1" shadow="sm" rounded="full">
                 <Text variant="h3">{item.icon}</Text>
               </Box>
-              <Text variant="h2" weight="medium">
+              <Text variant="h2" weight="semibold">
                 {item.title}
               </Text>
             </Box>
-            <Box>
-              <Text>{item.content}</Text>
-            </Box>
+            <Text theme="secondary">{item.content}</Text>
           </Box>
         ))}
       </Box>
