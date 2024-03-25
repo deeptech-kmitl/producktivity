@@ -7,7 +7,7 @@ import type { ShadowProps } from '../props/shadow.props';
 export const BoxVariants = ['surface', 'primary', 'secondary', 'tertiary', 'error', 'base', 'gradient'] as const;
 export type BoxVariant = (typeof BoxVariants)[number];
 
-export const BoxAlignments = ['top-left', 'top', 'top-right', 'left', 'center', 'right', 'bottom-left', 'bottom', 'bottom-right', 'between-center'] as const;
+export const BoxAlignments = ['top-left', 'top', 'top-right', 'left', 'center', 'right', 'bottom-left', 'bottom', 'bottom-right', 'between-center', 'between-start', 'between-end'] as const;
 export type BoxAlignment = (typeof BoxAlignments)[number];
 
 export const BoxDirections = ['horizontal', 'vertical'] as const;

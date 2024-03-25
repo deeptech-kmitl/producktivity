@@ -20,7 +20,7 @@ export const NavigationItem = component$((props: NavigationItemProps) => {
 
 export const NavigationAction = component$((props: NavigationActionProps) => {
   return (
-    <Button {...props} size="small" rounded="base" variant="primary">
+    <Button {...props} size="base" rounded="base" variant="primary">
       <Slot />
     </Button>
   );
