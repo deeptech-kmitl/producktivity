@@ -6,6 +6,9 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/web',
+  optimizeDeps: {
+    exclude: ["oslo"],
+  },
   plugins: [
     tsconfigPaths({ root: '../../' }),
     qwikNxVite(),
