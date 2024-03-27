@@ -63,18 +63,17 @@ jobs:
 
       - name: Get deployment link
         id: deploy_link
-        # run: echo "dep_link=$(cat deployment_link.txt)" >> "$GITHUB_OUTPUT"
-        run: cat deployment_link.txt
+        run: echo "dep_link=$(cat deployment_link.txt)" >> "$GITHUB_OUTPUT"
 
       - name: Publish deployment link
         uses: actions/github-script@v4
         with:
-          script: |
-            const issueNumber = '${{ github.event.number }}'
-            github.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-              body: `### QA Deployment
-              result: ${{ steps.deploy_link.outputs.dep_link }}`
-            });
+          # script: |
+          #   const issueNumber = '${{ github.event.number }}'
+          #   github.issues.createComment({
+          #     owner: context.repo.owner,
+          #     repo: context.repo.repo,
+          #     issue_number: issueNumber,
+          #     body: `### QA Deployment
+          #     result: ${{ steps.deploy_link.outputs.dep_link }}`
+          #   });
