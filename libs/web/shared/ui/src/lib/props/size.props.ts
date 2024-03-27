@@ -1,6 +1,6 @@
 import type { Props } from './props';
 
-export const Sizes = ['auto', 'min-1/4', 'min-2/4', 'min-3/4', 'min-1/2', 'min-1/3', 'min-2/3', 'min-screen', 'full', 'full-screen', 'half', 'quarter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '12', '16', '18', '20', '24'] as const;
+export const Sizes = ['auto', '2/4', '3/4', '1/3', '2/3', 'min-1/4', 'min-2/4', 'min-3/4', 'min-1/2', 'min-1/3', 'min-2/3', 'min-screen', 'full', 'full-screen', 'half', 'quarter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '12', '16', '18', '20', '24'] as const;
 export type Size = (typeof Sizes)[number];
 
 export type Width = Size;
@@ -27,6 +27,10 @@ export const Widths = {
   '18': 'w-72',
   '20': 'w-80',
   '24': 'w-96',
+  '2/4': 'w-2/4',
+  '3/4': 'w-3/4',
+  '1/3': 'w-1/3',
+  '2/3': 'w-2/3',
   'min-1/4': 'min-w-1/4',
   'min-2/4': 'min-w-2/4',
   'min-3/4': 'min-w-3/4',
@@ -57,6 +61,10 @@ export const Heights = {
   '18': 'h-72',
   '20': 'h-80',
   '24': 'h-96',
+  '2/4': 'h-2/4',
+  '3/4': 'h-3/4',
+  '1/3': 'h-1/3',
+  '2/3': 'h-2/3',
   'min-1/4': 'min-h-1/4',
   'min-2/4': 'min-h-2/4',
   'min-3/4': 'min-h-3/4',
