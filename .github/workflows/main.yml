@@ -58,6 +58,8 @@ jobs:
       - name: Run deploy task
         run: |
           pnpm nx affected -t deploy > deployment.log
+          chmod +x deploy_link.sh
+          deploy_link.sh
 
       - name: Get deployment link
         id: dep_link
