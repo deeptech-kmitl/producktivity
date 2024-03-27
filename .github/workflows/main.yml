@@ -76,5 +76,5 @@ jobs:
               repo: context.repo.repo,
               issue_number: issueNumber,
               body: `### QA Deployment
-              result: ${dep_link}`
+              result: ${link}`
             });
