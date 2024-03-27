@@ -69,7 +69,6 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const github = new GitHub(${{ secrets.GITHUB_TOKEN }});
             const issueNumber = '${{ github.event.number }}'
             const link = '${{ steps.deploy_link.outputs.link }}';
             github.issues.createComment({
