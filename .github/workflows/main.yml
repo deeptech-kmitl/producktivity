@@ -69,7 +69,6 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const { GitHub } = require('@actions/github');
             const github = new GitHub(${{ secrets.GITHUB_TOKEN }});
             const issueNumber = '${{ github.event.number }}'
             const link = '${{ steps.dep_link.outputs.link }}';
