@@ -63,7 +63,7 @@ jobs:
 
       - name: Get deployment link
         id: deploy_link
-        run: echo "dep_link=$(cat ./scripts/deployment_link.txt)" >> "$GITHUB_OUTPUT"
+        run: echo "dep_link='Hello Brother'" >> "$GITHUB_OUTPUT"
 
       - name: Publish deployment link
         uses: actions/github-script@v4
