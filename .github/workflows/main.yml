@@ -61,7 +61,7 @@ jobs:
 
       - name: Get deployment link
         id: dep_link
-        run: echo "::set-output name=link::$(cat deployment_link.log)"
+        run: echo "::set-output name=link::$(cat deployment_link.txt)"
 
       - name: Publish deployment link
         uses: actions/github-script@v4
