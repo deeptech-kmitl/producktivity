@@ -3,7 +3,7 @@ import { Box } from '@producktivity/ui';
 
 export default component$(() => {
   return (
-    <Box prose>
+    <Box paddingY="1" prose>
       <Slot />
     </Box>
   );
