@@ -79,6 +79,77 @@ export default {
           },
         },
       },
+      typography: {
+        DEFAULT: {
+          css: [
+            {
+              color: 'rgb(var(--on-surface))',
+              maxWidth: '48rem',
+              '[class~="lead"]': {
+                color: 'rgb(var(--on-surface-variant))',
+              },
+              a: {
+                color: 'rgb(var(--primary))',
+              },
+              'ol > li::marker': {
+                color: 'rgb(var(--on-surface))',
+              },
+              'ul > li::marker': {
+                color: 'rgb(var(--on-surface))',
+              },
+              dt: {
+                color: 'rgb(var(--on-surface))',
+              },
+              hr: {
+                borderColor: 'rgb(var(--on-surface))',
+              },
+              blockquote: {
+                color: 'rgb(var(--primary))',
+                borderInlineStartColor: 'rgb(var(--primary))',
+              },
+              h1: {
+                color: 'rgb(var(--primary))',
+              },
+              h2: {
+                color: 'rgb(var(--secondary))',
+              },
+              h3: {
+                color: 'rgb(var(--tertiary))',
+              },
+              h4: {
+                color: 'rgb(var(--on-surface))',
+              },
+              kbd: {
+                color: 'rgb(var(--on-surface))',
+                boxShadow: '0 0 0 1px rgb(var(--on-surface) / 10%), 0 3px 0 rgb(var(--on-surface) / 10%)',
+              },
+              code: {
+                color: 'rgb(var(--on-surface))',
+              },
+              pre: {
+                color: 'rgb(var(--on-surface-variant))',
+                backgroundColor: 'rgb(var(--surface-variant))',
+              },
+              thead: {
+                borderBottomColor: 'rgb(var(--outline))',
+              },
+              'thead th': {
+                color: 'rgb(var(--primary))',
+              },
+              'tbody tr': {
+                borderBottomColor: 'rgb(var(--outline))',
+              },
+              tfoot: {
+                borderTopColor: 'rgb(var(--outline))',
+              },
+              figcaption: {
+                color: 'rgb(var(--on-surface))',
+              },
+            },
+          ],
+        },
+
+      },
     },
   },
   plugins: [typography],
