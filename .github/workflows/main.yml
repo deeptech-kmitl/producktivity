@@ -61,7 +61,7 @@ jobs:
 
       - name: Get deployment link
         id: dep_link
-        run: echo "::set-output name=link::$(cat deployment_link.txt)"
+        run: echo "link=$(cat /.github/deployment_link.txt)" > $GITHUB_OUTPUT
 
       - name: Publish deployment link
         uses: actions/github-script@v4
@@ -70,9 +70,9 @@ jobs:
             const { context, GitHub } = require('@actions/github');
             const github = new GitHub(${{ secrets.GITHUB_TOKEN }});
             const issueNumber = '${{ github.event.number }}'
-            const link = '${{ steps.read_link.outputs.link }}';
+            const link = '${{ steps.dep_link.outputs.link }}';
             github.issues.createComment({
-              owner: ${{ github.event.workflow_run.head_repository.owner.login }},
+              owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
               body: `### QA Deployment
