@@ -35,7 +35,7 @@ export const Box = component$<BoxProps>((props) => {
     vertical: 'flex-col',
   } satisfies { [K in BoxDirection]: string };
 
-  const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().withGrid().withGap().withShadow().build();
+  const additionalProps = new PropsBuilder(props).withSize().withPadding().withMargin().withBorderRadius().withGrid().withGap().withShadow().build();
 
   return (
     <div {...rest} class={['flex', Directions[direction], Variants[variant], Alignments[align], additionalProps]}>

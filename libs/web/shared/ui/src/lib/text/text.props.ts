@@ -1,7 +1,7 @@
 import type { QwikIntrinsicElements } from '@builder.io/qwik';
 import type { PaddingProps } from '../props';
 
-export const TextVariants = ['hero', 'title', 'h1', 'h2', 'h3', 'h4', 'base'] as const;
+export const TextVariants = ['hero', 'title', 'h1', 'h2', 'h3', 'h4', 'base', 'small'] as const;
 export type TextVariant = (typeof TextVariants)[number];
 
 export const ThemeVariants = ['inherit', 'primary', 'secondary', 'tertiary', 'error', 'surface', 'gradient'] as const;

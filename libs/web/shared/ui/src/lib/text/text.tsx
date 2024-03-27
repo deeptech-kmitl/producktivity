@@ -13,6 +13,7 @@ export const Text = component$<TextProps>((props) => {
     h3: 'text-xl',
     h4: 'text-lg',
     base: 'text-base',
+    small: 'text-sm',
   } satisfies { [K in TextVariant]: string };
 
   const ThemeVariants = {

@@ -23,16 +23,22 @@ export const Button = component$<ButtonProps>((props) => {
     gradient: 'bg-gradient-to-br from-primary to-tertiary',
     surface: 'bg-surface',
     disabled: 'bg-surface-on/[.12]',
+    'badge-primary': 'bg-primary/[.15] px-2 py-1 border border-primary',
+    'badge-secondary': 'bg-secondary/[.15] px-2 py-1 border border-secondary',
+    'badge-tertiary': 'bg-tertiary/[.15] px-2 py-1 border border-tertiary',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const LabelVariants = {
     primary: 'text-primary-on',
-    secondary: 'text-primary',
-    tertiary: 'text-primary',
+    secondary: 'text-secondary-on',
+    tertiary: 'text-tertiary-on',
     error: 'text-error-on',
     gradient: 'text-primary-on',
     surface: 'text-surface-on',
     disabled: 'text-surface-on/[.38]',
+    'badge-primary': 'text-primary font-medium text-sm',
+    'badge-secondary': 'text-secondary font-medium text-sm',
+    'badge-tertiary': 'text-tertiary font-medium text-sm',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const StateLayerVariants = {
@@ -43,6 +49,9 @@ export const Button = component$<ButtonProps>((props) => {
     gradient: '',
     error: 'bg-error-on/[.08]',
     disabled: 'bg-surface-on/[.12]',
+    'badge-primary': '',
+    'badge-secondary': '',
+    'badge-tertiary': '',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const Tag = rest.href ? Link : 'button';
