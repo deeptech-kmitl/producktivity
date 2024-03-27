@@ -2,10 +2,11 @@ import { component$, useSignal } from '@builder.io/qwik';
 import { DocumentHead } from '@builder.io/qwik-city';
 import { Box, Button, Text } from '@producktivity/ui';
 import { generateSeoConfig } from '../../configs/seo';
-import { LuPlusCircle } from '@qwikest/icons/lucide';
+import { LuArrowUpCircle, LuPlusCircle } from '@qwikest/icons/lucide';
 import { DashboardTab } from './components/dashboard-tab';
 import { TemplateTab } from './components/template-tab';
 import { ProjectTab } from './components/project-tab';
+import { PlanBadge } from './components/plan-badge';
 
 interface DashboardTabsProps {
   id: number;
@@ -23,7 +24,7 @@ export default component$(() => {
 
   return (
     <Box height="full-screen" width="full-screen" align="top-left">
-      <Box padding="4" width="full" direction="horizontal" align="between-center">
+      <Box paddingY="2" paddingX="4" width="full" direction="horizontal" align="between-center">
         <Box direction="horizontal" gap="1">
           {dashboardTabs.map((item: DashboardTabsProps) => (
             <Button rounded="full" variant={item.id === currentActiveTabId.value ? 'primary' : 'secondary'} key={item.id} onClick$={() => (currentActiveTabId.value = item.id)}>
@@ -40,7 +41,21 @@ export default component$(() => {
           </Box>
         </Button>
       </Box>
-      <Box paddingX="4">
+      <Box direction="horizontal" gap="0.5" paddingX="4">
+        <Text>Current Plan</Text>
+        <PlanBadge planType="Professional" />
+        <Button rounded="full" href="/pricing">
+          <Box direction="horizontal" align="center" gap="0.5">
+            <Text theme="surface">
+              <LuArrowUpCircle />
+            </Text>
+            <Text theme="surface" variant="small">
+              Upgrade
+            </Text>
+          </Box>
+        </Button>
+      </Box>
+      <Box marginY="2" width="full">
         {currentActiveTabId.value === 0 && <DashboardTab />}
         {currentActiveTabId.value === 1 && <ProjectTab />}
         {currentActiveTabId.value === 2 && <TemplateTab />}
