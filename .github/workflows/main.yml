@@ -70,11 +70,10 @@ jobs:
         with:
           script: |
             const issueNumber = '${{ github.event.number }}'
-            const link = '${{ steps.deploy_link.outputs.dep_link }}';
             github.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
               body: `### QA Deployment
-              result: ${link}`
+              result: ${{ steps.deploy_link.outputs.dep_link }}`
             });
