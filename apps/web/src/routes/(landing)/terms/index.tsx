@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import { DocumentHead } from '@builder.io/qwik-city';
 import { Box, Text } from '@producktivity/ui';
-import { generateSeoConfig } from '../../configs/seo';
+import { generateSeoConfig } from '../../../configs/seo';
 import { Navigation } from '@producktivity/web-landing-navigation';
 import { Footer } from '@producktivity/web-landing-footer';
 

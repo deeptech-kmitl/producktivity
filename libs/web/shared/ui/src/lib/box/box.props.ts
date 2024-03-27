@@ -19,4 +19,5 @@ export interface BoxProps extends NativeDiv, PaddingProps, SizeProps, BorderSize
   variant?: BoxVariant;
   align?: BoxAlignment;
   direction?: BoxDirection;
+  prose?: boolean;
 }

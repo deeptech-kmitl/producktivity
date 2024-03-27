@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 import { join } from 'path';
+import typography from '@tailwindcss/typography';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 export default {
@@ -80,5 +81,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 } satisfies Config;
