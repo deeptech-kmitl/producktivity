@@ -1,16 +1,17 @@
 import { Component, component$ } from '@builder.io/qwik';
 import { createColumnHelper, getCoreRowModel, flexRender, useQwikTable } from '@tanstack/qwik-table';
-import { TaskMemberProps, TaskProps, TaskStatus } from './dashboard-tab';
-import { Box, Button } from '@producktivity/ui';
-import { Link } from '@builder.io/qwik-city';
+import { Box, Button, Text } from '@producktivity/ui';
+// import { Link } from '@builder.io/qwik-city';
+import { TaskProps, TaskMemberProps, TaskStatus } from '../../constant/mock-data';
 
 const columnHelper = createColumnHelper<TaskProps>();
 
 function getTaskDetail(row: string) {
   return (
-    <Link style={{ textDecoration: 'underline' }} href={`/dashboard/project/${row.split(' ').join('-').toLowerCase()}`}>
-      {row}
-    </Link>
+    // <Link style={{ textDecoration: 'underline' }} href={`/dashboard/project/${row.split(' ').join('-').toLowerCase()}`}>
+    //   {row}
+    // </Link>
+    <Text>{row}</Text>
   );
 }
 
@@ -67,7 +68,7 @@ export const DashboardTable: Component<DashboardTableProps> = component$(({ data
   return (
     <Box width="full" paddingTop="2" paddingLeft="3">
       <table class="w-full table-fixed text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -80,7 +81,7 @@ export const DashboardTable: Component<DashboardTableProps> = component$(({ data
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr key={row.id} class="border-b dark:bg-gray-800 dark:border-gray-700">
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} class="py-2">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -17,9 +17,15 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20231218.0
         version: 4.20240117.0
+      '@headlessui/react':
+        specifier: ^1.7.18
+        version: 1.7.18(react-dom@18.2.0)(react@18.2.0)
       '@lucia-auth/adapter-sqlite':
         specifier: ^3.0.1
         version: 3.0.1(lucia@3.1.1)
+      '@modular-forms/qwik':
+        specifier: ^0.23.1
+        version: 0.23.1(@builder.io/qwik-city@1.4.2)(@builder.io/qwik@1.4.2)
       '@nx/devkit':
         specifier: 17.2.8
         version: 17.2.8(nx@17.2.8)
@@ -125,6 +131,15 @@ importers:
       fabric:
         specifier: 6.0.0-beta18
         version: 6.0.0-beta18
+      flowbite:
+        specifier: ^2.3.0
+        version: 2.3.0
+      headless:
+        specifier: ^1.2.0
+        version: 1.2.0
+      headlessui:
+        specifier: ^0.0.0
+        version: 0.0.0
       hono:
         specifier: ^4.1.0
         version: 4.1.1
@@ -164,6 +179,9 @@ importers:
       qwik-nx:
         specifier: ^2.0.2
         version: 2.0.2(@types/node@20.11.9)(eslint@8.56.0)(nx@17.2.8)(typescript@5.3.3)(vite@5.0.12)(vitest@1.2.2)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
       rxjs:
         specifier: ^7.8.0
         version: 7.8.1
@@ -2356,6 +2374,19 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: true
 
+  /@headlessui/react@1.7.18(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-4i5DOrzwN4qSgNsL4Si61VMkUcWbcSKueUV7sFhpHzQcSShdlHENE5+QBntMSRvHt8NyoFO2AGG8si9lq+w4zQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      '@tanstack/react-virtual': 3.2.0(react-dom@18.2.0)(react@18.2.0)
+      client-only: 0.0.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: true
+
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -2969,7 +3000,15 @@ packages:
   /@microsoft/tsdoc@0.14.2:
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
     dev: true
-
+  /@modular-forms/qwik@0.23.1(@builder.io/qwik-city@1.4.2)(@builder.io/qwik@1.4.2):
+    resolution: {integrity: sha512-oiXMdbH0HNotc9LMUwoEwZSJkY7/SObyQCgAZHsAPIQOyQrDhG2W8rEJVy0zFtSOCxk6NZjLiMcXfcI5glKU8A==}
+    peerDependencies:
+      '@builder.io/qwik': ^1.4.0
+      '@builder.io/qwik-city': ^1.4.0
+    dependencies:
+      '@builder.io/qwik': 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)(undici@5.28.2)
+      '@builder.io/qwik-city': 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)
+    dev: true
   /@napi-rs/wasm-runtime@0.1.1:
     resolution: {integrity: sha512-ATj9ua659JgrkICjJscaeZdmPr44cb/KFjNWuD0N6pux0SpzaM7+iOuuK11mAnQM2N9q0DT4REu6NkL8ZEhopw==}
     requiresBuild: true
@@ -4241,7 +4280,9 @@ packages:
   /@polka/url@1.0.0-next.24:
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
     dev: true
-
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: true
   /@qwik-ui/headless@0.3.3(@builder.io/qwik@1.4.2):
     resolution: {integrity: sha512-/d3r3DbfbTLCM1FkC52dU2xMGiKijyY33DYTwSnBn94G+GUaMf9/fjr+IUA+sbL2f08LsvOt5VgE0hweqi4aeg==}
     engines: {node: '>=16.0.0'}
@@ -5539,9 +5580,24 @@ packages:
       '@tanstack/table-core': 8.14.0
     dev: true
 
+  /@tanstack/react-virtual@3.2.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-OEdMByf2hEfDa6XDbGlZN8qO6bTjlNKqjM3im9JG+u3mCL8jALy0T/67oDI001raUUPh1Bdmfn4ZvPOV5knpcg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@tanstack/virtual-core': 3.2.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: true
+
   /@tanstack/table-core@8.14.0:
     resolution: {integrity: sha512-wDhpKJahGHWhmRt4RxtV3pES63CoeadljGWS/xeS9OJr1HBl2NB+OO44ht3sxDH5j5TRDAbQzC0NvSlsUfn7lQ==}
     engines: {node: '>=12'}
+    dev: true
+
+  /@tanstack/virtual-core@3.2.0:
+    resolution: {integrity: sha512-P5XgYoAw/vfW65byBbJQCw+cagdXDT/qH6wmABiLt4v4YBT2q2vqCOhihe+D1Nt325F/S/0Tkv6C5z0Lv+VBQQ==}
     dev: true
 
   /@tootallnate/once@2.0.0:
@@ -6983,6 +7039,10 @@ packages:
       string-width: 7.1.0
     dev: true
 
+  /client-only@0.0.1:
+    resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: true
+
   /cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
@@ -8339,6 +8399,13 @@ packages:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
     dev: true
 
+  /flowbite@2.3.0:
+    resolution: {integrity: sha512-pm3JRo8OIJHGfFYWgaGpPv8E+UdWy0Z3gEAGufw+G/1dusaU/P1zoBLiQpf2/+bYAi+GBQtPVG86KYlV0W+AFQ==}
+    dependencies:
+      '@popperjs/core': 2.11.8
+      mini-svg-data-uri: 1.4.4
+    dev: true
+
   /follow-redirects@1.15.5:
     resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
     engines: {node: '>=4.0'}
@@ -8755,6 +8822,15 @@ packages:
   /he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
+    dev: true
+
+  /headless@1.2.0:
+    resolution: {integrity: sha512-KY721osnVJ/hU8w2Gpsu1znT16mjWsIVl3qpJUvKj3U3xfPq1N6hHIDRGRyahYYPZbTBbVtOPuBVCW7Mi83bCg==}
+    engines: {node: '>=0.6'}
+    dev: true
+
+  /headlessui@0.0.0:
+    resolution: {integrity: sha512-CHvacVPbl8AqIg2sBNKySUmumu7o15jSrCaTrIh9GW2Eq4y/krCN/vZFOsKCwlrhWQbO4267a8xvvP8bs+qREQ==}
     dev: true
 
   /hono@4.1.1:
@@ -10719,6 +10795,11 @@ packages:
   /mimic-response@3.1.0:
     resolution: {integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==}
     engines: {node: '>=10'}
+    dev: true
+
+  /mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: true
 
   /miniflare@3.20231218.4:

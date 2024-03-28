@@ -5,7 +5,7 @@ import { LuArrowRightCircle } from '@qwikest/icons/lucide';
 export const CTA = component$(() => {
   return (
     <Box paddingX="10" paddingY="4" width="full">
-      <Box gap="2" width="full" align="center" paddingY="6" variant="primary" rounded="md">
+      <Box gap="2" width="full" align="center" paddingY="6" variant="primary" rounded="lg">
         <Text theme="primary" variant="title" weight="bold">
           Start your journey with us
         </Text>
