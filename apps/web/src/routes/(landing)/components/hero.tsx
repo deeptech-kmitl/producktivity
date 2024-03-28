@@ -4,11 +4,11 @@ import { LuArrowUpRight } from '@qwikest/icons/lucide';
 
 export const Hero = component$(() => {
   return (
-    <Box direction="horizontal" height="full" paddingY="8">
+    <Box direction="horizontal" height="full">
       <Box gap="1" width="3/4" align="center">
         <iframe src="https://lottie.host/embed/d4291adc-a4e7-4d9e-b81e-54e7a390dc69/VJVzblxTgI.json" height={700} width={500} />
       </Box>
-      <Box direction="vertical" align="between-start" width="full" height="full" paddingY="5">
+      <Box direction="vertical" align="between-start" width="full" height="full" paddingY="6">
         <Box gap="1" height="half" width="full" align="left">
           <Text variant="hero" theme="gradient" weight="bold">
             Welcome to

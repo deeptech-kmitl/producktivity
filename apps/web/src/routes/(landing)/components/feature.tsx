@@ -37,9 +37,9 @@ export const Feature = component$(() => {
         All the tools your team needs
       </Text>
       <Text weight="light">Easy to organize, plan and deliver tasks of all size</Text>
-      <Box gridCols="3" paddingY="4" paddingX="10" gap="2">
+      <Box gridCols="3" paddingY="2" paddingX="10" gap="2">
         {Features.map((item: FeatureProps) => (
-          <Box key={item.id} variant="surface" padding="2" rounded="lg" gap="2" direction="vertical" align="top-left">
+          <Box key={item.id} variant="surface" padding="2" rounded="lg" gap="2" direction="vertical" align="top-left" height='full'>
             <Box direction="horizontal" gap="1">
               <Box variant="primary" padding="1" shadow="sm" rounded="full">
                 <Text variant="h3">{item.icon}</Text>

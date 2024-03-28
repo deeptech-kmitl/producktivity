@@ -66,5 +66,8 @@
   },
   "trustedDependencies": [
     "sharp"
-  ]
+  ],
+  "dependencies": {
+    "@img/sharp-linux-x64": "^0.33.3"
+  }
 }
