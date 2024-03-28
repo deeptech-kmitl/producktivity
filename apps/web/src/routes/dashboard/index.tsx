@@ -8,14 +8,14 @@ export default component$(() => {
   const userSignal = useUser();
   const navigator = useNavigate();
   const signOut = $(async () => {
-    await fetch('/api/auth/sign-out', { method: 'POST', });
+    await fetch('/api/auth/sign-out', { method: 'POST' });
 
     await navigator('/');
   });
 
   return (
     <>
-      <p>{ userSignal.value ? userSignal.value.username : 'unauthorize' }</p>
+      <p>{userSignal.value ? userSignal.value.username : 'unauthorize'}</p>
       <Button onClick$={signOut}>Sign Out</Button>
       <Text variant="title" weight="bold">
         Dashboard
