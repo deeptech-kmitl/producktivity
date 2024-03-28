@@ -5,7 +5,7 @@ import type { BorderSizeProps } from '../props';
 export const ButtonSizes = ['small', 'base', 'large'] as const;
 export type ButtonSize = (typeof ButtonSizes)[number];
 
-export const ButtonVariants = ['primary', 'secondary', 'tertiary', 'gradient', 'error', 'surface', 'badge-primary', 'badge-secondary', 'badge-tertiary'] as const;
+export const ButtonVariants = ['primary', 'secondary', 'tertiary', 'gradient', 'error', 'surface', 'badge-primary', 'badge-secondary', 'badge-tertiary', 'badge-success', 'badge-error', 'badge-info'] as const;
 export type ButtonVariant = (typeof ButtonVariants)[number];
 
 type NativeButton = QwikIntrinsicElements['button'] & LinkProps;

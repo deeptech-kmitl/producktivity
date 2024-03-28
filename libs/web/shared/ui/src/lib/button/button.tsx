@@ -26,6 +26,9 @@ export const Button = component$<ButtonProps>((props) => {
     'badge-primary': 'bg-primary/[.15] px-2 py-1 border border-primary',
     'badge-secondary': 'bg-secondary/[.15] px-2 py-1 border border-secondary',
     'badge-tertiary': 'bg-tertiary/[.15] px-2 py-1 border border-tertiary',
+    'badge-success': 'bg-green-200/[0.4] p-0.5',
+    'badge-error': 'bg-red-200/[0.4] p-0.5',
+    'badge-info': 'bg-blue-200/[0.4] p-0.5',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const LabelVariants = {
@@ -39,6 +42,9 @@ export const Button = component$<ButtonProps>((props) => {
     'badge-primary': 'text-primary font-medium text-sm',
     'badge-secondary': 'text-secondary font-medium text-sm',
     'badge-tertiary': 'text-tertiary font-medium text-sm',
+    'badge-success': 'text-green-600 font-medium text-sm',
+    'badge-error': 'text-red-600 font-medium text-sm',
+    'badge-info': 'text-blue-600 font-medium text-sm',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const StateLayerVariants = {
@@ -52,6 +58,9 @@ export const Button = component$<ButtonProps>((props) => {
     'badge-primary': '',
     'badge-secondary': '',
     'badge-tertiary': '',
+    'badge-success': '',
+    'badge-error': '',
+    'badge-info': '',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const Tag = rest.href ? Link : 'button';
