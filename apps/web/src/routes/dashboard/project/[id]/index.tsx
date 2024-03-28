@@ -1,19 +1,32 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useSignal } from '@builder.io/qwik';
 import { Box, Button, Text } from '@producktivity/ui';
 import { LuPenLine } from '@qwikest/icons/lucide';
 import { DashboardTable } from '../../components/dashboard-table';
-import { MockDashboardTasks } from '../../constant/mock-data';
+import { MockDashboardTasks, TaskProps } from '../../constant/mock-data';
+import { useLocation } from '@builder.io/qwik-city';
 
 export default component$(() => {
+  const loc = useLocation();
+  const currentProject = useSignal<TaskProps>();
+
+  const findCurrentProject = () => {
+    const tempArr = MockDashboardTasks.filter((v) => {
+      return v.id === parseInt(loc.params.id);
+    });
+    currentProject.value = tempArr[0];
+  };
+
+  findCurrentProject();
+
   return (
     <Box padding="4" align="top-left" width="full" gap="2">
-      <Button rounded="full" variant="secondary">
+      <Button href="/dashboard/projects" rounded="full" variant="secondary">
         <Text theme="secondary">Back</Text>
       </Button>
       <Box width="full" align="center" gap="2">
         <Box direction="horizontal" gap="1" align="left" width="full">
           <Text variant="title" weight="bold">
-            title
+            {currentProject.value?.title}
           </Text>
           <Text variant="h1" theme="secondary">
             <LuPenLine />
