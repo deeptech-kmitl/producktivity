@@ -26,6 +26,8 @@ export const Box = component$<BoxProps>((props) => {
     'bottom': direction === 'horizontal' ? 'items-end justify-center' : 'justify-end items-center',
     'bottom-right': 'items-end justify-end',
     'between-center': 'items-center justify-between',
+    'between-start': 'items-start justify-between',
+    'between-end': 'items-end justify-between',
   } satisfies { [K in BoxAlignment]: string };
 
   const Directions = {
@@ -33,7 +35,7 @@ export const Box = component$<BoxProps>((props) => {
     vertical: 'flex-col',
   } satisfies { [K in BoxDirection]: string };
 
-  const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().withGrid().withGap().withShadow().build();
+  const additionalProps = new PropsBuilder(props).withSize().withPadding().withMargin().withBorderRadius().withGrid().withGap().withShadow().build();
 
   return (
     <div {...rest} class={['flex', Directions[direction], Variants[variant], Alignments[align], additionalProps]}>

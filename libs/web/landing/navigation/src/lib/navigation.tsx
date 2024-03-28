@@ -1,30 +1,81 @@
-import { component$ } from '@builder.io/qwik';
+import { Fragment, component$, useComputed$ } from '@builder.io/qwik';
+import { useLocation } from '@builder.io/qwik-city';
 import { Box, Navigation, Text } from '@producktivity/ui';
+import { LuWorkflow } from '@qwikest/icons/lucide';
+
+interface NavItemProps {
+  id: number;
+  isRequireAuth: boolean;
+  label: string;
+  link: string;
+}
+
+const NavItems: NavItemProps[] = [
+  {
+    id: 0,
+    label: 'Pricing',
+    link: '/pricing',
+    isRequireAuth: false,
+  },
+  {
+    id: 1,
+    label: 'Dashboard',
+    link: '/dashboard/overview',
+    isRequireAuth: true,
+  },
+];
+
+interface sessionProps {
+  username: string;
+}
 
 export default component$(() => {
+  const loc = useLocation();
+
+  const session: sessionProps = {
+    username: 'JackiesxD',
+  };
+
+  const currentActivePath = useComputed$(() => {
+    return loc.url.pathname;
+  });
+
   return (
     <Navigation.Bar>
       <Box>
         <Navigation.Item prefetch href="/">
-          <Box direction="horizontal" gap="1">
-            <svg width="20" height="24" viewBox="0 0 20 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.4444 0H2.22222C1 0 0 1.2 0 2.66667V21.3333C0 22.8 1 24 2.22222 24H17.7778C19 24 20 22.8 20 21.3333V6.66667L14.4444 0ZM4.44444 5.33333H10V8H4.44444V5.33333ZM15.5556 18.6667H4.44444V16H15.5556V18.6667ZM15.5556 13.3333H4.44444V10.6667H15.5556V13.3333ZM13.3333 8V2.66667L17.7778 8H13.3333Z" fill="black" />
-            </svg>
-            <Text weight="semibold">Certifine</Text>
+          <Box direction="horizontal" gap="0.5">
+            <Text variant="h2" theme="primary">
+              <LuWorkflow />
+            </Text>
+            <Text weight="semibold" variant="h3" theme="primary">
+              Certifine
+            </Text>
           </Box>
         </Navigation.Item>
       </Box>
       <Box direction="horizontal" gap="1">
-        <Navigation.Item prefetch href="/pricing">
-          Pricing
-        </Navigation.Item>
-        <Navigation.Item prefetch href="/contact">
-          Contact
-        </Navigation.Item>
-        <Navigation.Action prefetch href="/sign-up">
-          Sign up
-        </Navigation.Action>
+        {NavItems.map((item: NavItemProps) => (
+          <Navigation.Item prefetch key={item.id} href={item.link}>
+            {session.username !== '' ? (
+              <Text theme="primary" weight={currentActivePath.value === item.link ? 'semibold' : 'normal'}>
+                {item.label}
+              </Text>
+            ) : (
+              <Fragment>
+                {!item.isRequireAuth && (
+                  <Text weight={currentActivePath.value === item.link ? 'semibold' : 'normal'} theme="primary">
+                    {item.label}
+                  </Text>
+                )}
+              </Fragment>
+            )}
+          </Navigation.Item>
+        ))}
       </Box>
+      <Navigation.Action prefetch href="/sign-up" size="large">
+        Sign up
+      </Navigation.Action>
     </Navigation.Bar>
   );
 });
