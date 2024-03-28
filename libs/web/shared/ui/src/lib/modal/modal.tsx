@@ -3,7 +3,7 @@ import { PropsBuilder } from '../props/props';
 import type { ModalProps } from './modal.props';
 import { Modal, ModalContent, ModalFooter, ModalHeader } from '@qwik-ui/headless';
 import { LuXCircle } from '@qwikest/icons/lucide';
-import { Button, Text } from '@producktivity/ui';
+import { Button, Text } from '..';
 
 export const UIModal = component$<ModalProps>((props) => {
   const { showModal, title, cancelLabel, confirmLabel, cancelAction, confirmAction } = props;
