@@ -1,7 +1,7 @@
 import { component$, useSignal } from '@builder.io/qwik';
 import { Box, Button, Text } from '@producktivity/ui';
 import { LuPenLine } from '@qwikest/icons/lucide';
-import { DashboardTable } from '../../components/dashboard-table';
+import { DashboardTable } from '../../components/dashboard/dashboard-table';
 import { MockDashboardTasks, TaskProps } from '../../constant/mock-data';
 import { useLocation } from '@builder.io/qwik-city';
 

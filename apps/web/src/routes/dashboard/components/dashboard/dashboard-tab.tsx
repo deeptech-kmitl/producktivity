@@ -1,8 +1,8 @@
 import { component$ } from '@builder.io/qwik';
 import { Box, Text } from '@producktivity/ui';
-import { Credit } from './credit';
+import { Credit } from '../credit';
 import { DashboardTable } from './dashboard-table';
-import { MockDashboardTasks } from '../constant/mock-data';
+import { MockDashboardTasks } from '../../constant/mock-data';
 
 export const DashboardTab = component$(() => {
   return (

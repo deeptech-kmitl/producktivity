@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import { Box, Text } from '@producktivity/ui';
 import { ProjectPreview } from './project-preview';
-import { MockDashboardTasks, TaskProps } from '../constant/mock-data';
+import { MockDashboardTasks, TaskProps } from '../../constant/mock-data';
 
 export const ProjectTab = component$(() => {
   return (

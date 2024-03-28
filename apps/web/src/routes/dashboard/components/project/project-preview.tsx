@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { Box, Button, Text } from '@producktivity/ui';
-import { TaskProps } from '../constant/mock-data';
+import { TaskProps } from '../../constant/mock-data';
 
 interface ProjectPreviewProps {
   project: TaskProps;
