@@ -3,8 +3,17 @@ import { createColumnHelper, getCoreRowModel, flexRender, useQwikTable } from '@
 import { TaskMemberProps, TaskProps, TaskStatus } from './dashboard-tab';
 import { Box, Button } from '@producktivity/ui';
 import { LuArrowDownAZ, LuArrowUpAZ } from '@qwikest/icons/lucide';
+import { Link } from '@builder.io/qwik-city';
 
 const columnHelper = createColumnHelper<TaskProps>();
+
+function getTaskDetail(row: string) {
+  return (
+    <Link style={{ color: '#3040c9', textDecoration: 'underline' }} href={`/dashboard/project/${row.split(' ').join('-').toLowerCase()}`}>
+      {row}
+    </Link>
+  );
+}
 
 function getTaskMember(row: TaskMemberProps[]) {
   return <p>{row.length}</p>;
@@ -21,8 +30,7 @@ function getTaskStatus(row: TaskStatus) {
 const columns = [
   columnHelper.accessor('title', {
     header: () => 'Project',
-    cell: (info) => info.renderValue(),
-    sortingFn: 'text',
+    cell: (info) => getTaskDetail(info.getValue()),
   }),
   columnHelper.accessor('member', {
     header: () => 'Member',
@@ -35,12 +43,12 @@ const columns = [
   }),
   columnHelper.accessor('createdWhen', {
     header: () => 'Task Created',
-    cell: (info) => info.getValue().toISOString().split('T')[0],
+    cell: (info) => info.getValue().toLocaleString(),
     sortingFn: 'datetime',
   }),
   columnHelper.accessor('finishedWhen', {
     header: () => 'Task Finished',
-    cell: (info) => (info !== null ? 'finished' : ''),
+    cell: (info) => (info.getValue() ? info.getValue()?.toLocaleString() : 'not finished'),
     sortingFn: 'datetime',
   }),
 ];
@@ -58,7 +66,7 @@ export const DashboardTable = component$(({ data }: DashboardTableProps) => {
   });
 
   return (
-    <Box width="full" padding="2">
+    <Box width="full" paddingTop="2" paddingLeft="3">
       <table class="w-full table-fixed text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           {table.getHeaderGroups().map((headerGroup) => (
