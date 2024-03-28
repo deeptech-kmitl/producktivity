@@ -29,7 +29,7 @@ export default component$(() => {
   });
 
   return (
-    <Box height="full-screen" width="full-screen" align="top-left">
+    <Box width="full-screen" align="top-left">
       <Box paddingY="2" paddingX="4" width="full" direction="horizontal" align="between-center">
         <Box direction="horizontal" gap="1">
           {dashboardTabs.map((item: DashboardTabsProps) => (

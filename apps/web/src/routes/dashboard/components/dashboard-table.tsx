@@ -1,8 +1,8 @@
 import { Component, component$ } from '@builder.io/qwik';
 import { createColumnHelper, getCoreRowModel, flexRender, useQwikTable } from '@tanstack/qwik-table';
-import { TaskMemberProps, TaskProps, TaskStatus } from './dashboard-tab';
 import { Box, Button } from '@producktivity/ui';
 import { Link } from '@builder.io/qwik-city';
+import { TaskProps, TaskMemberProps, TaskStatus } from '../constant/mock-data';
 
 const columnHelper = createColumnHelper<TaskProps>();
 
