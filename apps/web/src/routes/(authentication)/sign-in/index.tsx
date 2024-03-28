@@ -1,9 +1,12 @@
-import { component$ } from '@builder.io/qwik';
-import { DocumentHead } from '@builder.io/qwik-city';
+import { component$, $ } from '@builder.io/qwik';
+import { DocumentHead, useNavigate } from '@builder.io/qwik-city';
 import { Box, Button, Text, TextInput } from '@producktivity/ui';
 import { generateSeoConfig } from '../../../configs/seo';
 
 export default component$(() => {
+  const navigator = useNavigate();
+  const signInWithGoogle = $(async () => await navigator('/api/auth/google'));
+  
   return (
     <>
       <Box width="full" height="full" direction="horizontal">
@@ -31,7 +34,7 @@ export default component$(() => {
           </Box>
 
           <Box width="full" align="center">
-            <Button variant="secondary">
+            <Button variant="secondary" onClick$={signInWithGoogle}>
               <img width="40" height="40" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png" />
             </Button>
           </Box>

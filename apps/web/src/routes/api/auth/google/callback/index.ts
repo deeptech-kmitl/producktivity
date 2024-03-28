@@ -1,65 +1,82 @@
-import { RequestHandler } from "@builder.io/qwik-city";
-import { Env, User, getGoogleUserInfo, initializeLucia } from "apps/web/src/configs/auth";
+import { RequestHandler } from '@builder.io/qwik-city';
+import { Env, Provider, ResponseWrapper, User, getGoogleUserInfo, initializeLucia } from '../../../../../configs/auth';
+
+async function findUser(oaid: string): Promise<User | undefined> {
+  const query = new URLSearchParams({ oaid });
+  const url = `${import.meta.env.VITE_API_URL}/users?${query.toString()}`;
+  const response = await fetch(url);
+
+  const user = await response.json() as ResponseWrapper<User>;
+
+  if (!user) return;
+
+  return user.data;
+}
+
+async function findProvider(name: string): Promise<Provider | undefined> {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/providers`);
+  const providers = await response.json() as ResponseWrapper<Provider[]>;
+
+  if (!providers.data) return;
+
+  return providers.data.find(provider => provider.name === name);
+}
 
 export const onGet: RequestHandler = async ({ error, redirect, platform, query, cookie }) => {
   const { DB } = platform.env as Env;
   const lucia = initializeLucia(DB);
   const code = query.get('code');
   const state = query.get('state');
-  const storedState = cookie.get("google_oauth_state")?.value ?? null;
-  const storedCodeVerifier = cookie.get("google_oauth_code_verifier")?.value ?? null;
+  const storedState = cookie.get('google_oauth_state')?.value ?? null;
+  const storedCodeVerifier = cookie.get('google_oauth_code_verifier')?.value ?? null;
 
   if (!code || !state || !storedState || !storedCodeVerifier || state !== storedState) {
     throw error(400, 'Invalid request 1');
   }
 
-
   const googleUserInfo = await getGoogleUserInfo(code, storedCodeVerifier);
 
   if (!googleUserInfo.data) throw error(400, googleUserInfo.error!.message);
 
-  const tables = await DB
-    .prepare('select name from sqlite_schema').all();
-  console.log(tables.results);
-  const existingUser = await DB
-    .prepare('SELECT u.* FROM oauth_account as oa JOIN user as u ON (oa.user_id = u.id) JOIN oauth_provider as op ON (oa.oauth_provider_id = op.id) WHERE oa.id = ?1')
-    .bind(googleUserInfo.data.sub)
-    .first<User>();
-
-  console.log('user', existingUser)
+  const existingUser = await findUser(googleUserInfo.data.sub);
 
   if (existingUser) {
     const session = await lucia.createSession(existingUser.id, {
-      id: 'sample',
-      user_id: existingUser.id,
-      expires_at: Date.now() + 600_000,
       created_at: Date.now(),
     });
+
     const sessionCookie = lucia.createSessionCookie(session.id);
     cookie.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-    throw redirect(302, '/');
+    throw redirect(302, '/dashboard');
   }
 
-  const userId = 'sampleuser';
+  const provider = await findProvider('google');
 
-  const res = await DB.prepare(`
-      INSERT INTO user (id, username, first_name, last_name, created_at)
-      VALUES (?1, ?2, ?3, ?4, ?5)
-    `)
-    .bind(userId, 'usernamesample', 'firstnamesample', 'lastnamesample', Date.now())
-    .run();
-  console.log('exec res', res)
 
-  const session = await lucia.createSession(userId, {
-    id: 'sample',
-    user_id: userId,
-    expires_at: Date.now() + 600_000,
+  await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: googleUserInfo.data.given_name.toLowerCase(),
+      firstName: googleUserInfo.data.given_name,
+      lastName: googleUserInfo.data.family_name,
+      oaid: googleUserInfo.data.sub,
+      provider: provider?.id,
+      email: googleUserInfo.data.email
+    }),
+  });
+
+  const user = await findUser(googleUserInfo.data.sub);
+
+  const session = await lucia.createSession(user!.id, {
     created_at: Date.now(),
   });
-  console.log('session', session)
+
   const sessionCookie = lucia.createSessionCookie(session.id);
   cookie.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-  throw redirect(302, '/');
+  throw redirect(302, '/dashboard');
 };

@@ -1,19 +1,24 @@
 import { $, Slot, component$, useOnWindow } from '@builder.io/qwik';
-import type { RequestHandler } from '@builder.io/qwik-city';
-import { isDev } from '@builder.io/qwik/build';
+import { routeLoader$, type RequestHandler } from '@builder.io/qwik-city';
+// import { isDev } from '@builder.io/qwik/build';
 import { verifyRequestOrigin } from 'lucia';
-import { Env, initializeLucia } from '../configs/auth';
+import { Env, User, initializeLucia } from '../configs/auth';
 
-export const onRequest: RequestHandler = async ({ platform, next, cookie, method, headers, error, sharedMap }) => {
+export const useUser = routeLoader$(({ sharedMap }) => {
+  return sharedMap.get('user') as User;
+});
+
+export const onRequest: RequestHandler = async ({ platform, next, cookie, method, headers, sharedMap }) => {
   const { DB } = platform.env as Env;
   const lucia = initializeLucia(DB);
 
-  if (method !== "GET") {
-    const originHeader = headers.get("Origin");
-    const hostHeader = headers.get("Host");
+  if (method === 'POST') {
+    const originHeader = headers.get('Origin');
+    const hostHeader = headers.get('Host');
 
     if (!originHeader || !hostHeader || !verifyRequestOrigin(originHeader, [hostHeader])) {
-      throw error(403, 'Forbidden');
+      // throw error(403, 'Forbidden');
+      return await next();
     }
   }
 
@@ -41,24 +46,24 @@ export const onRequest: RequestHandler = async ({ platform, next, cookie, method
   sharedMap.set('session', session);
 
   return await next();
-}
-
-export const onGet: RequestHandler = async ({ cacheControl }) => {
-  if (isDev) return;
-
-  const WeekInSeconds = 60 * 60 * 24 * 7;
-
-  const cacheControlOptions = {
-    public: true,
-    maxAge: 5,
-    sMaxAge: 10,
-    staleWhileRevalidate: WeekInSeconds,
-  };
-
-  cacheControl(cacheControlOptions);
-
-  cacheControl(cacheControlOptions, 'CDN-Cache-Control');
 };
+
+// export const onGet: RequestHandler = async ({ cacheControl }) => {
+//   if (isDev) return;
+
+//   const WeekInSeconds = 60 * 60 * 24 * 7;
+
+//   const cacheControlOptions = {
+//     public: true,
+//     maxAge: 5,
+//     sMaxAge: 10,
+//     staleWhileRevalidate: WeekInSeconds,
+//   };
+
+//   cacheControl(cacheControlOptions);
+
+//   cacheControl(cacheControlOptions, 'CDN-Cache-Control');
+// };
 
 export default component$(() => {
   useOnWindow(
