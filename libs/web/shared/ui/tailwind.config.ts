@@ -5,7 +5,7 @@ import typography from '@tailwindcss/typography';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 export default {
-  content: [join(__dirname, 'src/**/*.{js,ts,jsx,tsx,mdx}')],
+  content: [join(__dirname, 'src/**/*.{js,ts,jsx,tsx,mdx}'), './node_modules/flowbite/**/*.js'],
   darkMode: ['class', "[data-mode='dark']"],
   theme: {
     fontFamily: {
@@ -148,9 +148,8 @@ export default {
             },
           ],
         },
-
       },
     },
   },
-  plugins: [typography],
+  plugins: [typography, require('flowbite/plugin')],
 } satisfies Config;
