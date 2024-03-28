@@ -68,7 +68,7 @@ export const DashboardTable: Component<DashboardTableProps> = component$(({ data
   return (
     <Box width="full" paddingTop="2" paddingLeft="3">
       <table class="w-full table-fixed text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -81,7 +81,7 @@ export const DashboardTable: Component<DashboardTableProps> = component$(({ data
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr key={row.id} class="border-b dark:bg-gray-800 dark:border-gray-700">
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} class="py-2">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
