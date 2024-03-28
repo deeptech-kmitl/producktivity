@@ -53,18 +53,21 @@ export default component$(() => {
     frame.add(circle);
   });
 
-  const addImage = $(async (e) => {
-    const fileType = e.target.files[0].type;
-    const url = URL.createObjectURL(e.target.files[0]);
+  const addImage = $(async (e: Event) => {
+    const target = e.currentTarget as HTMLInputElement;
+    const file = target?.files?.[0];
 
-    if (fileType === 'image/png' || fileType === 'image/svg+xml') {
-      //check if png or svg
-      const imageObject = await FabricImage.fromURL(url);
-      imageObject.scaleToWidth(180);
-      imageObject.scaleToHeight(180);
-      frame.add(imageObject);
-      frame.renderAll();
-    }
+    if (!file) return;
+
+    const fileType = file.type;
+    if (!(fileType === 'image/png' || fileType === 'image/svg+xml')) return;
+
+    const url = URL.createObjectURL(file);
+    const imageObject = await FabricImage.fromURL(url);
+    imageObject.scaleToWidth(180);
+    imageObject.scaleToHeight(180);
+    frame.add(imageObject);
+    frame.renderAll();
   });
 
   const addImageHandler = $(() => {
