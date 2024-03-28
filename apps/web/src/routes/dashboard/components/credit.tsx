@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { Box, Button, Text } from '@producktivity/ui';
-import { LuWalletCards } from '@qwikest/icons/lucide';
+import { LuHeadphones } from '@qwikest/icons/lucide';
 
 const MockCredit: CreditProps = {
   totalCredit: 20,
@@ -25,10 +25,10 @@ export const Credit = component$(() => {
           <Button rounded="full" variant="badge-tertiary">
             <Box width="full" direction="horizontal" gap="0.5">
               <Text variant="small" theme="tertiary">
-                <LuWalletCards />
+                <LuHeadphones />
               </Text>
               <Text variant="small" theme="tertiary">
-                Top Up
+                Contact Sales
               </Text>
             </Box>
           </Button>
