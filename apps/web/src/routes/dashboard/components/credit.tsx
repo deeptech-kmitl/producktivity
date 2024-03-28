@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { Box, Button, Text } from '@producktivity/ui';
-import { LuCar } from '@qwikest/icons/lucide';
+import { LuHeadphones } from '@qwikest/icons/lucide';
 
 const MockCredit: CreditProps = {
   totalCredit: 20,
@@ -21,20 +21,20 @@ export const Credit = component$(() => {
         <Text variant="title" weight="semibold">
           {MockCredit.totalCredit}
         </Text>
-        <Box width="full" direction="horizontal" align="between-center">
-          <Text theme="secondary" variant="small">
-            Last Topup: {MockCredit.latestUpdate.toLocaleDateString()}
-          </Text>
+        <Box width="full" align="between-center" gap="1">
           <Button rounded="full" variant="badge-tertiary">
             <Box width="full" direction="horizontal" gap="0.5">
               <Text variant="small" theme="tertiary">
-                <LuCar />
+                <LuHeadphones />
               </Text>
               <Text variant="small" theme="tertiary">
-                Top Up
+                Contact Sales
               </Text>
             </Box>
           </Button>
+          <Text theme="secondary" variant="small">
+            Last Topup: {MockCredit.latestUpdate.toLocaleDateString()}
+          </Text>
         </Box>
       </Box>
     </Box>
