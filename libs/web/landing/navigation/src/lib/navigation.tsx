@@ -10,17 +10,6 @@ interface NavItemProps {
   link: string;
 }
 
-interface sessionProps {
-  username: string;
-}
-
-interface NavItemProps {
-  id: number;
-  isRequireAuth: boolean;
-  label: string;
-  link: string;
-}
-
 const NavItems: NavItemProps[] = [
   {
     id: 0,
