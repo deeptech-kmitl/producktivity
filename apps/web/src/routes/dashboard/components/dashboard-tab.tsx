@@ -1,14 +1,15 @@
 import { component$ } from '@builder.io/qwik';
 import { Box, Text } from '@producktivity/ui';
 import { Credit } from './credit';
+import { DashboardTable } from './dashboard-table';
 
-interface TaskMemberProps {
+export interface TaskMemberProps {
   name: string;
 }
 
-type TaskStatus = 'in progress' | 'failed' | 'success';
+export type TaskStatus = 'in progress' | 'failed' | 'success';
 
-interface TaskProps {
+export interface TaskProps {
   title: string;
   status: TaskStatus;
   member: TaskMemberProps[];
@@ -19,7 +20,7 @@ interface TaskProps {
 const MockDashboardTasks: TaskProps[] = [
   {
     title: 'KMITL Volunteering',
-    status: 'success',
+    status: 'failed',
     createdWhen: new Date('11-02-2024'),
     member: [
       {
@@ -29,7 +30,7 @@ const MockDashboardTasks: TaskProps[] = [
   },
   {
     title: 'IT Open house participate',
-    status: 'in progress',
+    status: 'success',
     createdWhen: new Date(),
     member: [
       {
@@ -71,6 +72,7 @@ export const DashboardTab = component$(() => {
             </Box>
           </Box>
         </Box>
+        <DashboardTable data={MockDashboardTasks} />
       </Box>
       <Box paddingX="4" width="quarter">
         <Credit />
