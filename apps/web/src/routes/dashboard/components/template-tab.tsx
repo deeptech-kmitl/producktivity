@@ -33,29 +33,31 @@ const MockTemplate: TemplateProps[] = [
     img: 'https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/9970/live/9e4ab180-fd11-11ed-b2aa-9935735a579c.png',
   },
 ];
+
 export const TemplateTab = component$(() => {
   return (
-    <Box width="full" height="full">
-      <Box paddingX="4" paddingY="1">
-        <Text variant="title" weight="bold">
-          Recent Templates
-        </Text>
-        <Box width="full" paddingY="2" gridCols="3" gap="2">
-          {MockTemplate.map((template) => (
-            <Button variant="surface" rounded="md" key={template.id} href={`/dashboard/template/${template.id}`}>
-              <Box gap="0.5">
-                <img src={template.img} alt={template.title}></img>
-                <Text paddingY="0.5" variant="h3" weight="semibold">
-                  {template.title}
-                </Text>
+    <Box padding="4" gap="4" width="full">
+      <Text variant="title" weight="bold">
+        Recent Templates
+      </Text>
 
-                <Text variant="small" theme="secondary">
-                  Last Edit {new Date(template.lastEdit).toLocaleDateString('en-GB')}
-                </Text>
+      <Box gridCols="3" gap="2">
+        {MockTemplate.map((template) => (
+          <Button variant="surface" rounded="md" key={template.id} href={`/dashboard/template/${template.id}`}>
+            <Box gap="0.5">
+              <Box padding="3" variant="surface" rounded="md">
+                <img src={template.img} width="500" height="500" alt={template.title}></img>
               </Box>
-            </Button>
-          ))}
-        </Box>
+              <Text paddingY="0.5" variant="h3" weight="semibold">
+                {template.title}
+              </Text>
+
+              <Text variant="small" theme="secondary">
+                Last Edit {template.lastEdit.toLocaleDateString()}
+              </Text>
+            </Box>
+          </Button>
+        ))}
       </Box>
     </Box>
   );
