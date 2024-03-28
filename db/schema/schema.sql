@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS session (
 
 CREATE TABLE IF NOT EXISTS oauth_provider (
     id TEXT PRIMARY KEY,
-    name TEXT NOT NULL,
+    name TEXT UNIQUE NOT NULL,
     created_at INTEGER NOT NULL,
     updated_at INTEGER,
     deleted_at INTEGER

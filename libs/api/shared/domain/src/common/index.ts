@@ -7,3 +7,4 @@ export * from './repository';
 export * from './statusCode';
 export * from './usecase';
 export * from './validator';
+export * from './validateableAdapter';
