@@ -1,4 +1,4 @@
-import { Component, component$ } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik';
 import { Box, Button, Text } from '@producktivity/ui';
 import { LuCar } from '@qwikest/icons/lucide';
 
@@ -11,7 +11,7 @@ export interface CreditProps {
   totalCredit: number;
   latestUpdate: Date;
 }
-export const Credit: Component<CreditProps> = component$(() => {
+export const Credit = component$(() => {
   return (
     <Box width="full" variant="surface" rounded="md">
       <Box width="full" padding="2" gap="2" align="between-center">
