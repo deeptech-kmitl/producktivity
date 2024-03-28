@@ -3,7 +3,7 @@ import { PropsBuilder } from '../props/props';
 import type { BoxAlignment, BoxDirection, BoxProps, BoxVariant } from './box.props';
 
 export const Box = component$<BoxProps>((props) => {
-  const { variant = 'base', align = 'left', direction = 'vertical', prose, ...rest } = props;
+  const { variant = 'base', align = 'left', direction = 'vertical', ...rest } = props;
 
   const Variants = {
     primary: 'bg-primary-container text-primary-container-on',
@@ -35,11 +35,10 @@ export const Box = component$<BoxProps>((props) => {
     vertical: 'flex-col',
   } satisfies { [K in BoxDirection]: string };
 
-  const additionalProps = new PropsBuilder(props).withSize().withPadding().withBorderRadius().withGrid().withGap().withShadow().build();
-  const Prose = prose ? 'prose' : '';
+  const additionalProps = new PropsBuilder(props).withSize().withPadding().withMargin().withBorderRadius().withGrid().withGap().withShadow().build();
 
   return (
-    <div {...rest} class={['flex', Directions[direction], Variants[variant], Alignments[align], Prose, additionalProps]}>
+    <div {...rest} class={['flex', Directions[direction], Variants[variant], Alignments[align], additionalProps]}>
       <Slot />
     </div>
   );

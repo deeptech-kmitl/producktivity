@@ -62,63 +62,177 @@ importers:
       vitest: ~1.2.2
       wrangler: ^3.25.0
     devDependencies:
-      '@builder.io/qwik': 1.4.5_nx4mchajzwf6nurckociaovouy
-      '@builder.io/qwik-city': 1.4.5_btkdmsf67shzucjvokdd63f7de
-      '@cloudflare/workers-types': 4.20240208.0
-      '@nx/devkit': 17.2.8_nx@17.2.8
-      '@nx/eslint': 17.2.8_gu7nz3rlzp4anvuprsfl6icfmy
-      '@nx/eslint-plugin': 17.2.8_2w4a26wnv5y6nyl4vkh5brzy5m
-      '@nx/jest': 17.2.8_j3evrsdheq6tu3vxssmlh2evfy
-      '@nx/js': 17.2.8_j3evrsdheq6tu3vxssmlh2evfy
-      '@nx/playwright': 17.2.8_xxq3uutowyuzwqse72apdli55q
-      '@nx/storybook': 17.2.8_mztkf3pikr33xvngce3ackxryu
-      '@nx/vite': 17.2.8_m4cmjdcig46cgoodaagp7f5rwm
-      '@nx/workspace': 17.2.8
-      '@playwright/test': 1.41.2
-      '@qwikest/icons': 0.0.13_@builder.io+qwik@1.4.5
-      '@storybook/addon-a11y': 7.6.16
-      '@storybook/addon-essentials': 7.6.16_biqbaboplfbrettd7655fr4n2y
-      '@storybook/addon-interactions': 7.6.16
-      '@storybook/addon-links': 7.6.16_react@18.2.0
-      '@storybook/addon-themes': 7.6.16
-      '@storybook/core-server': 7.6.16
-      '@tailwindcss/typography': 0.5.11_tailwindcss@3.4.1
-      '@types/jest': 29.5.12
-      '@types/node': 20.11.19
-      '@typescript-eslint/eslint-plugin': 6.21.0_qvx5l6wcv2c6baydm2v34ogvwy
-      '@typescript-eslint/parser': 6.21.0_xdgzedli73k7lw4xlyzszm74om
-      '@vite-pwa/assets-generator': 0.2.4
-      '@vitest/ui': 1.2.2_vitest@1.2.2
-      autoprefixer: 10.4.17_postcss@8.4.35
-      class-transformer: 0.5.1
-      class-validator: 0.14.1
-      eslint: 8.56.0
-      eslint-config-prettier: 9.1.0_eslint@8.56.0
-      eslint-plugin-playwright: 0.22.2_eslint@8.56.0
-      eslint-plugin-qwik: 1.4.5_eslint@8.56.0
-      fabric: 6.0.0-beta18
-      hono: 4.1.4
-      husky: 9.0.11
-      jest: 29.7.0_@types+node@20.11.19
-      jest-environment-node: 29.7.0
-      jsonc-eslint-parser: 2.4.0
-      lightningcss: 1.23.0
-      lint-staged: 15.2.2
-      nx: 17.2.8
-      postcss: 8.4.35
-      prettier: 3.2.5
-      qwik-nx: 2.2.0_enejwcponb3xrahmr4nf25oesq
-      rxjs: 7.8.1
-      storybook-framework-qwik: 0.2.5_t3ytupmw7pz4srqfsuc3k26wn4
-      tailwindcss: 3.4.1
-      ts-jest: 29.1.2_eohhfxf6rkr4maruqpy3khihre
-      typeid-js: 0.5.0
-      typescript: 5.3.3
-      vite: 5.1.3_btkdmsf67shzucjvokdd63f7de
-      vite-plugin-dts: 3.7.2_veisofctgtpyuf7axocvobtpje
-      vite-tsconfig-paths: 4.2.3_dzodgawz25cj3a4obtp7aocpcm
-      vitest: 1.2.2_dns6w4336ys2sycqjs6bzrws7q
-      wrangler: 3.28.3_qqcz53fgdlijoyuw54j6qv4ol4
+      '@builder.io/qwik':
+        specifier: ~1.4.2
+        version: 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)(undici@5.28.2)
+      '@builder.io/qwik-city':
+        specifier: ~1.4.2
+        version: 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)
+      '@cloudflare/workers-types':
+        specifier: ^4.20231218.0
+        version: 4.20240117.0
+      '@nx/devkit':
+        specifier: 17.2.8
+        version: 17.2.8(nx@17.2.8)
+      '@nx/eslint':
+        specifier: 17.2.8
+        version: 17.2.8(@types/node@20.11.9)(eslint@8.56.0)(nx@17.2.8)
+      '@nx/eslint-plugin':
+        specifier: 17.2.8
+        version: 17.2.8(@types/node@20.11.9)(@typescript-eslint/parser@6.19.1)(eslint-config-prettier@9.1.0)(eslint@8.56.0)(nx@17.2.8)(typescript@5.3.3)
+      '@nx/jest':
+        specifier: 17.2.8
+        version: 17.2.8(@types/node@20.11.9)(nx@17.2.8)(typescript@5.3.3)
+      '@nx/js':
+        specifier: 17.2.8
+        version: 17.2.8(@types/node@20.11.9)(nx@17.2.8)(typescript@5.3.3)
+      '@nx/playwright':
+        specifier: 17.2.8
+        version: 17.2.8(@playwright/test@1.41.1)(@types/node@20.11.9)(eslint@8.56.0)(nx@17.2.8)
+      '@nx/storybook':
+        specifier: 17.2.8
+        version: 17.2.8(@types/node@20.11.9)(eslint@8.56.0)(nx@17.2.8)(typescript@5.3.3)
+      '@nx/vite':
+        specifier: 17.2.8
+        version: 17.2.8(@types/node@20.11.9)(nx@17.2.8)(typescript@5.3.3)(vite@5.0.12)(vitest@1.2.2)
+      '@nx/workspace':
+        specifier: 17.2.8
+        version: 17.2.8
+      '@playwright/test':
+        specifier: ^1.36.0
+        version: 1.41.1
+      '@qwikest/icons':
+        specifier: ^0.0.13
+        version: 0.0.13(@builder.io/qwik@1.4.2)
+      '@storybook/addon-a11y':
+        specifier: ^7.6.7
+        version: 7.6.10
+      '@storybook/addon-essentials':
+        specifier: ^7.6.7
+        version: 7.6.10(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/addon-interactions':
+        specifier: ^7.6.7
+        version: 7.6.10
+      '@storybook/addon-links':
+        specifier: ^7.6.7
+        version: 7.6.10(react@18.2.0)
+      '@storybook/addon-themes':
+        specifier: ^7.6.7
+        version: 7.6.10
+      '@storybook/core-server':
+        specifier: ^7.6.7
+        version: 7.6.10
+      '@tanstack/qwik-table':
+        specifier: ^8.15.0
+        version: 8.15.0(@builder.io/qwik@1.4.2)
+      '@types/jest':
+        specifier: ^29.4.0
+        version: 29.5.11
+      '@types/node':
+        specifier: ^20.11.9
+        version: 20.11.9
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.17.0
+        version: 6.19.1(@typescript-eslint/parser@6.19.1)(eslint@8.56.0)(typescript@5.3.3)
+      '@typescript-eslint/parser':
+        specifier: ^6.17.0
+        version: 6.19.1(eslint@8.56.0)(typescript@5.3.3)
+      '@vite-pwa/assets-generator':
+        specifier: ^0.2.2
+        version: 0.2.3
+      '@vitest/ui':
+        specifier: ~1.2.2
+        version: 1.2.2(vitest@1.2.2)
+      autoprefixer:
+        specifier: ~10.4.11
+        version: 10.4.17(postcss@8.4.33)
+      class-transformer:
+        specifier: ^0.5.1
+        version: 0.5.1
+      class-validator:
+        specifier: ^0.14.1
+        version: 0.14.1
+      eslint:
+        specifier: ~8.56.0
+        version: 8.56.0
+      eslint-config-prettier:
+        specifier: ^9.0.0
+        version: 9.1.0(eslint@8.56.0)
+      eslint-plugin-playwright:
+        specifier: ^0.22.1
+        version: 0.22.1(eslint@8.56.0)
+      eslint-plugin-qwik:
+        specifier: ~1.4.2
+        version: 1.4.2(eslint@8.56.0)
+      fabric:
+        specifier: 6.0.0-beta18
+        version: 6.0.0-beta18
+      hono:
+        specifier: ^4.1.0
+        version: 4.1.1
+      husky:
+        specifier: ^9.0.6
+        version: 9.0.6
+      jest:
+        specifier: ^29.4.1
+        version: 29.7.0(@types/node@20.11.9)
+      jest-environment-node:
+        specifier: ^29.4.1
+        version: 29.7.0
+      jsonc-eslint-parser:
+        specifier: ^2.4.0
+        version: 2.4.0
+      lightningcss:
+        specifier: ^1.22.1
+        version: 1.23.0
+      lint-staged:
+        specifier: ^15.2.0
+        version: 15.2.0
+      nx:
+        specifier: 17.2.8
+        version: 17.2.8
+      postcss:
+        specifier: ^8.4.32
+        version: 8.4.33
+      prettier:
+        specifier: ^3.1.1
+        version: 3.2.4
+      qwik-nx:
+        specifier: ^2.0.2
+        version: 2.0.2(@types/node@20.11.9)(eslint@8.56.0)(nx@17.2.8)(typescript@5.3.3)(vite@5.0.12)(vitest@1.2.2)
+      rxjs:
+        specifier: ^7.8.0
+        version: 7.8.1
+      storybook-framework-qwik:
+        specifier: ^0.2.5
+        version: 0.2.5(@builder.io/qwik@1.4.2)(@types/node@20.11.9)(lightningcss@1.23.0)(typescript@5.3.3)(vite@5.0.12)
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.1
+      ts-jest:
+        specifier: ^29.1.0
+        version: 29.1.2(@babel/core@7.23.7)(esbuild@0.17.19)(jest@29.7.0)(typescript@5.3.3)
+      typeid-js:
+        specifier: ^0.5.0
+        version: 0.5.0
+      typescript:
+        specifier: ~5.3.3
+        version: 5.3.3
+      vite:
+        specifier: ^5.0.12
+        version: 5.0.12(@types/node@20.11.9)(lightningcss@1.23.0)
+      vite-plugin-dts:
+        specifier: ~3.7.2
+        version: 3.7.2(@types/node@20.11.9)(typescript@5.3.3)(vite@5.0.12)
+      vite-tsconfig-paths:
+        specifier: ^4.2.3
+        version: 4.2.3(typescript@5.3.3)(vite@5.0.12)
+      vitest:
+        specifier: ~1.2.2
+        version: 1.2.2(@types/node@20.11.9)(@vitest/ui@1.2.2)(lightningcss@1.23.0)
+      wrangler:
+        specifier: ^3.25.0
+        version: 3.25.0
 
   apps/api/auth:
     specifiers: {}
@@ -3507,7 +3621,7 @@ packages:
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
     dev: true
 
-  /@qwikest/icons/0.0.13_@builder.io+qwik@1.4.5:
+  /@qwikest/icons@0.0.13(@builder.io/qwik@1.4.2):
     resolution: {integrity: sha512-e0wY8vmx0nDSUiuCATlk+ojTvdBV4txIGHHWjZW5SRkv4XB8H9+3WSDcLPz0ItUdRyzcrohE9k2jtQI/98aRPA==}
     engines: {node: '>=15.0.0'}
     peerDependencies:
@@ -3517,6 +3631,10 @@ packages:
     dev: true
 
   /@radix-ui/number/1.0.1:
+      '@builder.io/qwik': 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)(undici@5.28.2)
+    dev: true
+
+  /@radix-ui/number@1.0.1:
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
     dependencies:
       '@babel/runtime': 7.23.9
@@ -4786,6 +4904,22 @@ packages:
     dev: true
 
   /@tootallnate/once/2.0.0:
+  /@tanstack/qwik-table@8.15.0(@builder.io/qwik@1.4.2):
+    resolution: {integrity: sha512-gkZGjzwfb38CwJKJkyZy+kF6Iihwgul574/J3rZUcoHsphd/AyZRjjsPiA4E9NDi2XU9UtOyC9YDIPE/O0agxQ==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@builder.io/qwik': '>=1.5'
+    dependencies:
+      '@builder.io/qwik': 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)(undici@5.28.2)
+      '@tanstack/table-core': 8.14.0
+    dev: true
+
+  /@tanstack/table-core@8.14.0:
+    resolution: {integrity: sha512-wDhpKJahGHWhmRt4RxtV3pES63CoeadljGWS/xeS9OJr1HBl2NB+OO44ht3sxDH5j5TRDAbQzC0NvSlsUfn7lQ==}
+    engines: {node: '>=12'}
+    dev: true
+
+  /@tootallnate/once@2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
     dev: true
