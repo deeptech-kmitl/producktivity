@@ -1,4 +1,4 @@
-import type { Component, QRL, QwikIntrinsicElements, Signal } from '@builder.io/qwik';
+import type { QRL, QwikIntrinsicElements, Signal } from '@builder.io/qwik';
 import type { BorderSizeProps, MarginProps, PaddingProps, SizeProps } from '../props';
 import type { GapProps } from '../props/gap.props';
 import type { GridProps } from '../props/grid.props';
@@ -10,9 +10,8 @@ export interface ModalProps extends NativeDiv, PaddingProps, MarginProps, SizePr
   prose?: boolean;
   showModal: Signal<boolean>;
   title: string;
-  content: Component<unknown>;
   cancelLabel: string;
   confirmLabel: string;
-  cancelAction$: QRL<() => void>;
-  confirmAction$: QRL<() => void>;
+  cancelAction: QRL<() => void>;
+  confirmAction: QRL<() => void>;
 }
