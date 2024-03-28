@@ -50,6 +50,9 @@ importers:
       '@playwright/test':
         specifier: ^1.36.0
         version: 1.41.1
+      '@qwik-ui/headless':
+        specifier: ^0.3.3
+        version: 0.3.3(@builder.io/qwik@1.4.2)
       '@qwikest/icons':
         specifier: ^0.0.13
         version: 0.0.13(@builder.io/qwik@1.4.2)
@@ -4237,6 +4240,15 @@ packages:
 
   /@polka/url@1.0.0-next.24:
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
+    dev: true
+
+  /@qwik-ui/headless@0.3.3(@builder.io/qwik@1.4.2):
+    resolution: {integrity: sha512-/d3r3DbfbTLCM1FkC52dU2xMGiKijyY33DYTwSnBn94G+GUaMf9/fjr+IUA+sbL2f08LsvOt5VgE0hweqi4aeg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@builder.io/qwik': ^1.4.0
+    dependencies:
+      '@builder.io/qwik': 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)(undici@5.28.2)
     dev: true
 
   /@qwikest/icons@0.0.13(@builder.io/qwik@1.4.2):
