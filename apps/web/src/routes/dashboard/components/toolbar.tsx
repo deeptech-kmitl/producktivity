@@ -1,12 +1,12 @@
 import { component$, useContext, $ } from '@builder.io/qwik';
 import { Box, Navigation } from '@producktivity/ui';
 import { Frame } from './context';
-// import { useUser } from '../../../../../../apps/web/src/routes/dashboard/template/index';
+import { useUser } from '../../layout';
 
 export default component$(() => {
   const { frame } = useContext(Frame);
   const name = 'B';
-  // const userSignal = useUser();
+  const userSignal = useUser();
 
   const saveTemplate = $(async () => {
     if (!frame) return;
@@ -18,12 +18,10 @@ export default component$(() => {
       },
       body: JSON.stringify({
         name: name,
-        // userId: userSignal.value.id,
+        userId: userSignal.value,
         data: {},
       }),
     });
-
-    console.log(frame.toObject());
   });
 
   return (
