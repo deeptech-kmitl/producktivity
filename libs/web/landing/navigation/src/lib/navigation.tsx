@@ -20,7 +20,7 @@ const NavItems: NavItemProps[] = [
   {
     id: 1,
     label: 'Dashboard',
-    link: '/dashboard',
+    link: '/dashboard/overview',
     isRequireAuth: true,
   },
 ];
