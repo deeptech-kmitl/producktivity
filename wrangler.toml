@@ -10,6 +10,9 @@ workers_dev = true
 d1_databases = [
   { binding = "DB", database_name = "dev-certifine", database_id = "ba778eb8-bf82-4984-a21a-88dc8913f2fe" }  
 ]
+r2_buckets = [
+  { binding = "BUCKET", bucket_name = "dev-certifine" }
+]
 
 [env.staging]
 vars = { ENVIRONMENT = "staging" }
@@ -19,6 +22,9 @@ routes = [
 workers_dev = true
 d1_databases = [
   { binding = "DB", database_name = "staging-certifine", database_id = "c0534c42-4517-4068-af84-a458e02866b0" }  
+]
+r2_buckets = [
+  { binding = "BUCKET", bucket_name = "staging-certifine" }
 ]
 
 [env.production]
@@ -30,4 +36,7 @@ workers_dev = false
 
 d1_databases = [
   { binding = "DB", database_name = "certifine", database_id = "fae83b0b-b945-4a5b-ad5f-23d3b13dd581" }  
+]
+r2_buckets = [
+  { binding = "BUCKET", bucket_name = "certifine" }
 ]
