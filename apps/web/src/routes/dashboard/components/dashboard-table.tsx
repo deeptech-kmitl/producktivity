@@ -8,7 +8,7 @@ const columnHelper = createColumnHelper<TaskProps>();
 
 function getTaskDetail(row: string) {
   return (
-    <Link style={{ color: '#3040c9', textDecoration: 'underline' }} href={`/dashboard/project/${row.split(' ').join('-').toLowerCase()}`}>
+    <Link style={{ textDecoration: 'underline' }} href={`/dashboard/project/${row.split(' ').join('-').toLowerCase()}`}>
       {row}
     </Link>
   );
