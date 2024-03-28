@@ -1,6 +1,6 @@
 import { $, Slot, component$, useOnWindow } from '@builder.io/qwik';
 import { routeLoader$, type RequestHandler } from '@builder.io/qwik-city';
-// import { isDev } from '@builder.io/qwik/build';
+import { isDev } from '@builder.io/qwik/build';
 import { verifyRequestOrigin } from 'lucia';
 import { Env, User, initializeLucia } from '../configs/auth';
 
@@ -9,6 +9,8 @@ export const useUser = routeLoader$(({ sharedMap }) => {
 });
 
 export const onRequest: RequestHandler = async ({ platform, next, cookie, method, headers, sharedMap }) => {
+  if (isDev) return;
+
   const { DB } = platform.env as Env;
   const lucia = initializeLucia(DB);
 

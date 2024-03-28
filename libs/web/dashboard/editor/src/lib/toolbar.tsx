@@ -5,7 +5,7 @@ import { Frame } from './context';
 export default component$(() => {
   const { frame } = useContext(Frame);
 
-  const exportObject = $(() => {
+  const saveTemplate = $(() => {
     if (!frame) return;
 
     console.log(frame.toObject());
@@ -15,7 +15,7 @@ export default component$(() => {
     <Navigation.Bar>
       <Box></Box>
       <Box>
-        <Navigation.Action onClick$={exportObject}>Export</Navigation.Action>
+        <Navigation.Action onClick$={saveTemplate}>Save</Navigation.Action>
       </Box>
     </Navigation.Bar>
   );
