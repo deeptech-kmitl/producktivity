@@ -19,19 +19,19 @@
     "incremental": true,
     "isolatedModules": true,
     "noEmit": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
   },
   "files": [],
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.lib.json"
+      "path": "./tsconfig.lib.json",
     },
     {
-      "path": "./tsconfig.spec.json"
+      "path": "./tsconfig.spec.json",
     },
     {
-      "path": "./tsconfig.storybook.json"
-    }
-  ]
+      "path": "./tsconfig.storybook.json",
+    },
+  ],
 }

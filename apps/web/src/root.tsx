@@ -1,11 +1,17 @@
-import { component$, useServerData, useStyles$ } from '@builder.io/qwik';
+import { component$, useServerData, useStyles$, useVisibleTask$ } from '@builder.io/qwik';
 import { RouterHead } from './components/base';
 
 import styles from '@producktivity/ui/style.css?inline';
+import { initFlowbite } from 'flowbite';
+
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 
 export default component$(() => {
   useStyles$(styles);
+
+  useVisibleTask$(() => {
+    initFlowbite();
+  });
 
   const nonce = useServerData<string | undefined>('nonce');
 

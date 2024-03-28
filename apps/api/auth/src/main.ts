@@ -10,14 +10,14 @@ interface ResponseWrapper<T, E> {
 const response = <T, E>(data: T, error?: E): ResponseWrapper<T, E> => {
   return {
     data,
-    error
+    error,
   };
 };
 
 type Bindings = {
   DB: D1Database;
   BUCKET: R2Bucket;
-}
+};
 
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -46,7 +46,7 @@ app.get('/users', async (c) => {
       op.name 'provider',
       oa.created_at 'createdAt',
       oa.updated_at 'updatedAt'
-    FROM oauth_account as oa      
+    FROM oauth_account as oa
     JOIN user as u ON (oa.user_id = u.id)
     JOIN oauth_provider as op ON (oa.oauth_provider_id = op.id)
     WHERE u.id = ?1 AND oa.deleted_at IS NULL
@@ -75,17 +75,13 @@ interface User {
   deleted_at: number;
 }
 
-type CreateUserParams = Pick<User,
-  | 'username'
-  | 'firstName'
-  | 'lastName'
->;
+type CreateUserParams = Pick<User, 'username' | 'firstName' | 'lastName'>;
 
 interface CreateOAuthParams {
   oaid: string;
   provider: string;
   email: string;
-};
+}
 
 type CreateUserRequest = CreateUserParams & CreateOAuthParams;
 
@@ -106,10 +102,7 @@ app.post('/users', async (c) => {
 
   const id = typeid('user').toString();
 
-  const results = await c.env.DB.batch([
-    createUserStatement.bind(id, body.username, body.firstName, body.lastName, Date.now()),
-    createOAuthAccountStatement.bind(body.oaid, id, body.provider, body.email, Date.now()),
-  ]);
+  const results = await c.env.DB.batch([createUserStatement.bind(id, body.username, body.firstName, body.lastName, Date.now()), createOAuthAccountStatement.bind(body.oaid, id, body.provider, body.email, Date.now())]);
 
   return c.json(response(results));
 });
@@ -122,9 +115,7 @@ interface OAuthProvider {
   deleted_at: number;
 }
 
-type CreateOAuthProviderParams = Pick<OAuthProvider,
-  | 'name'
->;
+type CreateOAuthProviderParams = Pick<OAuthProvider, 'name'>;
 
 app.get('/providers', async (c) => {
   const findOAuthProviderStatement = c.env.DB.prepare(`
@@ -163,24 +154,17 @@ interface Template {
   createdAt: number;
   updatedAt: number;
   deletedAt: number;
-};
+}
 
-type CreateTemplateParams = Pick<Template,
-  | 'name'
-  | 'userId'
->;
+type CreateTemplateParams = Pick<Template, 'name' | 'userId'>;
 
-type FindTemplateParams = Pick<Template,
-  | 'userId'
->;
+type FindTemplateParams = Pick<Template, 'userId'>;
 
 interface TemplateDataParams {
   data: JSON;
-};
+}
 
-type UpdateTemplateParams = Pick<Template,
-  | 'name'
->;
+type UpdateTemplateParams = Pick<Template, 'name'>;
 
 type CreateTemplateRequest = CreateTemplateParams & TemplateDataParams;
 type UpdateTemplateRequest = UpdateTemplateParams & TemplateDataParams;
@@ -193,7 +177,7 @@ app.post('/templates', async (c) => {
   const key = ['templates', body.userId, id].join('/');
 
   const createTemplateStatement = c.env.DB.prepare(`
-    INSERT INTO template (id, user_id, name, created_at)        
+    INSERT INTO template (id, user_id, name, created_at)
     VALUES (?1, ?2, ?3, ?4)
   `);
 
@@ -247,7 +231,7 @@ app.get('/templates/:userId/:id', async (c) => {
 
 app.put('/templates/:userId/:id', async (c) => {
   const { userId, id } = c.req.param();
-  const { data, name } = await c.req.json() as UpdateTemplateRequest;
+  const { data, name } = (await c.req.json()) as UpdateTemplateRequest;
 
   const key = ['templates', userId, id].join('/');
 
@@ -276,22 +260,13 @@ interface Project {
   createdAt: number;
   updatedAt: number;
   deletedAt: number;
-};
+}
 
-type CreateProjectRequest = Pick<Project,
-  | 'userId'
-  | 'templateId'
-  | 'name'
->;
+type CreateProjectRequest = Pick<Project, 'userId' | 'templateId' | 'name'>;
 
-type FindProjectRequest = Pick<Project,
-  | 'userId'
->;
+type FindProjectRequest = Pick<Project, 'userId'>;
 
-type UpdateProjectRequest = Pick<Project,
-  | 'id'
-  | 'name'
->;
+type UpdateProjectRequest = Pick<Project, 'id' | 'name'>;
 
 app.post('/projects', async (c) => {
   const body = await c.req.json<CreateProjectRequest>();
