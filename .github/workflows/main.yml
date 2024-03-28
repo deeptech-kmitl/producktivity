@@ -56,24 +56,4 @@ jobs:
         run: pnpm nx affected -t build
 
       - name: Run deploy task
-        run: |
-          pnpm nx affected -t deploy > ./scripts/deployment.log
-          chmod +x ./scripts/deploy_link.sh
-          ./scripts/deploy_link.sh
-
-      - name: Get deployment link
-        id: deploy_link
-        run: echo "dep_link=$(cat deployment_link.txt)" >> "$GITHUB_OUTPUT"
-
-      - name: Publish deployment link
-        uses: actions/github-script@v4
-        with:
-          # script: |
-          #   const issueNumber = '${{ github.event.number }}'
-          #   github.issues.createComment({
-          #     owner: context.repo.owner,
-          #     repo: context.repo.repo,
-          #     issue_number: issueNumber,
-          #     body: `### QA Deployment
-          #     result: ${{ steps.deploy_link.outputs.dep_link }}`
-          #   });
+        run: pnpm nx affected -t deploy
