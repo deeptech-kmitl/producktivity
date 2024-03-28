@@ -2,6 +2,7 @@ import { component$, useContext, $ } from '@builder.io/qwik';
 import { Box, Button } from '@producktivity/ui';
 import { Frame } from './context';
 import { Textbox, Rect, Circle, FabricImage } from 'fabric';
+import { LuBaseline, LuCircle, LuImage, LuSquare } from '@qwikest/icons/lucide';
 
 export default component$(() => {
   const { frame } = useContext(Frame);
@@ -79,12 +80,20 @@ export default component$(() => {
   });
 
   return (
-    <Box width="half" height="full" variant="surface" direction="horizontal">
+    <Box paddingX="1" height="full" variant="surface" direction="horizontal">
       <Box width="full" height="full" align="top" direction="vertical" gap="1">
-        <Button onClick$={addText}>Add Text</Button>
-        <Button onClick$={addSquare}>Add Square</Button>
-        <Button onClick$={addCircle}>Add Circle</Button>
-        <Button onClick$={addImageHandler}>Add Image</Button>
+        <Button rounded="md" onClick$={addText} variant="surface">
+          <LuBaseline />
+        </Button>
+        <Button variant="surface" onClick$={addSquare}>
+          <LuSquare />
+        </Button>
+        <Button variant="surface" onClick$={addCircle}>
+          <LuCircle />
+        </Button>
+        <Button variant="surface" onClick$={addImageHandler}>
+          <LuImage />
+        </Button>
       </Box>
     </Box>
   );

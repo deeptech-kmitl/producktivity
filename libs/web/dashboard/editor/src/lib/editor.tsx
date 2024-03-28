@@ -6,6 +6,7 @@ import Toolbar from './toolbar';
 import { Frame } from './context';
 
 export default component$((props: Props) => {
+  console.log(props);
   const editorRef = useSignal<HTMLCanvasElement>();
   const containerRef = useSignal<HTMLDivElement>();
   const frameStore = useStore<{ frame: NoSerialize<Canvas> }>({ frame: undefined });
@@ -33,7 +34,7 @@ export default component$((props: Props) => {
       <Box width="full" height="full" direction="horizontal">
         <Sidebar />
         <Box width="full" height="full" align="center">
-          <Box ref={containerRef} style={{ height: 420, width: 595 }} variant="primary">
+          <Box ref={containerRef} style={{ height: 600, width: 856 }} variant="primary">
             <canvas id="editor" ref={editorRef} style={{ width: '100%', height: '100%' }} />
           </Box>
         </Box>
