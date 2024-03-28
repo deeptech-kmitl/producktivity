@@ -68,6 +68,9 @@ importers:
       '@storybook/core-server':
         specifier: ^7.6.7
         version: 7.6.10
+      '@tanstack/qwik-table':
+        specifier: ^8.15.0
+        version: 8.15.0(@builder.io/qwik@1.4.2)
       '@types/jest':
         specifier: ^29.4.0
         version: 29.5.11
@@ -4858,6 +4861,21 @@ packages:
     resolution: {integrity: sha512-FaruWX6KdudYloq1AHD/4nU+UsMTdNE8CKyrseXWEcgjDAbvkwJg2QGPAnfIJLIWsjZOSPLOAykK6fuYp4vp4A==}
     dependencies:
       tslib: 2.6.2
+    dev: true
+
+  /@tanstack/qwik-table@8.15.0(@builder.io/qwik@1.4.2):
+    resolution: {integrity: sha512-gkZGjzwfb38CwJKJkyZy+kF6Iihwgul574/J3rZUcoHsphd/AyZRjjsPiA4E9NDi2XU9UtOyC9YDIPE/O0agxQ==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@builder.io/qwik': '>=1.5'
+    dependencies:
+      '@builder.io/qwik': 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)(undici@5.28.2)
+      '@tanstack/table-core': 8.14.0
+    dev: true
+
+  /@tanstack/table-core@8.14.0:
+    resolution: {integrity: sha512-wDhpKJahGHWhmRt4RxtV3pES63CoeadljGWS/xeS9OJr1HBl2NB+OO44ht3sxDH5j5TRDAbQzC0NvSlsUfn7lQ==}
+    engines: {node: '>=12'}
     dev: true
 
   /@tootallnate/once@2.0.0:
