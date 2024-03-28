@@ -1,5 +1,5 @@
 import { RequestHandler } from '@builder.io/qwik-city';
-import { google } from 'apps/web/src/configs/auth';
+import { google } from '../../../../configs/auth';
 import { generateCodeVerifier, generateState } from 'arctic';
 
 export const onGet: RequestHandler = async ({ redirect, cookie }) => {
@@ -9,21 +9,21 @@ export const onGet: RequestHandler = async ({ redirect, cookie }) => {
     scopes: ['profile', 'email'],
   });
   
-  cookie.set("google_oauth_state", state, {
-		path: "/",
+  cookie.set('google_oauth_state', state, {
+		path: '/',
 		secure: import.meta.env.PROD,
 		httpOnly: true,
 		maxAge: [10, 'minutes'],
-		sameSite: "lax"
-	})
+		sameSite: 'lax'
+	});
 
-  cookie.set("google_oauth_code_verifier", codeVerifier, {
-		path: "/",
+  cookie.set('google_oauth_code_verifier', codeVerifier, {
+		path: '/',
 		secure: import.meta.env.PROD,
 		httpOnly: true,
 		maxAge: [10, 'minutes'],
-		sameSite: "lax"
-	})
+		sameSite: 'lax'
+	});
 
   throw redirect(302, url.toString());
 };
