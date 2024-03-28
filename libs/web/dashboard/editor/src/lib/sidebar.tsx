@@ -53,12 +53,36 @@ export default component$(() => {
     frame.add(circle);
   });
 
+  // TODO: image import
+  const addImage = $(() => {
+    // const fileType = e.target.files[0].type;
+    // const url = URL.createObjectURL(e.target.files[0]);
+
+    // if (fileType === 'image/png') { //check if png
+    //   fabric.Image.fromURL(url, function(img) {
+    //     img.set({
+    //       width: 180,
+    //       height: 180
+    //     });
+    //     canvas.add(img);
+    //   });
+    // } else if (fileType === 'image/svg+xml') { //check if svg
+    //   fabric.loadSVGFromURL(url, function(objects, options) {
+    //     var svg = fabric.util.groupSVGElements(objects, options);
+    //     svg.scaleToWidth(180);
+    //     svg.scaleToHeight(180);
+    //     canvas.add(svg);
+    //   });
+    // }
+  });
+
   return (
     <Box width="half" height="full" variant="surface" direction="horizontal">
       <Box width="full" height="full" align="top" direction="vertical" gap="1">
         <Button onClick$={addText}>Add Text</Button>
         <Button onClick$={addSquare}>Add Square</Button>
         <Button onClick$={addCircle}>Add Circle</Button>
+        <Button onClick$={addImage}>Add Image</Button>
       </Box>
     </Box>
   );
