@@ -3000,7 +3000,6 @@ packages:
   /@microsoft/tsdoc@0.14.2:
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
     dev: true
-
   /@modular-forms/qwik@0.23.1(@builder.io/qwik-city@1.4.2)(@builder.io/qwik@1.4.2):
     resolution: {integrity: sha512-oiXMdbH0HNotc9LMUwoEwZSJkY7/SObyQCgAZHsAPIQOyQrDhG2W8rEJVy0zFtSOCxk6NZjLiMcXfcI5glKU8A==}
     peerDependencies:
@@ -3010,7 +3009,6 @@ packages:
       '@builder.io/qwik': 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)(undici@5.28.2)
       '@builder.io/qwik-city': 1.4.2(@types/node@20.11.9)(lightningcss@1.23.0)
     dev: true
-
   /@napi-rs/wasm-runtime@0.1.1:
     resolution: {integrity: sha512-ATj9ua659JgrkICjJscaeZdmPr44cb/KFjNWuD0N6pux0SpzaM7+iOuuK11mAnQM2N9q0DT4REu6NkL8ZEhopw==}
     requiresBuild: true
@@ -4282,11 +4280,9 @@ packages:
   /@polka/url@1.0.0-next.24:
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
     dev: true
-
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: true
-
   /@qwik-ui/headless@0.3.3(@builder.io/qwik@1.4.2):
     resolution: {integrity: sha512-/d3r3DbfbTLCM1FkC52dU2xMGiKijyY33DYTwSnBn94G+GUaMf9/fjr+IUA+sbL2f08LsvOt5VgE0hweqi4aeg==}
     engines: {node: '>=16.0.0'}

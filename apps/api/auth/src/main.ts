@@ -10,14 +10,14 @@ interface ResponseWrapper<T, E> {
 const response = <T, E>(data: T, error?: E): ResponseWrapper<T, E> => {
   return {
     data,
-    error,
+    error
   };
 };
 
 type Bindings = {
   DB: D1Database;
   BUCKET: R2Bucket;
-};
+}
 
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -75,13 +75,17 @@ interface User {
   deleted_at: number;
 }
 
-type CreateUserParams = Pick<User, 'username' | 'firstName' | 'lastName'>;
+type CreateUserParams = Pick<User,
+  | 'username'
+  | 'firstName'
+  | 'lastName'
+>;
 
 interface CreateOAuthParams {
   oaid: string;
   provider: string;
   email: string;
-}
+};
 
 type CreateUserRequest = CreateUserParams & CreateOAuthParams;
 
@@ -101,187 +105,6 @@ app.post('/users', async (c) => {
   `);
 
   const id = typeid('user').toString();
-
-  const results = await c.env.DB.batch([createUserStatement.bind(id, body.username, body.firstName, body.lastName, Date.now()), createOAuthAccountStatement.bind(body.oaid, id, body.provider, body.email, Date.now())]);
-
-  return c.json(response(results));
-});
-
-interface OAuthProvider {
-  id: string;
-  name: string;
-  created_at: number;
-  updated_at: number;
-  deleted_at: number;
-}
-
-type CreateOAuthProviderParams = Pick<OAuthProvider, 'name'>;
-
-app.get('/providers', async (c) => {
-  const findOAuthProviderStatement = c.env.DB.prepare(`
-    SELECT
-      id,
-      name,
-      created_at 'createdAt',
-      updated_at 'updatedAt'
-    FROM oauth_provider
-  `);
-
-  const { results } = await findOAuthProviderStatement.all<OAuthProvider>();
-
-  return c.json(response(results));
-});
-
-app.post('/providers', async (c) => {
-  const body = await c.req.json<CreateOAuthProviderParams>();
-
-  const createOAuthProviderStatement = c.env.DB.prepare(`
-    INSERT INTO oauth_provider (id, name, created_at)
-    VALUES (?1, ?2, ?3)
-  `);
-
-  const id = typeid('oap').toString();
-
-  const result = await createOAuthProviderStatement.bind(id, body.name, Date.now()).run();
-
-  return c.json(response(result));
-});
-
-interface Template {
-  id: string;
-  userId: string;
-  name: string;
-  createdAt: number;
-  updatedAt: number;
-  deletedAt: number;
-}
-
-type CreateTemplateParams = Pick<Template, 'name' | 'userId'>;
-
-type FindTemplateParams = Pick<Template, 'userId'>;
-
-interface TemplateDataParams {
-  data: JSON;
-}
-
-type UpdateTemplateParams = Pick<Template, 'name'>;
-
-type CreateTemplateRequest = CreateTemplateParams & TemplateDataParams;
-type UpdateTemplateRequest = UpdateTemplateParams & TemplateDataParams;
-
-app.post('/templates', async (c) => {
-  const body = await c.req.json<CreateTemplateRequest>();
-
-  const id = typeid('tmpl').toString();
-
-  const key = ['templates', body.userId, id].join('/');
-
-  const createTemplateStatement = c.env.DB.prepare(`
-    INSERT INTO template (id, user_id, name, created_at)
-    VALUES (?1, ?2, ?3, ?4)
-  `);
-
-  try {
-    await c.env.BUCKET.put(key, JSON.stringify(body.data));
-
-    const { results } = await createTemplateStatement.bind(id, body.userId, body.name, Date.now()).run();
-
-    return c.json(response(results));
-  } catch (e) {
-    return c.json(response(null, e));
-  }
-});
-
-app.get('/templates/:userId', async (c) => {
-  const { userId } = c.req.param() as FindTemplateParams;
-
-  const getTemplateStatement = c.env.DB.prepare(`
-    SELECT
-      t.id,
-      t.user_id 'userId',
-      t.key,
-      t.created_at 'createdAt',
-      t.updated_at 'updatedAt'
-    FROM template as t
-    WHERE t.user_id = ?1 AND t.deleted_at NOT NULL
-  `);
-
-  const { results } = await getTemplateStatement.bind(userId).all<Template>();
-
-  results.map((template) => {
-    template.id;
-  });
-
-  return c.json(response(results));
-});
-
-app.get('/templates/:userId/:id', async (c) => {
-  const { userId, id } = c.req.param();
-  const key = ['templates', userId, id].join('/');
-
-  try {
-    const objectRef = await c.env.BUCKET.get(key);
-    const data = objectRef.json();
-
-    return c.json(response(data));
-  } catch (e) {
-    return c.json(response(null, e));
-  }
-});
-
-app.put('/templates/:userId/:id', async (c) => {
-  const { userId, id } = c.req.param();
-  const { data, name } = (await c.req.json()) as UpdateTemplateRequest;
-
-  const key = ['templates', userId, id].join('/');
-
-  const updateTemplateStatement = c.env.DB.prepare(`
-    UPDATE template
-    SET name = ?1
-    WHERE id = ?2 AND deleted_at NOT NULL
-  `);
-
-  try {
-    await c.env.BUCKET.put(key, JSON.stringify(data));
-
-    const { results } = await updateTemplateStatement.bind(name, id).run();
-
-    return c.json(response(results));
-  } catch (e) {
-    return c.json(response(null, e));
-  }
-});
-
-interface Project {
-  id: string;
-  userId: string;
-  templateId: string;
-  name: string;
-  createdAt: number;
-  updatedAt: number;
-  deletedAt: number;
-}
-
-type CreateProjectRequest = Pick<Project, 'userId' | 'templateId' | 'name'>;
-
-type FindProjectRequest = Pick<Project, 'userId'>;
-
-type UpdateProjectRequest = Pick<Project, 'id' | 'name'>;
-
-app.post('/projects', async (c) => {
-  const body = await c.req.json<CreateProjectRequest>();
-
-  const createProjectStatement = c.env.DB.prepare(`
-    INSERT INTO project (id, user_id, template_id, name, created_at)
-    VALUES (?1, ?2, ?3, ?4, ?5)
-  `);
-
-  const id = typeid('proj').toString();
-
-  const result = createProjectStatement.bind(id, body.userId, body.templateId, body.name, Date.now()).run();
-
-  return c.json(response(result));
-});
 
 app.get('/projects', async (c) => {
   const { userId } = c.req.query() as FindProjectRequest;
