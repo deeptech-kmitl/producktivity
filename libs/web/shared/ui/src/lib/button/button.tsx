@@ -23,16 +23,28 @@ export const Button = component$<ButtonProps>((props) => {
     gradient: 'bg-gradient-to-br from-primary to-tertiary',
     surface: 'bg-surface',
     disabled: 'bg-surface-on/[.12]',
+    'badge-primary': 'bg-primary/[.15] px-2 py-1 border border-primary',
+    'badge-secondary': 'bg-secondary/[.15] px-2 py-1 border border-secondary',
+    'badge-tertiary': 'bg-tertiary/[.15] px-2 py-1 border border-tertiary',
+    'badge-success': 'bg-green-200/[0.4] dark:bg-green-500',
+    'badge-error': 'bg-error/[0.2]',
+    'badge-info': 'bg-blue-200/[0.4] dark:bg-blue-500',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const LabelVariants = {
     primary: 'text-primary-on',
-    secondary: 'text-primary',
-    tertiary: 'text-primary',
+    secondary: 'text-secondary-on',
+    tertiary: 'text-tertiary-on',
     error: 'text-error-on',
     gradient: 'text-primary-on',
     surface: 'text-surface-on',
     disabled: 'text-surface-on/[.38]',
+    'badge-primary': 'text-primary font-medium text-sm',
+    'badge-secondary': 'text-secondary font-medium text-sm',
+    'badge-tertiary': 'text-tertiary font-medium text-sm',
+    'badge-success': 'text-green-600 dark:text-green-200 font-medium text-sm',
+    'badge-error': 'text-error font-medium text-sm',
+    'badge-info': 'text-blue-600 dark:text-blue-200 font-medium text-sm',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const StateLayerVariants = {
@@ -43,6 +55,12 @@ export const Button = component$<ButtonProps>((props) => {
     gradient: '',
     error: 'bg-error-on/[.08]',
     disabled: 'bg-surface-on/[.12]',
+    'badge-primary': '',
+    'badge-secondary': '',
+    'badge-tertiary': '',
+    'badge-success': '',
+    'badge-error': '',
+    'badge-info': '',
   } satisfies { [K in ButtonVariant | 'disabled']: string };
 
   const Tag = rest.href ? Link : 'button';

@@ -1,5 +1,5 @@
 import type { QwikIntrinsicElements } from '@builder.io/qwik';
-import type { BorderSizeProps, PaddingProps, SizeProps } from '../props';
+import type { BorderSizeProps, MarginProps, PaddingProps, SizeProps } from '../props';
 import type { GapProps } from '../props/gap.props';
 import type { GridProps } from '../props/grid.props';
 import type { ShadowProps } from '../props/shadow.props';
@@ -15,8 +15,9 @@ export type BoxDirection = (typeof BoxDirections)[number];
 
 type NativeDiv = QwikIntrinsicElements['div'];
 
-export interface BoxProps extends NativeDiv, PaddingProps, SizeProps, BorderSizeProps, ShadowProps, GapProps, GridProps {
+export interface BoxProps extends NativeDiv, PaddingProps, MarginProps, SizeProps, BorderSizeProps, ShadowProps, GapProps, GridProps {
   variant?: BoxVariant;
   align?: BoxAlignment;
   direction?: BoxDirection;
+  prose?: boolean;
 }
