@@ -13,5 +13,5 @@ export interface ModalProps extends NativeDiv, PaddingProps, MarginProps, SizePr
   cancelLabel: string;
   confirmLabel: string;
   cancelAction: QRL<() => void>;
-  confirmAction: QRL<() => void>;
+  confirmAction: QRL<(values: unknown) => void>;
 }
