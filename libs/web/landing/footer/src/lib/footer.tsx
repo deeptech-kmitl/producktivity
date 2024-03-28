@@ -11,11 +11,11 @@ export default component$(() => {
     <Box width="full" align="between-center" direction="horizontal" paddingX="2" paddingY="0.5">
       <Text theme="secondary">&copy; 2023-2024 Produckians</Text>
       <Box direction="horizontal" gap="2">
-        <Button onClick$={toDarkMode} variant="tertiary" shape="rounded">
-          Dark
+        <Button onClick$={toDarkMode} variant="tertiary">
+          <Text theme="tertiary">Dark</Text>
         </Button>
-        <Button onClick$={toLightMode} variant="tertiary" shape="rounded">
-          Light
+        <Button onClick$={toLightMode} variant="tertiary">
+          <Text theme="tertiary">Light</Text>
         </Button>
       </Box>
     </Box>
