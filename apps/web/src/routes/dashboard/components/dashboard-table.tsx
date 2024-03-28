@@ -1,16 +1,17 @@
 import { Component, component$ } from '@builder.io/qwik';
 import { createColumnHelper, getCoreRowModel, flexRender, useQwikTable } from '@tanstack/qwik-table';
-import { Box, Button } from '@producktivity/ui';
-import { Link } from '@builder.io/qwik-city';
+import { Box, Button, Text } from '@producktivity/ui';
+// import { Link } from '@builder.io/qwik-city';
 import { TaskProps, TaskMemberProps, TaskStatus } from '../constant/mock-data';
 
 const columnHelper = createColumnHelper<TaskProps>();
 
 function getTaskDetail(row: string) {
   return (
-    <Link style={{ textDecoration: 'underline' }} href={`/dashboard/project/${row.split(' ').join('-').toLowerCase()}`}>
-      {row}
-    </Link>
+    // <Link style={{ textDecoration: 'underline' }} href={`/dashboard/project/${row.split(' ').join('-').toLowerCase()}`}>
+    //   {row}
+    // </Link>
+    <Text>{row}</Text>
   );
 }
 
