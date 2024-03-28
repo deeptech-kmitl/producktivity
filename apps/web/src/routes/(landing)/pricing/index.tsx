@@ -6,8 +6,7 @@ import { entPricing, hobbistPricing, proPricing } from './configs';
 
 export default component$(() => {
   return (
-    <>
-      <Box align="between-center" height="full" width="auto" padding="4">
+      <Box align="between-center" height="full" width="auto" padding="2">
         <Text variant="hero" theme="gradient" weight="bold" paddingY="1">
           Find a plan for your projects
         </Text>
@@ -19,7 +18,6 @@ export default component$(() => {
           </Box>
         </Box>
       </Box>
-    </>
   );
 });
 
