@@ -1,8 +1,7 @@
-import { component$ } from '@builder.io/qwik';
+import { Component, component$ } from '@builder.io/qwik';
 import { createColumnHelper, getCoreRowModel, flexRender, useQwikTable } from '@tanstack/qwik-table';
 import { TaskMemberProps, TaskProps, TaskStatus } from './dashboard-tab';
 import { Box, Button } from '@producktivity/ui';
-import { LuArrowDownAZ, LuArrowUpAZ } from '@qwikest/icons/lucide';
 import { Link } from '@builder.io/qwik-city';
 
 const columnHelper = createColumnHelper<TaskProps>();
@@ -57,7 +56,7 @@ interface DashboardTableProps {
   data: TaskProps[];
 }
 
-export const DashboardTable = component$(({ data }: DashboardTableProps) => {
+export const DashboardTable: Component<DashboardTableProps> = component$(({ data }: DashboardTableProps) => {
   const table = useQwikTable({
     columns,
     data: data,
@@ -73,13 +72,7 @@ export const DashboardTable = component$(({ data }: DashboardTableProps) => {
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th key={header.id} scope="col">
-                  <Box align="between-start">
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                    {{
-                      asc: <LuArrowUpAZ />,
-                      desc: <LuArrowDownAZ />,
-                    }[header.column.getIsSorted() as string] ?? null}
-                  </Box>
+                  <Box align="between-start">{flexRender(header.column.columnDef.header, header.getContext())}</Box>
                 </th>
               ))}
             </tr>
