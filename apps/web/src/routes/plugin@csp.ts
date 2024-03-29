@@ -13,7 +13,7 @@ export const onRequest: RequestHandler = (event) => {
     "img-src 'self' 'unsafe-inline' data:",
     `script-src 'self' 'unsafe-inline' https: 'nonce-${nonce}' 'strict-dynamic'`,
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    `frame-src 'self' 'nonce-${nonce}'`,
+    `frame-src 'self' 'nonce-${nonce}' https://lottie.host`,
     "object-src 'none'",
     "base-uri 'self'",
   ];

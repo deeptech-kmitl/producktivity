@@ -12,7 +12,7 @@
     },
     "deploy": {
       "executor": "nx:run-commands",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "configurations": {
         "development": {
           "command": "wrangler deploy --minify {projectRoot}/src/main.ts"

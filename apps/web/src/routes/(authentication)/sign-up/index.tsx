@@ -14,7 +14,7 @@ export default component$(() => {
         </Text>
         <Text theme="secondary">Please sign up to get services access</Text>
       </Box>
-      <AuthButton label="Sign up with" />
+      <AuthButton label="Sign in with Google" />
       <Box direction="horizontal" gap="2">
         <Button variant="surface" href="/">
           <Box direction="horizontal" gap="1">
@@ -24,9 +24,11 @@ export default component$(() => {
             <Text theme="secondary">Back to page</Text>
           </Box>
         </Button>
+        {/*
         <Button variant="surface" href="/sign-in">
           <Text theme="secondary">Sign in</Text>
         </Button>
+        */}
       </Box>
     </Box>
   );
