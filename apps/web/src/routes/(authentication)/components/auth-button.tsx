@@ -13,7 +13,7 @@ export default component$((props: AuthButtonProps) => {
   return (
     <Button variant="surface" onClick$={signInWithGoogle}>
       <Box width="full" direction="horizontal" gap="1">
-        <img width="30" height="30" src="/google.svg" />
+        <img width="30" height="30" src="/assets/google.svg" />
         <Text>{props.label}</Text>
       </Box>
     </Button>
