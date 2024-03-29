@@ -6,7 +6,7 @@ async function findUser(oaid: string): Promise<User | undefined> {
   const url = `${import.meta.env.VITE_API_URL}/users?${query.toString()}`;
   const response = await fetch(url);
 
-  const user = await response.json() as ResponseWrapper<User>;
+  const user = (await response.json()) as ResponseWrapper<User>;
 
   if (!user) return;
 
@@ -15,11 +15,11 @@ async function findUser(oaid: string): Promise<User | undefined> {
 
 async function findProvider(name: string): Promise<Provider | undefined> {
   const response = await fetch(`${import.meta.env.VITE_API_URL}/providers`);
-  const providers = await response.json() as ResponseWrapper<Provider[]>;
+  const providers = (await response.json()) as ResponseWrapper<Provider[]>;
 
   if (!providers.data) return;
 
-  return providers.data.find(provider => provider.name === name);
+  return providers.data.find((provider) => provider.name === name);
 }
 
 export const onGet: RequestHandler = async ({ error, redirect, platform, query, cookie }) => {
@@ -48,11 +48,10 @@ export const onGet: RequestHandler = async ({ error, redirect, platform, query, 
     const sessionCookie = lucia.createSessionCookie(session.id);
     cookie.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-    throw redirect(302, '/dashboard');
+    throw redirect(302, '/dashboard/overview');
   }
 
   const provider = await findProvider('google');
-
 
   await fetch(`${import.meta.env.VITE_API_URL}/users`, {
     method: 'POST',
@@ -65,7 +64,7 @@ export const onGet: RequestHandler = async ({ error, redirect, platform, query, 
       lastName: googleUserInfo.data.family_name,
       oaid: googleUserInfo.data.sub,
       provider: provider?.id,
-      email: googleUserInfo.data.email
+      email: googleUserInfo.data.email,
     }),
   });
 
@@ -78,5 +77,5 @@ export const onGet: RequestHandler = async ({ error, redirect, platform, query, 
   const sessionCookie = lucia.createSessionCookie(session.id);
   cookie.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-  throw redirect(302, '/dashboard');
+  throw redirect(302, '/dashboard/overview');
 };

@@ -64,6 +64,7 @@
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
     "qwik-nx": "^2.0.2",
+    "qwik-sonner": "^0.2.2",
     "react": "^18.2.0",
     "rxjs": "^7.8.0",
     "storybook-framework-qwik": "^0.2.5",

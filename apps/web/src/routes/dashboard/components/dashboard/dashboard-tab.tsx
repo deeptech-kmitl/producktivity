@@ -6,7 +6,7 @@ import { MockDashboardTasks } from '../../constant/mock-data';
 
 export const DashboardTab = component$(() => {
   return (
-    <Box height="full-screen" paddingX="4" direction="horizontal" width="full" align="top">
+    <Box height="full" paddingX="4" direction="horizontal" width="full" align="top">
       <Box paddingX="4" paddingY="2" width="3/4" variant="surface" rounded="md">
         <Box direction="horizontal" width="full" align="between-center">
           <Box>

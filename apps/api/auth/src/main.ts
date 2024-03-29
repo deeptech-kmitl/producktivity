@@ -157,12 +157,9 @@ interface Template {
   createdAt: number;
   updatedAt: number;
   deletedAt: number;
-};
+}
 
-type CreateTemplateParams = Pick<Template,
-  | 'name'
-  | 'userId'
->;
+type CreateTemplateParams = Pick<Template, 'name' | 'userId'>;
 
 // type FindTemplateParams = Pick<Template,
 //   | 'userId'
@@ -170,11 +167,9 @@ type CreateTemplateParams = Pick<Template,
 
 interface TemplateDataParams {
   data: JSON;
-};
+}
 
-type UpdateTemplateParams = Pick<Template,
-  | 'name'
->;
+type UpdateTemplateParams = Pick<Template, 'name'>;
 
 type CreateTemplateRequest = CreateTemplateParams & TemplateDataParams;
 type UpdateTemplateRequest = UpdateTemplateParams & TemplateDataParams;
@@ -237,7 +232,7 @@ app.get('/templates/data', async (c) => {
 
 app.put('/templates/data', async (c) => {
   const { userId, id } = c.req.query();
-  const { data, name } = await c.req.json() as UpdateTemplateRequest;
+  const { data, name } = (await c.req.json()) as UpdateTemplateRequest;
 
   const key = ['templates', userId, id].join('/');
 
@@ -266,22 +261,13 @@ interface Project {
   createdAt: number;
   updatedAt: number;
   deletedAt: number;
-};
+}
 
-type CreateProjectRequest = Pick<Project,
-  | 'userId'
-  | 'templateId'
-  | 'name'
->;
+type CreateProjectRequest = Pick<Project, 'userId' | 'templateId' | 'name'>;
 
-type FindProjectRequest = Pick<Project,
-  | 'userId'
->;
+type FindProjectRequest = Pick<Project, 'userId'>;
 
-type UpdateProjectRequest = Pick<Project,
-  | 'id'
-  | 'name'
->;
+type UpdateProjectRequest = Pick<Project, 'id' | 'name'>;
 
 app.post('/projects', async (c) => {
   const body = await c.req.json<CreateProjectRequest>();
@@ -338,12 +324,9 @@ interface Generate {
   args: string;
   createdAt: number;
   deletedAt: number;
-};
+}
 
-type CreateGenerateParams = Pick<Generate,
-  | 'projectId'
-  | 'args'
->;
+type CreateGenerateParams = Pick<Generate, 'projectId' | 'args'>;
 
 app.post('/generates', async (c) => {
   const body = await c.req.json<CreateGenerateParams>();

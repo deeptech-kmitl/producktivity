@@ -1,7 +1,16 @@
-import { Fragment, component$, useComputed$ } from '@builder.io/qwik';
-import { useLocation } from '@builder.io/qwik-city';
-import { Box, Navigation, Text } from '@producktivity/ui';
+import { Fragment, component$, useComputed$, $ } from '@builder.io/qwik';
+import { useLocation, useNavigate } from '@builder.io/qwik-city';
+import { Box, Button, Navigation, Text } from '@producktivity/ui';
 import { LuWorkflow } from '@qwikest/icons/lucide';
+
+interface User {
+  id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  createdAt: number;
+  updatedAt?: number;
+}
 
 interface NavItemProps {
   id: number;
@@ -25,19 +34,21 @@ const NavItems: NavItemProps[] = [
   },
 ];
 
-interface sessionProps {
-  username: string;
+interface NavigationProps {
+  user: User;
 }
 
-export default component$(() => {
+export default component$(({ user }: NavigationProps) => {
   const loc = useLocation();
-
-  const session: sessionProps = {
-    username: 'JackiesxD',
-  };
+  const navigator = useNavigate();
 
   const currentActivePath = useComputed$(() => {
     return loc.url.pathname;
+  });
+
+  const signOut = $(async () => {
+    await fetch('/api/auth/sign-out', { method: 'POST' });
+    await navigator('/');
   });
 
   return (
@@ -57,7 +68,7 @@ export default component$(() => {
       <Box direction="horizontal" gap="1">
         {NavItems.map((item: NavItemProps) => (
           <Navigation.Item prefetch key={item.id} href={item.link}>
-            {session.username !== '' ? (
+            {user ? (
               <Text theme="primary" weight={currentActivePath.value === item.link ? 'semibold' : 'normal'}>
                 {item.label}
               </Text>
@@ -73,9 +84,19 @@ export default component$(() => {
           </Navigation.Item>
         ))}
       </Box>
-      <Navigation.Action prefetch href="/sign-up" size="large">
-        Sign up
-      </Navigation.Action>
+      {!user && (
+        <Navigation.Action prefetch href="/sign-up" size="large">
+          <Text theme="surface">Sign up</Text>
+        </Navigation.Action>
+      )}
+      {user.username && (
+        <Box direction="horizontal" gap="1">
+          <Text>{user.username}</Text>
+          <Button rounded="md" prefetch onClick$={signOut}>
+            <Text theme="surface">Sign out</Text>
+          </Button>
+        </Box>
+      )}
     </Navigation.Bar>
   );
 });

@@ -5,6 +5,8 @@ export interface TemplateSelectProps {
   id: string;
   userId: string;
   name: string;
+  createdAt?: number;
+  updatedAt?: number;
 }
 
 export interface SelectInputProps extends BorderSizeProps, SizeProps {
