@@ -3,15 +3,26 @@ import { Box, Button, Text } from '@producktivity/ui';
 import { LuPenLine } from '@qwikest/icons/lucide';
 import { DashboardTable } from '../../components/dashboard/dashboard-table';
 import { MockDashboardTasks } from '../../constant/mock-data';
-import { useLocation } from '@builder.io/qwik-city';
+import { routeLoader$, useLocation } from '@builder.io/qwik-city';
 import { useUser } from '../../../layout';
+import { EditProjectModal } from '../../components/project/edit-project-modal';
+import { InitialValues } from '@modular-forms/qwik';
 
 interface dataProjectProps {
   data: Project[];
 }
 
+interface EditProjectProps {
+  projectName: string;
+}
+
+export const useEditProjectFormLoader = routeLoader$<InitialValues<EditProjectProps>>(() => ({
+  projectName: '',
+}));
+
 export default component$(() => {
   const loc = useLocation();
+  const showSig = useSignal(false);
   const currentProject = useSignal<Project>();
   const userSignal = useUser();
   const projectList = useSignal<dataProjectProps>({ data: [] });
@@ -44,9 +55,9 @@ export default component$(() => {
           <Text variant="title" weight="bold">
             {currentProject.value?.name}
           </Text>
-          <Text variant="h1" theme="secondary">
+          <Button onClick$={() => (showSig.value = true)} variant="surface">
             <LuPenLine />
-          </Text>
+          </Button>
         </Box>
         <Box padding="3" variant="surface" rounded="md">
           <img src="https://i0.wp.com/vat.or.th/wp-content/uploads/2021/03/placeholder.png?ssl=1" />
@@ -63,6 +74,7 @@ export default component$(() => {
           <Button rounded="md">Generate New</Button>
         </Box>
       </Box>
+      <EditProjectModal currentName={currentProject.value?.name} currentId={currentProject.value?.id} showModal={showSig} />
     </Box>
   );
 });

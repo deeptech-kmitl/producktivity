@@ -1,9 +1,10 @@
-import { Signal, component$, $, useVisibleTask$, useSignal, useTask$ } from '@builder.io/qwik';
+import { Signal, component$, $, useSignal, useTask$ } from '@builder.io/qwik';
 import { type DocumentHead } from '@builder.io/qwik-city';
 import { useForm, required } from '@modular-forms/qwik';
 import { Box, TextInput, UIModal, UISelect } from '@producktivity/ui';
-import { useFormLoader } from '../../[slug]';
+import { useCreateProjectFormLoader } from '../../[slug]';
 import { useUser } from '../../../layout';
+import { Toaster, toast } from 'qwik-sonner';
 
 interface CreateProjectModalProps {
   showModal: Signal<boolean>;
@@ -21,8 +22,8 @@ interface dataTemplateProps {
 export const CreateProjectModal = component$(({ showModal }: CreateProjectModalProps) => {
   const userSignal = useUser();
   const templateList = useSignal<dataTemplateProps>({ data: [] });
-  const [projectForm, { Form, Field }] = useForm<ProjectFormProps>({
-    loader: useFormLoader(),
+  const [_projectForm, { Form, Field }] = useForm<ProjectFormProps>({
+    loader: useCreateProjectFormLoader(),
   });
 
   useTask$(async () => {
@@ -47,6 +48,7 @@ export const CreateProjectModal = component$(({ showModal }: CreateProjectModalP
       }),
     }).then(() => {
       showModal.value = false;
+      toast.success(`Successfully created ${values.projectName}`);
     });
   });
 
@@ -66,6 +68,7 @@ export const CreateProjectModal = component$(({ showModal }: CreateProjectModalP
           </Field>
         </Box>
       </UIModal>
+      <Toaster position="bottom-right" richColors />
     </Form>
   );
 });

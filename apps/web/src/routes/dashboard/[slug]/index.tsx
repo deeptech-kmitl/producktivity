@@ -7,7 +7,7 @@ import { component$ } from '@builder.io/qwik';
 import { ProjectFormProps } from '../components/project/create-project-modal';
 import { type InitialValues } from '@modular-forms/qwik';
 
-export const useFormLoader = routeLoader$<InitialValues<ProjectFormProps>>(() => ({
+export const useCreateProjectFormLoader = routeLoader$<InitialValues<ProjectFormProps>>(() => ({
   projectName: '',
   templateId: '',
 }));
