@@ -65,7 +65,7 @@ export default component$((props: EditorProps) => {
 
   return (
     <Box width="full" height="full" direction="vertical">
-      {!props.withoutToolbar && <Toolbar templateId={props.currentInfo!.id} templateName={props.currentInfo!.name} user={props.user!} />}
+      <Toolbar templateId={props.currentInfo!.id} templateName={props.currentInfo!.name} user={props.user!} />
       <Box width="full" height="full" direction="horizontal">
         {!props.withoutSidebar && <Sidebar />}
         <Box width="full" height="full" align="center">
