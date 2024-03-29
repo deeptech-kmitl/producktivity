@@ -13,13 +13,22 @@ export default component$((props: Props) => {
   useContextProvider(Frame, frameStore);
 
   // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(({ cleanup }) => {
+  useVisibleTask$(async ({ cleanup }) => {
     if (!editorRef.value || !containerRef.value) return;
 
     const frame = new Canvas(editorRef.value, {
       width: containerRef.value.clientWidth,
       height: containerRef.value.clientHeight,
     });
+
+    if (props.initialTemplate) {
+      console.log(props.initialTemplate);
+      await frame.loadFromJSON(JSON.stringify(props.initialTemplate), () => {
+        frame.renderAll();
+      });
+
+      console.log(frame.toObject());
+    }
 
     frameStore.frame = noSerialize(frame);
     frame.renderAll();
@@ -29,9 +38,9 @@ export default component$((props: Props) => {
 
   return (
     <Box width="full" height="full" direction="vertical">
-      <Toolbar />
+      {!props.withoutToolbar && <Toolbar />}
       <Box width="full" height="full" direction="horizontal">
-        <Sidebar />
+        {!props.withoutSidebar && <Sidebar />}
         <Box width="full" height="full" align="center">
           <Box ref={containerRef} style={{ height: 420, width: 595 }} variant="primary">
             <canvas id="editor" ref={editorRef} style={{ width: '100%', height: '100%' }} />
@@ -44,4 +53,8 @@ export default component$((props: Props) => {
 
 interface Props {
   id: string;
+  withoutSidebar?: boolean;
+  withoutToolbar?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  initialTemplate?: Record<string, any>;
 }

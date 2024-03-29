@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { D1Database, R2Bucket } from '@cloudflare/workers-types';
 import { typeid } from 'typeid-js';
+import { cors } from 'hono/cors';
 
 interface ResponseWrapper<T, E> {
   data: T;
@@ -20,6 +21,8 @@ type Bindings = {
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
+
+app.use('*', cors());
 
 app.get('/users', async (c) => {
   const { oaid } = c.req.query();
@@ -412,9 +415,25 @@ app.get('/generates', async (c) => {
 });
 
 app.get('/generates/data', async (c) => {
-  const { projectId, id } = c.req.query();
+  const { id } = c.req.query();
 
-  const key = ['generates', projectId, id].join('/');
+  const getProjectStatement = c.env.DB.prepare(`
+    SELECT
+      p.id,
+      p.user_id 'userId',
+      p.template_id 'templateId',
+      p.name,
+      p.created_at 'createdAt',
+      p.updated_at 'updatedAt'
+    FROM generate as g
+    JOIN project as p
+    ON (g.project_id = p.id)
+    WHERE g.id = ?1 AND p.deleted_at IS NULL
+  `);
+
+  const project = await getProjectStatement.bind(id).first<Project>();
+
+  const key = ['generates', project.id, id].join('/');
 
   const objectRef = await c.env.BUCKET.get(key);
   const file = await objectRef.json();
