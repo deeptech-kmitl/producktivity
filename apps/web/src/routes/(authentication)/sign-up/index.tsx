@@ -16,7 +16,7 @@ export default component$(() => {
       </Box>
       <AuthButton label="Sign in with Google" />
       <Box direction="horizontal" gap="2">
-        <Button variant="surface" href="/">
+        <Button variant="surface" prefetch href="/">
           <Box direction="horizontal" gap="1">
             <Text theme="secondary">
               <LuArrowLeft />
