@@ -14,8 +14,21 @@ export interface User {
   updatedAt?: number;
 }
 
-export default component$((props: Props) => {
-  console.log(props);
+interface Template {
+  id: string;
+  userId: string;
+  name: string;
+  createdAt: number;
+  updatedAt?: number;
+}
+
+interface EditorProps {
+  id: string;
+  currentInfo: Template;
+  user: User;
+}
+
+export default component$(({ currentInfo, user }: EditorProps) => {
   const editorRef = useSignal<HTMLCanvasElement>();
   const containerRef = useSignal<HTMLDivElement>();
   const frameStore = useStore<{ frame: NoSerialize<Canvas> }>({ frame: undefined });
@@ -39,7 +52,7 @@ export default component$((props: Props) => {
 
   return (
     <Box width="full" height="full" direction="vertical">
-      <Toolbar templateId={props.id} user={props.user} />
+      <Toolbar templateId={currentInfo.id} templateName={currentInfo.name} user={user} />
       <Box width="full" height="full" direction="horizontal">
         <Sidebar />
         <Box width="full" height="full" align="center">
@@ -51,8 +64,3 @@ export default component$((props: Props) => {
     </Box>
   );
 });
-
-interface Props {
-  id: string;
-  user: User;
-}

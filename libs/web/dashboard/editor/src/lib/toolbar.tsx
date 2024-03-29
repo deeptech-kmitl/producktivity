@@ -3,14 +3,17 @@ import { Box, Navigation, Text } from '@producktivity/ui';
 import { Frame } from './context';
 import { LuPanelTop } from '@qwikest/icons/lucide';
 import { User } from './editor';
+import { useNavigate } from '@builder.io/qwik-city';
 
 interface ToolbarProps {
   templateId: string;
   user: User;
+  templateName: string;
 }
 
-export default component$(({ templateId, user }: ToolbarProps) => {
+export default component$(({ templateId, templateName, user }: ToolbarProps) => {
   const { frame } = useContext(Frame);
+  const nav = useNavigate();
 
   const saveTemplate = $(async () => {
     if (!frame) return;
@@ -25,6 +28,8 @@ export default component$(({ templateId, user }: ToolbarProps) => {
         userId: user.id,
         data: frame.toObject(),
       }),
+    }).then(() => {
+      nav('/dashboard/templates');
     });
   });
 
@@ -35,7 +40,7 @@ export default component$(({ templateId, user }: ToolbarProps) => {
           <LuPanelTop />
         </Text>
         <Text weight="semibold" theme="primary">
-          IT KMITL Innovation Contest
+          {templateName}
         </Text>
       </Box>
       <Box>
