@@ -23,7 +23,7 @@ export const TemplateTab = component$(() => {
   return (
     <Box paddingX="4" gap="4" width="full" height="full" align="top-left">
       <Text variant="title" weight="bold">
-        Recent Projects
+        Recent Templates
       </Text>
       <Box gridCols="3" gap="2">
         {templateList.value.data.map((item: Template) => (

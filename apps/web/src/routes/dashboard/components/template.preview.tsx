@@ -7,7 +7,7 @@ interface TemplatePreviewProps {
 
 export const TemplatePreview = component$(({ template }: TemplatePreviewProps) => {
   return (
-    <Button variant="surface" href={`/dashboard/project/${template.id}`}>
+    <Button variant="surface" href={`/dashboard/template/${template.id}`}>
       <Box gap="1">
         <Box padding="3" variant="surface" rounded="md">
           <img src="https://i0.wp.com/vat.or.th/wp-content/uploads/2021/03/placeholder.png?ssl=1" />
