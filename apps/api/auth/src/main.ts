@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { D1Database, R2Bucket } from '@cloudflare/workers-types';
 import { typeid } from 'typeid-js';
+import { cors } from 'hono/cors';
 
 interface ResponseWrapper<T, E> {
   data: T;
@@ -20,6 +21,7 @@ type Bindings = {
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
+app.use('*', cors());
 
 app.get('/users', async (c) => {
   const { oaid } = c.req.query();
