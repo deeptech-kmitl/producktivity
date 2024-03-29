@@ -21,6 +21,7 @@ type Bindings = {
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
+
 app.use('*', cors());
 
 app.get('/users', async (c) => {
@@ -156,12 +157,9 @@ interface Template {
   createdAt: number;
   updatedAt: number;
   deletedAt: number;
-};
+}
 
-type CreateTemplateParams = Pick<Template,
-  | 'name'
-  | 'userId'
->;
+type CreateTemplateParams = Pick<Template, 'name' | 'userId'>;
 
 // type FindTemplateParams = Pick<Template,
 //   | 'userId'
@@ -169,11 +167,9 @@ type CreateTemplateParams = Pick<Template,
 
 interface TemplateDataParams {
   data: JSON;
-};
+}
 
-type UpdateTemplateParams = Pick<Template,
-  | 'name'
->;
+type UpdateTemplateParams = Pick<Template, 'name'>;
 
 type CreateTemplateRequest = CreateTemplateParams & TemplateDataParams;
 type UpdateTemplateRequest = UpdateTemplateParams & TemplateDataParams;
@@ -236,7 +232,7 @@ app.get('/templates/data', async (c) => {
 
 app.put('/templates/data', async (c) => {
   const { userId, id } = c.req.query();
-  const { data, name } = await c.req.json() as UpdateTemplateRequest;
+  const { data, name } = (await c.req.json()) as UpdateTemplateRequest;
 
   const key = ['templates', userId, id].join('/');
 
@@ -265,22 +261,13 @@ interface Project {
   createdAt: number;
   updatedAt: number;
   deletedAt: number;
-};
+}
 
-type CreateProjectRequest = Pick<Project,
-  | 'userId'
-  | 'templateId'
-  | 'name'
->;
+type CreateProjectRequest = Pick<Project, 'userId' | 'templateId' | 'name'>;
 
-type FindProjectRequest = Pick<Project,
-  | 'userId'
->;
+type FindProjectRequest = Pick<Project, 'userId'>;
 
-type UpdateProjectRequest = Pick<Project,
-  | 'id'
-  | 'name'
->;
+type UpdateProjectRequest = Pick<Project, 'id' | 'name'>;
 
 app.post('/projects', async (c) => {
   const body = await c.req.json<CreateProjectRequest>();
@@ -331,104 +318,13 @@ app.patch('/projects', async (c) => {
   return c.json(response(results));
 });
 
-interface Generate {
-  id: string;
-  projectId: string;
-  args: string;
-  createdAt: number;
-  deletedAt: number;
-};
-
-type CreateGenerateParams = Pick<Generate,
-  | 'projectId'
-  | 'args'
->;
-
-app.post('/generates', async (c) => {
-  const body = await c.req.json<CreateGenerateParams>();
-
-  const createGenerateStatement = c.env.DB.prepare(`
-    INSERT INTO generate (id, project_id, args, created_at)
-    VALUES (?1, ?2, ?3, ?4)
-  `);
-
-  const getTemplateStatement = c.env.DB.prepare(`
-    SELECT
-      t.id,
-      t.user_id 'userId',
-      t.name,
-      p.user_id,
-      t.created_at 'createdAt',
-      t.updated_at 'updatedAt'
-    FROM template as t
-    JOIN project as p
-    ON (p.template_id = t.id)
-    WHERE p.id = ?1 AND t.deleted_at IS NULL
-  `);
-
-  const templateMetadata = await getTemplateStatement.bind(body.projectId).first<Template>();
-  const templateKey = ['templates', templateMetadata.userId, templateMetadata.id].join('/');
-  const templateRef = await c.env.BUCKET.get(templateKey);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const template = await templateRef.json<Record<string, any>>();
-
-  const args = Object.fromEntries([...new URLSearchParams(body.args)]);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  template.objects = template.objects.map((object: Record<string, any>) => {
-    if (!object.text) return object;
-
-    Object.keys(args).map((key) => {
-      object.text = object.text.replace(`{${key}}`, args[key]);
-    });
-
-    return object;
-  });
-
-  const id = typeid('gen').toString();
-  const generatesKey = ['generates', body.projectId, id].join('/');
-
-  await c.env.BUCKET.put(generatesKey, JSON.stringify(template));
-
-  const result = createGenerateStatement.bind(id, body.projectId, body.args, Date.now()).run();
-
-  return c.json(response(result));
-});
-
-app.get('/generates', async (c) => {
-  const { projectId } = c.req.query();
-
-  const getGenerateStatement = c.env.DB.prepare(`
-    SELECT
-      g.id,
-      g.project_id 'projectId',
-      g.args,
-      g.created_at 'createdAt'
-    FROM generate as g
-    WHERE g.project_id = ?1 AND g.deleted_at IS NULL
-  `);
-
-  const { results } = await getGenerateStatement.bind(projectId).all<Generate>();
-
-  return c.json(response(results));
-});
-
-app.get('/generates/data', async (c) => {
-  const { projectId, id } = c.req.query();
-
-  const key = ['generates', projectId, id].join('/');
-
-  const objectRef = await c.env.BUCKET.get(key);
-  const file = await objectRef.json();
-
-  return c.json(response(file));
-  // const fileBuffer = await objectRef.arrayBuffer();
-  // const fileSlices = new Uint8Array(fileBuffer);
-
-  // return stream(c, async (stream) => {
-  //   await stream.write(fileSlices);
-  //   await stream.close();
-  // });
-});
+// interface Generate {
+//   id: string;
+//   projectId: string;
+//   key: string;
+//   args: string;
+//   createdAt: number;
+//   deletedAt: number;
+// }
 
 export default app;

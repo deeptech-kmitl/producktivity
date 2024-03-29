@@ -13,8 +13,8 @@ export default component$((props: AuthButtonProps) => {
   return (
     <Button variant="surface" onClick$={signInWithGoogle}>
       <Box width="full" direction="horizontal" gap="1">
+        <img width="30" height="30" src="/assets/google.svg" />
         <Text>{props.label}</Text>
-        <img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png" />
       </Box>
     </Button>
   );

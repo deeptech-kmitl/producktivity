@@ -24,11 +24,15 @@ interface Template {
 
 interface EditorProps {
   id: string;
-  currentInfo: Template;
-  user: User;
+  currentInfo?: Template;
+  user?: User;
+  withoutSidebar?: boolean;
+  withoutToolbar?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  initialTemplate?: Record<string, any>;
 }
 
-export default component$(({ currentInfo, user }: EditorProps) => {
+export default component$((props: EditorProps) => {
   const editorRef = useSignal<HTMLCanvasElement>();
   const containerRef = useSignal<HTMLDivElement>();
   const frameStore = useStore<{ frame: NoSerialize<Canvas> }>({ frame: undefined });
@@ -36,13 +40,22 @@ export default component$(({ currentInfo, user }: EditorProps) => {
   useContextProvider(Frame, frameStore);
 
   // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(({ cleanup }) => {
+  useVisibleTask$(async ({ cleanup }) => {
     if (!editorRef.value || !containerRef.value) return;
 
     const frame = new Canvas(editorRef.value, {
       width: containerRef.value.clientWidth,
       height: containerRef.value.clientHeight,
     });
+
+    if (props.initialTemplate) {
+      console.log(props.initialTemplate);
+      await frame.loadFromJSON(JSON.stringify(props.initialTemplate), () => {
+        frame.renderAll();
+      });
+
+      console.log(frame.toObject());
+    }
 
     frameStore.frame = noSerialize(frame);
     frame.renderAll();
@@ -52,9 +65,9 @@ export default component$(({ currentInfo, user }: EditorProps) => {
 
   return (
     <Box width="full" height="full" direction="vertical">
-      <Toolbar templateId={currentInfo.id} templateName={currentInfo.name} user={user} />
+      {!props.withoutToolbar && <Toolbar templateId={props.currentInfo!.id} templateName={props.currentInfo!.name} user={props.user!} />}
       <Box width="full" height="full" direction="horizontal">
-        <Sidebar />
+        {!props.withoutSidebar && <Sidebar />}
         <Box width="full" height="full" align="center">
           <Box ref={containerRef} style={{ height: 600, width: 856 }} variant="primary">
             <canvas id="editor" ref={editorRef} style={{ width: '100%', height: '100%' }} />
