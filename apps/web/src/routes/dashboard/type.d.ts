@@ -3,7 +3,7 @@ declare type Project = {
   userId: string;
   templateId: string;
   name: string;
-  createdAt?: number;
+  createdAt: number;
   updatedAt?: number;
 };
 
@@ -11,6 +11,6 @@ declare type Template = {
   id: string;
   userId: string;
   name: string;
-  createdAt?: number;
+  createdAt: number;
   updatedAt?: number;
 };

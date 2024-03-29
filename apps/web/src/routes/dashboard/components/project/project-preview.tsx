@@ -1,9 +1,8 @@
 import { component$ } from '@builder.io/qwik';
 import { Box, Button, Text } from '@producktivity/ui';
-import { TaskProps } from '../../constant/mock-data';
 
 interface ProjectPreviewProps {
-  project: TaskProps;
+  project: Project;
 }
 
 export const ProjectPreview = component$(({ project }: ProjectPreviewProps) => {
@@ -14,10 +13,10 @@ export const ProjectPreview = component$(({ project }: ProjectPreviewProps) => {
           <img src="https://i0.wp.com/vat.or.th/wp-content/uploads/2021/03/placeholder.png?ssl=1" />
         </Box>
         <Text variant="h3" weight="semibold">
-          {project.title}
+          {project.name}
         </Text>
         <Text variant="small" theme="secondary">
-          {project.createdWhen.toLocaleDateString()}
+          Created since: {new Date(project.createdAt).toLocaleDateString()}
         </Text>
       </Box>
     </Button>

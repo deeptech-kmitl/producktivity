@@ -16,7 +16,7 @@ export default component$(() => {
   const loc = useLocation();
 
   return (
-    <Box marginY="2" width="full">
+    <Box marginY="2" width="full" height="full">
       {loc.params.slug === 'overview' && <DashboardTab />}
       {loc.params.slug === 'projects' && <ProjectTab />}
       {loc.params.slug === 'templates' && <TemplateTab />}

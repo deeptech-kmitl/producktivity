@@ -1,17 +1,33 @@
-import { component$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal, useTask$ } from '@builder.io/qwik';
 import { Box, Button, Text } from '@producktivity/ui';
 import { LuPenLine } from '@qwikest/icons/lucide';
 import { DashboardTable } from '../../components/dashboard/dashboard-table';
-import { MockDashboardTasks, TaskProps } from '../../constant/mock-data';
+import { MockDashboardTasks } from '../../constant/mock-data';
 import { useLocation } from '@builder.io/qwik-city';
+import { useUser } from '../../../layout';
+
+interface dataProjectProps {
+  data: Project[];
+}
 
 export default component$(() => {
   const loc = useLocation();
-  const currentProject = useSignal<TaskProps>();
+  const currentProject = useSignal<Project>();
+  const userSignal = useUser();
+  const projectList = useSignal<dataProjectProps>({ data: [] });
+
+  useTask$(async () => {
+    const temp = await fetch(`${import.meta.env.VITE_API_URL}/projects?userId=${userSignal.value.id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    projectList.value = await temp.json();
+  });
 
   const findCurrentProject = () => {
-    const tempArr = MockDashboardTasks.filter((v) => {
-      return v.id === parseInt(loc.params.id);
+    const tempArr = projectList.value.data.filter((v) => {
+      return v.id === loc.params.id;
     });
     currentProject.value = tempArr[0];
   };
@@ -26,7 +42,7 @@ export default component$(() => {
       <Box width="full" align="center" gap="2">
         <Box direction="horizontal" gap="1" align="left" width="full">
           <Text variant="title" weight="bold">
-            {currentProject.value?.title}
+            {currentProject.value?.name}
           </Text>
           <Text variant="h1" theme="secondary">
             <LuPenLine />

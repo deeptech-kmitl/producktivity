@@ -36,7 +36,7 @@ const MockTemplate: TemplateProps[] = [
 
 export const TemplateTab = component$(() => {
   return (
-    <Box paddingX="4" gap="4" width="full" align="top-left">
+    <Box height="full" paddingX="4" gap="4" width="full" align="top-left">
       <Text variant="title" weight="bold">
         Recent Templates
       </Text>
