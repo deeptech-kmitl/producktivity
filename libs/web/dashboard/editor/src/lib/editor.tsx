@@ -5,6 +5,15 @@ import Sidebar from './sidebar';
 import Toolbar from './toolbar';
 import { Frame } from './context';
 
+export interface User {
+  id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  createdAt: number;
+  updatedAt?: number;
+}
+
 export default component$((props: Props) => {
   console.log(props);
   const editorRef = useSignal<HTMLCanvasElement>();
@@ -30,7 +39,7 @@ export default component$((props: Props) => {
 
   return (
     <Box width="full" height="full" direction="vertical">
-      <Toolbar />
+      <Toolbar templateId={props.id} user={props.user} />
       <Box width="full" height="full" direction="horizontal">
         <Sidebar />
         <Box width="full" height="full" align="center">
@@ -45,4 +54,5 @@ export default component$((props: Props) => {
 
 interface Props {
   id: string;
+  user: User;
 }

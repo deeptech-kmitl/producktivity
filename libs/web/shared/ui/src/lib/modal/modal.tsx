@@ -22,7 +22,7 @@ export const UIModal = component$<ModalProps>((props) => {
         <Button rounded="md" variant="secondary" onClick$={cancelAction}>
           <Text theme="secondary">{cancelLabel}</Text>
         </Button>
-        <Button rounded="md" variant="primary" onClick$={confirmAction}>
+        <Button rounded="md" variant="primary" onClick$={confirmAction} type="submit">
           <Text theme="surface">{confirmLabel}</Text>
         </Button>
       </ModalFooter>

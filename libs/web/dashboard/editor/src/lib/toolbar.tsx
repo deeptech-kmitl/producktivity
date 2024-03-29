@@ -2,14 +2,30 @@ import { component$, useContext, $ } from '@builder.io/qwik';
 import { Box, Navigation, Text } from '@producktivity/ui';
 import { Frame } from './context';
 import { LuPanelTop } from '@qwikest/icons/lucide';
+import { User } from './editor';
 
-export default component$(() => {
+interface ToolbarProps {
+  templateId: string;
+  user: User;
+}
+
+export default component$(({ templateId, user }: ToolbarProps) => {
   const { frame } = useContext(Frame);
 
-  const saveTemplate = $(() => {
+  const saveTemplate = $(async () => {
     if (!frame) return;
 
-    console.log(frame.toObject());
+    await fetch(`${import.meta.env.VITE_API_URL}/templates`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: `new-${new Date().toLocaleDateString()}-${user.username}}`,
+        userId: user.id,
+        data: frame.toObject(),
+      }),
+    });
   });
 
   return (
