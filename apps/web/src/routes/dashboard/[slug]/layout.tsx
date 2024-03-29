@@ -41,14 +41,24 @@ export default component$(() => {
               </Button>
             ))}
           </Box>
-          <Button rounded="full" onClick$={() => (showSig.value = true)}>
-            <Box direction="horizontal" align="center" gap="0.5">
-              <Text theme="surface">
-                <LuPlusCircle />
-              </Text>
-              <Text theme="surface">Create new project</Text>
-            </Box>
-          </Button>
+          <Box direction="horizontal" gap="1">
+            <Button rounded="full" onClick$={() => (showSig.value = true)}>
+              <Box direction="horizontal" align="center" gap="0.5">
+                <Text theme="surface">
+                  <LuPlusCircle />
+                </Text>
+                <Text theme="surface">Create new project</Text>
+              </Box>
+            </Button>
+            <Button rounded="full" href="/dashboard/template/new">
+              <Box direction="horizontal" align="center" gap="0.5">
+                <Text theme="surface">
+                  <LuPlusCircle />
+                </Text>
+                <Text theme="surface">Create new template</Text>
+              </Box>
+            </Button>
+          </Box>
         </Box>
         <Box direction="horizontal" gap="0.5" paddingX="4">
           <Text>Current Plan</Text>
