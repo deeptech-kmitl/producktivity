@@ -31,11 +31,11 @@ export const EditProjectModal = component$(({ showModal, currentName, currentId 
         id: currentId,
         name: values.projectName,
       }),
-    }).then(async () => {
+    }).then(() => {
       showModal.value = false;
       toast.success('Saved editing');
 
-      await nav();
+      nav();
     });
   });
 
